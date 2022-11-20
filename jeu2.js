@@ -7,7 +7,7 @@ modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal))
 
 
 function toggleModal(){
-  modalContainer.classList.toggle("active")
+    modalContainer.classList.toggle("active")
 }
 
 $(function() {
@@ -43,6 +43,15 @@ btn4.addEventListener('click', () => {
     document.body.style.backgroundImage = "url('cellule.jpg')"
 });
 
+function hideButton(){
+
+    document.getElementById('option-buttons').style.display= 'none';
+
+}
+
+function hideText(){
+    document.getElementById('text').style.display= 'none';
+}
 
 
 // function changeBackground() {
@@ -55,6 +64,20 @@ function startGame() {
     state = {}
     showTextNode(1)
 }
+
+var element = document.getElementById("fenetre");
+
+const vid = document.createElement('video');
+vid.src = 'femme.mp4';
+vid.autoPlay = true;
+vid.width = 1210;
+vid.height = 710;
+
+
+function playvid (){
+    vid.play();
+}
+
 
 function showTextNode(textNodeIndex) {
     const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
@@ -82,14 +105,20 @@ function showTextNode(textNodeIndex) {
 
                 }
                 if (textNodeIndex == 1) {
-                    element.style.backgroundImage = "url('marchand.webp')";
+                    hideButton();
+                    hideText();
+                    element.appendChild(vid);
+                    playvid();
+                    //element.style.backgroundImage = "url('chateau_int.webp')"
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 2) {
+                    hideButton();
                     element.style.backgroundImage = "url('chateau.jpg')"
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 3) {
+                    hideButton();
                     element.style.backgroundImage = "url('chateau_int.webp')"
                     console.log(textNodeIndex)
 
