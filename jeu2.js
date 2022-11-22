@@ -28,19 +28,19 @@ let btn3 = document.querySelector('#btn3');
 let btn4 = document.querySelector('#btn4');
 
 btn1.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
+    document.body.style.backgroundImage = "url('cellule.jpg')"
 });
 
 btn2.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
+    document.body.style.backgroundImage = "url('cellule.jpg')"
 });
 
 btn3.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
+    document.body.style.backgroundImage = "url('cellule.jpg')"
 });
 
 btn4.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
+    document.body.style.backgroundImage = "url('cellule.jpg')"
 });
 
 function hideButton(){
@@ -63,7 +63,7 @@ function showAll() {
 
 // function changeBackground() {
 //     if (textNodeIndex == 1) {
-//         document.body.style.backgroundImage = "url('Picture/cellule.jpg')";
+//         document.body.style.backgroundImage = "url('cellule.jpg')";
 //     }
 // }
 
@@ -75,7 +75,7 @@ function startGame() {
 var element = document.getElementById("fenetre");
 
 const vid = document.createElement('video');
-vid.src = 'Picture/2022.mp4';
+vid.src = '2022.mp4';
 vid.autoPlay = true;
 vid.width = 1200;
 vid.height = 700;
@@ -107,12 +107,12 @@ function showTextNode(textNodeIndex) {
             button.addEventListener('click', () => {
                 var element = document.getElementById("fenetre");
                 // if (nextText = -1) {
-           //         element.style.backgroundImage = "url('Picture/cellule.jpg')"
+           //         element.style.backgroundImage = "url('cellule.jpg')"
             //        console.log('nextText -1')
 
            //     }
            //     if (nextText = 5) {
-            //        element.style.backgroundImage = "url('Picture/cellule.jpg')"
+            //        element.style.backgroundImage = "url('cellule.jpg')"
              //       console.log('nextText 5')
 
               //  }
@@ -122,37 +122,37 @@ function showTextNode(textNodeIndex) {
                     hideText();
                     element.appendChild(vid);
                     playvid();
-                    //element.style.backgroundImage = "url('Picture/chateau_int.webp')"
+                    //element.style.backgroundImage = "url('chateau_int.webp')"
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 2) {
                     hideButton();
-                    element.style.backgroundImage = "url('Picture/chateau.jpg')"
+                    element.style.backgroundImage = "url('chateau.jpg')"
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 3) {
                     hideButton();
-                    element.style.backgroundImage = "url('Picture/chateau_int.webp')"
+                    element.style.backgroundImage = "url('chateau_int.webp')"
                     console.log(textNodeIndex)
 
                 }
                 if (textNodeIndex == 4) {
-                    element.style.backgroundImage = "url('Picture/cellule.jpg')"
+                    element.style.backgroundImage = "url('cellule.jpg')"
                     console.log(textNodeIndex)
 
                 }
                 if (textNodeIndex == 5) {
-                    element.style.backgroundImage = "url('Picture/auberge.jpg')"
+                    element.style.backgroundImage = "url('auberge.jpg')"
                     console.log(textNodeIndex)
                 }
                 // }
                 // if (textNodeIndex == 6) {
-                //     document.body.style.backgroundImage = "url('Picture/auberge.jpg')"
+                //     document.body.style.backgroundImage = "url('auberge.jpg')"
                 //     console.log(textNodeIndex)
 
                 // }
                 // if (textNodeIndex == 7) {
-                //     document.body.style.backgroundImage = "url('Picture/auberge.jpg')"
+                //     document.body.style.backgroundImage = "url('auberge.jpg')"
                 //     console.log(textNodeIndex)
 
                 // }
