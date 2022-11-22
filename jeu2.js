@@ -28,19 +28,19 @@ let btn3 = document.querySelector('#btn3');
 let btn4 = document.querySelector('#btn4');
 
 btn1.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('cellule.jpg')"
+    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
 });
 
 btn2.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('cellule.jpg')"
+    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
 });
 
 btn3.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('cellule.jpg')"
+    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
 });
 
 btn4.addEventListener('click', () => {
-    document.body.style.backgroundImage = "url('cellule.jpg')"
+    document.body.style.backgroundImage = "url('Picture/cellule.jpg')"
 });
 
 function hideButton(){
@@ -63,7 +63,7 @@ function showAll() {
 
 // function changeBackground() {
 //     if (textNodeIndex == 1) {
-//         document.body.style.backgroundImage = "url('cellule.jpg')";
+//         document.body.style.backgroundImage = "url('Picture/cellule.jpg')";
 //     }
 // }
 
@@ -127,32 +127,32 @@ function showTextNode(textNodeIndex) {
                 }
                 if (textNodeIndex == 2) {
                     hideButton();
-                    element.style.backgroundImage = "url('chateau.jpg')"
+                    element.style.backgroundImage = "url('Picture/chateau.jpg')"
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 3) {
                     hideButton();
-                    element.style.backgroundImage = "url('chateau_int.webp')"
+                    element.style.backgroundImage = "url('Picture/chateau_int.webp')"
                     console.log(textNodeIndex)
 
                 }
                 if (textNodeIndex == 4) {
-                    element.style.backgroundImage = "url('cellule.jpg')"
+                    element.style.backgroundImage = "url('Picture/cellule.jpg')"
                     console.log(textNodeIndex)
 
                 }
                 if (textNodeIndex == 5) {
-                    element.style.backgroundImage = "url('auberge.jpg')"
+                    element.style.backgroundImage = "url('Picture/auberge.jpg')"
                     console.log(textNodeIndex)
                 }
                 // }
                 // if (textNodeIndex == 6) {
-                //     document.body.style.backgroundImage = "url('auberge.jpg')"
+                //     document.body.style.backgroundImage = "url('Picture/auberge.jpg')"
                 //     console.log(textNodeIndex)
 
                 // }
                 // if (textNodeIndex == 7) {
-                //     document.body.style.backgroundImage = "url('auberge.jpg')"
+                //     document.body.style.backgroundImage = "url('Picture/auberge.jpg')"
                 //     console.log(textNodeIndex)
 
                 // }

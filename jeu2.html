@@ -1,149 +1,130 @@
 <!doctype html>
 <html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <title>game</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="jeu2.css">
+    <script defer src="jeu2.js"></script>
+    <script src="jquery-3.6.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="jeu.scss">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="turn.min.js"></script>
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
+    <!--newspaper-->
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="normalize.css">
-  <link rel="stylesheet" href="jeu2.css">
-  <script defer src="jeu2.js"></script>
-  <script src="jquery-3.6.1.js"></script>
-  <link rel="stylesheet" type="text/css" href="jeu.scss">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="turn.min.js"></script>
+    <style>
+      #boxArea {
+        margin: 10% auto;
+        width: 800px;
+        height: 400px;
+      }
+      #boxArea .turn-page{
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100% ;
+      }
+    </style>
+    <meta name="theme-color" content="#fafafa">
 
-  <!--newspaper-->
-  <link href='https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic|Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- Smartsupp Live Chat script
+    <script type="text/javascript">
+      var _smartsupp = _smartsupp || {};
+      _smartsupp.key = '0acbb689749a9fb44b1482c8cf5336eb3c3ca95a';
+      window.smartsupp||(function(d) {
+        var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+        s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+        c.type='text/javascript';c.charset='utf-8';c.async=true;
+        c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+      })(document);
+    </script>-->
+  </head>
+  <body>
+    <script src="js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
 
-<style>
-  #boxArea {
-    margin: 10% auto;
-    width: 800px;
-    height: 400px;
-  }
-  #boxArea .turn-page{
-    -webkit-background-size: 100% 100%;
-    background-size: 100% 100% ;        
-  }
-</style>
-
-  <meta name="theme-color" content="#fafafa">
-
-  <!-- Smartsupp Live Chat script
-  <script type="text/javascript">
-    var _smartsupp = _smartsupp || {};
-    _smartsupp.key = '0acbb689749a9fb44b1482c8cf5336eb3c3ca95a';
-    window.smartsupp||(function(d) {
-      var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-      s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-      c.type='text/javascript';c.charset='utf-8';c.async=true;
-      c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-    })(document);
-  </script>-->
-
-</head>
-
-<body>
-
-
-  <script src="js/vendor/modernizr-3.11.2.min.js"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
-
-  <nav class="nav">
-    <div class="container">
-      <div class="logo">
-        <a href="index.html">Your Logo</a>
+    <nav class="nav">
+      <div class="container">
+        <div class="logo">
+          <a href="index.html">Your Logo</a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+          <ul class="navlinks">
+            <li><a href="#">  </a></li>
+            <li><a href="#">Ressources</a></li>
+            <li><a href="#">ChatBox</a></li>
+            <li><a href="#">Contacts</a></li>
+            <li><a href="Connexion.html">Connexion</a></li>
+          </ul>
+        </div>
+              <i></i>
+              <i></i>
+              <i></i>
+          </span>
       </div>
-      <div id="mainListDiv" class="main_list">
-        <ul class="navlinks">
-          <li><a href="#">  </a></li>
-          <li><a href="#">Ressources</a></li>
-          <li><a href="#">ChatBox</a></li>
-          <li><a href="#">Contacts</a></li>
-          <li><a href="Connexion.html">Connexion</a></li>
-        </ul>
-      </div>
-			<i></i>
-			<i></i>
-			<i></i>
-		</span>
+    </nav>
+
+    <div class="home">
+      <a href="#" class="play modal-btn modal-trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        PLAY
+      </a>
     </div>
-  </nav>
-
-<body>
-
-  <div class="home">
-    <a href="#" class="play modal-btn modal-trigger">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      PLAY
-    </a>
-</div>
 
 
-  <div class="modal-container">
-    <div class="overlay modal-trigger"></div>
-    <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
-      <button 
-      aria-label="close modal"
-      class="close-modal modal-trigger">X</button>
+    <div class="modal-container">
+      <div class="overlay modal-trigger"></div>
+      <div class="modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="dialogDesc">
+        <button aria-label="close modal" class="close-modal modal-trigger">X</button>
         <div class="fenetre" id="fenetre">
           <div id="text" class="narration"></div>
-        <div id="option-buttons" class="btn-grid">
-          <button class="btn" id="btn1">Option 1</button>
-          <button class="btn" id="btn2">Option 2</button>
-          <button class="btn" id="btn3">Option 3</button>
-          <button class="btn" id="btn4">Option 4</button>
+          <div id="option-buttons" class="btn-grid">
+            <button class="btn" id="btn1">Option 1</button>
+            <button class="btn" id="btn2">Option 2</button>
+            <button class="btn" id="btn3">Option 3</button>
+            <button class="btn" id="btn4">Option 4</button>
+          </div>
         </div>
       </div>
-  </div>
-  </div>
+    </div>
 
+    <div style="height: 1000px">
+      <!-- just to make scrolling effect possible -->
+      <h2 class="myH2">What is this ?</h2>
+      <p class="myP">This is a responsive fixed navbar animated on scroll</p>
+      <p class="myP">I took inspiration from ABDO STEIF (<a href="https://codepen.io/abdosteif/pen/bRoyMb?editors=1100">https://codepen.io/abdosteif/pen/bRoyMb?editors=1100</a>)
+        and Dicson <a href="https://codepen.io/dicson/pen/waKPgQ">(https://codepen.io/dicson/pen/waKPgQ)</a></p>
+      <p class="myP">I HOPE YOU FIND THIS USEFULL</p>
+      <p class="myP">Albi</p>
+      <p class="myP">
+        non je vais vrmt mettre du texte      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
+      </p>
+    </div>
 
-  <div style="height: 1000px">
-    <!-- just to make scrolling effect possible -->
-    <h2 class="myH2">What is this ?</h2>
-    <p class="myP">This is a responsive fixed navbar animated on scroll</p>
-    <p class="myP">I took inspiration from ABDO STEIF (<a href="https://codepen.io/abdosteif/pen/bRoyMb?editors=1100">https://codepen.io/abdosteif/pen/bRoyMb?editors=1100</a>)
-      and Dicson <a href="https://codepen.io/dicson/pen/waKPgQ">(https://codepen.io/dicson/pen/waKPgQ)</a></p>
-    <p class="myP">I HOPE YOU FIND THIS USEFULL</p>
-    <p class="myP">Albi</p>
-    
-    <p class="myP">
-
-      
-
-non je vais vrmt mettre du texte      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum ratione facere animi impedit rem labore sint repellendus ipsa sapiente voluptatem aut excepturi quo itaque, ab earum cumque. Voluptatem beatae id inventore quod voluptate qui deserunt, quis placeat, tempora ex totam, dolore sequi harum eos voluptatibus animi labore officiis minus laboriosam
-    </p>
-  
-  </div>
-
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
-</body>
-
+    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+    <script>
+      window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+      ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
+  </body>
 </html>
