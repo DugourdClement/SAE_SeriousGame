@@ -44,15 +44,22 @@ btn4.addEventListener('click', () => {
 });
 
 function hideButton(){
-
     document.getElementById('option-buttons').style.display= 'none';
-
 }
 
 function hideText(){
     document.getElementById('text').style.display= 'none';
 }
 
+function hideAll(){
+    hideButton();
+    hideText();
+}
+
+function showAll() {
+    document.getElementById('text').style.display = 'initial';
+    document.getElementById('option-buttons').style.display = 'initial';
+}
 
 // function changeBackground() {
 //     if (textNodeIndex == 1) {
@@ -68,15 +75,20 @@ function startGame() {
 var element = document.getElementById("fenetre");
 
 const vid = document.createElement('video');
-vid.src = 'femme.mp4';
+vid.src = '2022.mp4';
 vid.autoPlay = true;
-vid.width = 1210;
-vid.height = 710;
+vid.width = 1200;
+vid.height = 700;
 
 
 function playvid (){
     vid.play();
 }
+
+function hideBack(){
+    document.getElementById("fenetre").style.backgroundColor = 'white';
+}
+
 
 
 function showTextNode(textNodeIndex) {
@@ -94,17 +106,18 @@ function showTextNode(textNodeIndex) {
             button.addEventListener('click', () => selectOption(option))
             button.addEventListener('click', () => {
                 var element = document.getElementById("fenetre");
-                if (nextText = -1) {
-                    element.style.backgroundImage = "url('cellule.jpg')"
-                    console.log('nextText -1')
+                // if (nextText = -1) {
+           //         element.style.backgroundImage = "url('cellule.jpg')"
+            //        console.log('nextText -1')
 
-                }
-                if (nextText = 5) {
-                    element.style.backgroundImage = "url('cellule.jpg')"
-                    console.log('nextText 5')
+           //     }
+           //     if (nextText = 5) {
+            //        element.style.backgroundImage = "url('cellule.jpg')"
+             //       console.log('nextText 5')
 
-                }
+              //  }
                 if (textNodeIndex == 1) {
+                    element.style.backgroundColor='transparent';
                     hideButton();
                     hideText();
                     element.appendChild(vid);

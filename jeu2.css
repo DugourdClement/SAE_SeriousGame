@@ -506,15 +506,6 @@ body {
   background: #f1f1f1;
 } */
 
-/* .container {
-    width: 800px;
-    max-width: 80%;
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px 2px;
-} */
-
 .btn-grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -613,9 +604,7 @@ body {
     opacity: 0;
     width: 1200px;
     height: 700px;
-    background: #fff;
-    border-radius: 5px;
-    position: absolute;
+      position: absolute;
     display: flex;
     justify-content: center;
     top: 50%;
@@ -630,20 +619,17 @@ body {
     transform: translate(-50%, -50%);
     transition: opacity 0.4s 0.2s ease-out,
     transform 0.4s 0.2s ease-out;
-    background: white;
   }
   
   .close-modal {
+    background-color: #b06ab3;
     padding: 8px 10px;
     border: none;
-    border-radius: 5px;
     font-size: 18px;
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 10px;
     cursor: pointer;
-    background: #ff365e;
-    color: #fff;
   }
   .modal h1 {
     margin-bottom: 10px;
@@ -655,16 +641,13 @@ body {
     margin-bottom: 5px;
   }
 
-  .fenetre { 
-    background-image: url('cellule.jpg');
+  .fenetre {
     background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 5px;
-    padding: 5px 10px;
+    /*border-radius: 5px;
+    padding: 5px 10px;*/
     width: 1200px;
     height: 700px;
     color: white;
-    outline: none;
   }
 
   .narration {
