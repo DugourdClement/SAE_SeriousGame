@@ -75,7 +75,7 @@ function startGame() {
 var element = document.getElementById("fenetre");
 
 const vid = document.createElement('video');
-vid.src = '2022.mp4';
+vid.src = 'Picture/2022.mp4';
 vid.autoPlay = true;
 vid.width = 1200;
 vid.height = 700;
