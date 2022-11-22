@@ -58,7 +58,7 @@ function hideAll(){
 
 function showAll() {
     document.getElementById('text').style.display = 'initial';
-    document.getElementById('option-buttons').style.display = 'initial';
+    document.getElementById('option-buttons').style.display= 'initial';
 }
 
 // function changeBackground() {
@@ -122,6 +122,11 @@ function showTextNode(textNodeIndex) {
                     hideText();
                     element.appendChild(vid);
                     playvid();
+                    vid.addEventListener('ended', function (e){
+                        element.removeChild(vid);
+                        element.style.backgroundImage = "url('clement.jpg')";
+                        document.getElementById('option-buttons').style.display= 'initial';
+                    });
                     //element.style.backgroundImage = "url('chateau_int.webp')"
                     console.log(textNodeIndex)
                 }
