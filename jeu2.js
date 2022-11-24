@@ -58,8 +58,10 @@ function hideAll(){
 
 function showAll() {
     document.getElementById('text').style.display = 'initial';
-    document.getElementById('option-buttons').style.display = 'initial';
+    document.getElementById('option-buttons').style.display = 'grid';
 }
+
+
 
 // function changeBackground() {
 //     if (textNodeIndex == 1) {
@@ -75,7 +77,7 @@ function startGame() {
 var element = document.getElementById("fenetre");
 
 const vid = document.createElement('video');
-vid.src = '2022.mp4';
+vid.src = 'Picture/2022.mp4';
 vid.autoPlay = true;
 vid.width = 1200;
 vid.height = 700;
@@ -122,7 +124,11 @@ function showTextNode(textNodeIndex) {
                     hideText();
                     element.appendChild(vid);
                     playvid();
-                    //element.style.backgroundImage = "url('chateau_int.webp')"
+                    vid.addEventListener('ended', function (e){
+                        element.removeChild(vid);
+                        //element.style.backgroundImage = "url('Picture/journal1.jpg')";
+                        showAll();
+                    });
                     console.log(textNodeIndex)
                 }
                 if (textNodeIndex == 2) {

@@ -24,7 +24,6 @@ body {
   height: 65px;
   position: fixed;
   line-height: 65px;
-  text-align: center;
 }
 
 .nav div.logo {
@@ -41,7 +40,7 @@ body {
 }
 
 .nav div.logo a:hover {
-  color: #00E676;
+  color: #811fbd;
 }
 
 .nav div.main_list {
@@ -73,7 +72,7 @@ body {
 }
 
 .nav div.main_list ul li a:hover {
-  color: #00E676;
+  color: #811fbd;
 }
 
 
@@ -387,7 +386,7 @@ body {
   display: inline-block;
   padding: 25px 30px;
   margin: 40px 0;
-  color: #03e9f4;
+  color: #fa315f;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
@@ -400,12 +399,12 @@ body {
 
 }
 .play:hover{
-  background: #03e9f4;
+  background: #fa315f;
   color: #050801;
-  box-shadow: 0 0 5px #03e9f4,
-  0 0 25px #03e9f4,
-  0 0 50px #03e9f4,
-  0 0 15px #03e9f4;
+  box-shadow: 0 0 5px #fa315f,
+  0 0 25px #fa315f,
+  0 0 50px #fa315f,
+  0 0 15px #fa315f;
 }
 .play:nth-child(1){
   filter: hue-rotate(270deg);
@@ -422,7 +421,7 @@ body {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg,transparent,#03e9f4);
+  background: linear-gradient(90deg,transparent,#fa315f);
   animation: animate1 1s linear infinite;
 }
 @keyframes animate1{
@@ -438,7 +437,7 @@ body {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg,transparent,#03e9f4);
+  background: linear-gradient(180deg,transparent,#fa315f);
   animation: animate2 1s linear infinite;
   animation-delay: 0.25s;
 }
@@ -455,7 +454,7 @@ body {
   right: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg,transparent,#03e9f4);
+  background: linear-gradient(270deg,transparent,#fa315f);
   animation: animate3 1s linear infinite;
   animation-delay: 0.50s;
 }
@@ -474,7 +473,7 @@ body {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg,transparent,#03e9f4);
+  background: linear-gradient(360deg,transparent, #fa315f);
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }
@@ -622,7 +621,7 @@ body {
 }
 
 .close-modal {
-  background-color: #b06ab3;
+  background-color: #811fbd;
   padding: 8px 10px;
   border: none;
   font-size: 18px;
@@ -652,4 +651,108 @@ body {
 
 .narration {
   font-size: 17px;
+}
+
+/* contacts */
+.containerCard {
+  height: 100vh;
+  width: 100vw;
+  max-height: 800px;
+  max-width: 1280px;
+  min-height: 0px;
+  min-width: 1000px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+}
+.border {
+  height: 369px;
+  width: 290px;
+  background: transparent;
+  border-radius: 10px;
+  transition: border 1s;
+  position: relative;
+}
+.border:hover {
+  border: 1px solid #fff;
+}
+.card {
+  height: 379px;
+  width: 300px;
+  background: #808080;
+  border-radius: 10px;
+  transition: background 0.8s;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 70px 63px -60px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.card0 {
+  background: url("Picture/noemie.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card0:hover {
+  background: url("Picture/noemie.jpg") left center no-repeat;
+  background-size: 600px;
+}
+.card0:hover h2 {
+  opacity: 1;
+}
+.card0:hover .fa {
+  opacity: 1;
+}
+.card1 {
+  background: url("Picture/clement.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card1:hover {
+  background: url("Picture/clement.jpg") left center no-repeat;
+  background-size: 600px;
+}
+.card1:hover h2 {
+  opacity: 1;
+}
+.card1:hover .fa {
+  opacity: 1;
+}
+.card2 {
+  background: url("Picture/killian.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card2:hover {
+  background: url("Picture/killian.jpg") left center no-repeat;
+  background-size: 600px;
+}
+.card2:hover h2 {
+  opacity: 1;
+}
+.card2:hover .fa {
+  opacity: 1;
+}
+h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #fff;
+  margin: 20px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.fa {
+  opacity: 0;
+  transition: opacity 1s;
+}
+.icons {
+  position: absolute;
+  fill: #fff;
+  color: #fff;
+  height: 130px;
+  top: 226px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
