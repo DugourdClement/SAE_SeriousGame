@@ -1,0 +1,362 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  font-size: 62.5%;
+  background-color: #595c61;
+}
+
+img {
+  max-width: 100%;
+}
+
+.nav {
+  width: 100%;
+  height: 65px;
+  position: fixed;
+  line-height: 65px;
+  text-align: center;
+}
+
+.nav div.logo {
+  float: left;
+  width: 10rem;
+  height: 10rem;
+  padding-left: 3rem;
+}
+
+.nav div.logo a {
+  text-decoration: none;
+  color: black;
+  font-size: 2.5rem;
+}
+
+.nav div.logo a:hover {
+  color: #dda0dd;
+}
+
+.nav div.main_list {
+  height: 65px;
+  float: right;
+}
+
+.nav div.main_list ul {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav div.main_list ul li {
+  width: auto;
+  height: 65px;
+  padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+  text-shadow: 1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, -1px 0 0 black;
+  text-decoration: none;
+  color: white;
+  line-height: 65px;
+  font-size: 2.4rem;
+}
+
+.nav div.main_list ul li a:hover {
+  color: #dda0dd;
+}
+
+/* Home section */
+
+.homebutton{
+  display: flex;
+  justify-content: center;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
+  background-position: center top;
+  background-size:cover;
+}
+
+.nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+/* CSS de la fenetre */
+#fenetre {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  visibility: hidden;
+  transition: visibility 0.4s;
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+.buttonRow{
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 35%;
+  width: 100%;
+  max-width: 37.5rem;
+  margin: 2rem auto 0;
+}
+
+.buttonCol{
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.button {
+  box-sizing: border-box;
+  padding: 10px 10px;
+  justify-content: center;
+  color: white;
+  outline: none;
+  font-size: 15px;
+  border: 5em;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  border-radius: 20px;
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+}
+
+.button:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.button:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
+
+/* Media qurey section */
+
+/*NE FONCTIONNE PAS*/
+@media screen and (max-width:768px) {
+  .nav div.logo {
+    margin-left: 15px;
+  }
+
+  .nav div.main_list {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .nav div.show_list {
+    height: auto;
+    display: none;
+  }
+
+  .nav div.main_list ul {
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #111;
+    /*same background color of navbar*/
+    background-position: center top;
+  }
+
+  .nav div.main_list ul li {
+    width: 100%;
+    text-align: right;
+  }
+
+  .nav div.main_list ul li a {
+    text-align: center;
+    width: 100%;
+    font-size: 3rem;
+    padding: 20px;
+  }
+
+  .nav div.media_button {
+    display: block;
+  }
+}
+
+.myH2 {
+  text-align:center;
+  font-size: 4rem;
+}
+.myH3 {
+  text-align:center;
+  font-size: 4rem;
+}
+
+.myP {
+  text-align:center;
+  padding-left:15%;
+  padding-right:15%;
+  font-size: 20px;
+}
+
+.play{
+  width: 8%;
+  height: 7%;
+  background-color: rgba(0, 0, 0, 0.87);
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  padding: 25px 30px;
+  color: #da70d6;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 4px;
+  font-size: 43px;
+  overflow: hidden;
+  margin-right: 50px;
+  margin-top: 300px;
+  margin-left: 50px;
+}
+
+.play:hover{
+  background: #da70d6;
+  color: #050801;
+  box-shadow: 0 0 5px #da70d6,
+  0 0 25px #da70d6,
+  0 0 50px #da70d6,
+  0 0 15px #da70d6;
+}
+
+.play span{
+  position: absolute;
+  display: block;
+}
+
+.play span:nth-child(1){
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg,transparent,#da70d6);
+  animation: animate1 1s linear infinite;
+}
+@keyframes animate1{
+  0%{
+    left: -100%;
+  }
+  50%,100%{
+    left: 100%;
+  }
+}
+.play span:nth-child(2){
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg,transparent,#da70d6);
+  animation: animate2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@keyframes animate2{
+  0%{
+    top: -100%;
+  }
+  50%,100%{
+    top: 100%;
+  }
+}
+.play span:nth-child(3){
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg,transparent,#da70d6);
+  animation: animate3 1s linear infinite;
+  animation-delay: 0.50s;
+}
+@keyframes animate3{
+  0%{
+    right: -100%;
+  }
+  50%,100%{
+    right: 100%;
+  }
+}
+
+
+.play span:nth-child(4){
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg,transparent,#da70d6  );
+  animation: animate4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes animate4{
+  0%{
+    bottom: -100%;
+  }
+  50%,100%{
+    bottom: 100%;
+  }
+}
+
+.imgConctact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.imgFace{
+  width: 13%;
+  height: 15%;
+}
+.txt {
+  display: flex;
+  justify-content: space-around;
+  font-size: large;
+  text-align: center;
+}
+
+.separator{
+  height: 1px;
+  width: 70%;
+  background-color: white;
+  position: absolute;
+}
+
+footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.H5{
+  font-size: 300%;
+}
+
+#logoFooter {
+  max-width: 15%;
+}
