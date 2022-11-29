@@ -98,14 +98,14 @@ class year{
 
 function getData(){
     fetch('connectionBd.php').then(function (rep){
-        return rep.json();
+        return rep[0].json();
     });
 }
 
 function game(){
     addEventL();
     y2022();
-    getData();
+    console.log(getData());
 }
 
 
