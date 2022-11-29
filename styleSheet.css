@@ -150,54 +150,6 @@ img {
   background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
 }
 
-/* Media qurey section */
-
-/*NE FONCTIONNE PAS*/
-@media screen and (max-width:768px) {
-  .nav div.logo {
-    margin-left: 15px;
-  }
-
-  .nav div.main_list {
-    width: 100%;
-    height: 0;
-    overflow: hidden;
-  }
-
-  .nav div.show_list {
-    height: auto;
-    display: none;
-  }
-
-  .nav div.main_list ul {
-    flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #111;
-    /*same background color of navbar*/
-    background-position: center top;
-  }
-
-  .nav div.main_list ul li {
-    width: 100%;
-    text-align: right;
-  }
-
-  .nav div.main_list ul li a {
-    text-align: center;
-    width: 100%;
-    font-size: 3rem;
-    padding: 20px;
-  }
-
-  .nav div.media_button {
-    display: block;
-  }
-}
-
 .myH2 {
   text-align:center;
   font-size: 4rem;
