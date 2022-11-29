@@ -36,46 +36,50 @@ function addEventL(){
     }
 }
 
-function y2022(){
+function y2022(opt){
     year.shift();
     windowJ.style.backgroundImage = "url('./Picture/cellule.jpg')";
-    //récupérer les textes et choix depuis la base de donnée
-    setTextButton(['zg', 'Q%FNPIV', 'fzgg', 'gokg'] );
+    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
 }
 
-function y2032() {
+function y2032(opt) {
     year.shift();
     windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
-    //récupérer les textes et choix depuis la base de donnée
-    setTextButton(['zg', 'Q%FNPIV', 'fzgg', 'gokg'] );
+    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
 }
 
 function y2035(btn) {
-
+    year.shift();
+    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
+    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
 }
 
 function y2039(btn) {
-
+    year.shift();
+    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
+    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
 }
 
 function y2043(btn) {
-
+    year.shift();
+    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
+    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
 }
 
 function next(btn){
     path.push(parseInt(btn));
     switch (year[0]) {
         case 2032 :
-            y2032(btn);
+            y2032(opt);
             break;
         case 2035 :
-            y2035(btn);
+            y2035(opt);
             break;
         case 2039 :
-            y2039(btn);
+            y2039(opt);
             break;
         case 2043 :
-            y2043(btn);
+            y2043(opt);
             break;
     }
 }
@@ -96,16 +100,35 @@ class year{
 }
 */
 
-function getData(){
-    fetch('connectionBd.php').then(function (rep){
-        return rep[0].json();
-    });
+
+
+async function getData() {
+    let response = await fetch('connectionBd.php');
+
+    if (response.ok) {
+        let json = await response.json();
+        console.log(json);
+        const array = [];
+        for (let i = 0; i < 7; ++i) {
+            const chunk = [];
+            for (let j = 0; j < 2; ++j) {
+                chunk.push(json[0]);
+                json.shift();
+            }
+            array.push(chunk);
+        }
+        console.log(array);
+        y2022(array[0]);
+
+    } else {
+        console.log("HTTP-Error: " + response.status);
+    }
 }
 
 function game(){
+    getData();
     addEventL();
-    y2022();
-    console.log(getData());
+    //y2022();
 }
 
 

@@ -18,14 +18,9 @@ for($i = 1; $i < 2; ++$i ){
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $out = array(
-                0 => $i,
-                1 => $row["img_blob"],
-                2 => $row["text_text"]
+            $out = array($i, $row["text_text"]
             );
-            echo json_encode($out[0]);
-            //echo json_encode($row["img_blob"]);
-            echo json_encode($out[2]);
+            echo json_encode($out);
         }
     } else {
         echo json_encode("0 results");
