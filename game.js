@@ -1,28 +1,50 @@
 const bouttonPlay = document.getElementById('playButton')
 const windowJ = document.getElementById('fenetre')
 const allButtons = document.getElementsByClassName('button');
+const nextButton = document.getElementById('5');
+const text = document.getElementById('text');
 const path = [];
-const year = [2022, 2032];
+const years = ['2022', '2032'];
 
 bouttonPlay.addEventListener('click', openWindow)
+
+function addEventL(){
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].addEventListener("click", () => next(allButtons[i].getAttribute('id')));
+    }
+    nextButton.addEventListener("click", function() {
+        nextButton.style.visibility = 'hidden';
+        windowJ.style.backgroundImage = "url('./Picture/back" + years[0] + ".png')";
+        setButtonVisibility(true, 4);
+        years.shift();
+    });
+}
 
 function openWindow(){
     windowJ.style.visibility = 'visible';
     game();
 }
 
-function setButtonVisibility(){
-    document.getElementById('3').style.visibility = 'hidden';
-    document.getElementById('4').style.visibility = 'hidden';
+function setButtonVisibility(value, nb){
+    let vis;
+    if(value === false) vis = 'hidden';
+    else vis = 'visible';
+
+    document.getElementById('3').style.visibility = vis;
+    document.getElementById('4').style.visibility = vis;
+    if (nb !== 0) {
+        document.getElementById('1').style.visibility = vis;
+        document.getElementById('2').style.visibility = vis;
+    }
 }
 
 function setTextButton(options, nbButton = 0) {
     let buttons = allButtons;
-    if(nbButton != 0) {
+    if(nbButton !== 0) {
         let twoButtons = [];
         twoButtons.push(document.getElementById('1'));
         twoButtons.push(document.getElementById('2'));
-        setButtonVisibility();
+        setButtonVisibility(false);
         buttons = twoButtons;
     }
     for (let i = 0; i < buttons.length; i++) {
@@ -30,60 +52,40 @@ function setTextButton(options, nbButton = 0) {
     }
 }
 
-function addEventL(){
-    for (let i = 0; i < allButtons.length; i++) {
-        allButtons[i].addEventListener("click", () => next(allButtons[i].getAttribute('id')));
-    }
+function year(opt, picture){
+    //opt = opt.then(value =>console.log(value));
+    context(picture, years[0])
+    setTextButton([opt[2], opt[3], opt[4], opt[5]]);
+    text.innerText = opt[1];
 }
 
-function y2022(opt){
-    year.shift();
-    windowJ.style.backgroundImage = "url('./Picture/cellule.jpg')";
-    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
-}
-
-function y2032(opt) {
-    year.shift();
-    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
-    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
-}
-
-function y2035(btn) {
-    year.shift();
-    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
-    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
-}
-
-function y2039(btn) {
-    year.shift();
-    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
-    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
-}
-
-function y2043(btn) {
-    year.shift();
-    windowJ.style.backgroundImage = "url('./Picture/auberge.jpg')";
-    setTextButton([opt[1], opt[2], opt[3], opt[4]]);
+function context(picture, year){
+    setButtonVisibility(false, 4);
+    windowJ.style.backgroundImage = "url('./Picture/" + year + ".png')";
+    setTimeout(function(){
+        nextButton.style.visibility = 'visible';
+        windowJ.style.backgroundImage = picture;
+        return true;
+    }, 2000);
 }
 
 function next(btn){
     path.push(parseInt(btn));
-    switch (year[0]) {
-        case 2032 :
-            y2032(opt);
+    switch (years[0]) {
+        case '2032' :
+            year(opt);
             break;
-        case 2035 :
-            y2035(opt);
+        case '2035' :
+            year(opt);
             break;
-        case 2039 :
-            y2039(opt);
+        case '2039' :
+            year(opt);
             break;
-        case 2043 :
-            y2043(opt);
+        case '2043' :
+            year(opt);
             break;
     }
 }
-
 
 /* Intéréssenant si possible de récupérer depuis la bd direcement dans la class
 class year{
@@ -100,8 +102,6 @@ class year{
 }
 */
 
-
-
 async function getData() {
     let response = await fetch('connectionBd.php');
 
@@ -111,24 +111,24 @@ async function getData() {
         const array = [];
         for (let i = 0; i < 7; ++i) {
             const chunk = [];
-            for (let j = 0; j < 2; ++j) {
+            for (let j = 0; j < 6; ++j) {
                 chunk.push(json[0]);
                 json.shift();
             }
             array.push(chunk);
         }
         console.log(array);
-        y2022(array[0]);
-
+        year(array[0], "url('./Picture/journal2022r.png')");
+        return array;
     } else {
         console.log("HTTP-Error: " + response.status);
     }
 }
 
 function game(){
-    getData();
     addEventL();
-    //y2022();
+    getData();
+    //year(opt[0], "url('./Picture/journal2022r.png')");
 }
 
 

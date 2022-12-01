@@ -104,6 +104,7 @@ img {
   transition: visibility 0.4s;
   background-color: #000000;
   border-radius: 10px;
+  background-size: cover;
 }
 
 .buttonRow{
@@ -127,6 +128,7 @@ img {
 }
 
 .button {
+  visibility: inherit;
   box-sizing: border-box;
   padding: 10px 10px;
   justify-content: center;
@@ -148,6 +150,18 @@ img {
 
 .button:hover .text {
   background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
+
+.next{
+  visibility: hidden;
+  position: absolute;
+  cursor: pointer;
+  bottom: 8%;
+  right: 8%;
+  color: white;
+  background-color: black;
+  border-radius: 20px;
+  font-size: 15px;
 }
 
 .myH2 {
