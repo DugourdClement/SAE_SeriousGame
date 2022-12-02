@@ -66,10 +66,10 @@ function year(opt){
 
 function context(year){
     setButtonVisibility(false, 4);
-    windowJ.style.backgroundImage = "url('./Picture/" + year + ".png')";
+    windowJ.style.backgroundImage = "url('./Picture/années/" + year + ".png')";
     setTimeout(function(){
         nextButton.style.visibility = 'visible';
-        windowJ.style.backgroundImage = "url('./Picture/journal" + year + ".png')";
+        windowJ.style.backgroundImage = "url('./Picture/journal/journal" + year + ".png')";
         return true;
     }, 2000);
 }
