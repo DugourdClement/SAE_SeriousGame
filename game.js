@@ -4,7 +4,8 @@ const allButtons = document.getElementsByClassName('button');
 const nextButton = document.getElementById('5');
 const text = document.getElementById('text');
 const path = [];
-const years = ['2022', '2032'];
+const years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
+var opt = [];
 
 bouttonPlay.addEventListener('click', openWindow)
 
@@ -20,9 +21,11 @@ function addEventL(){
     });
 }
 
-function openWindow(){
-    windowJ.style.visibility = 'visible';
-    game();
+async function openWindow(){
+    let status = await getData();
+    if(status === true) {
+        game();
+    }
 }
 
 function setButtonVisibility(value, nb){
@@ -32,6 +35,7 @@ function setButtonVisibility(value, nb){
 
     document.getElementById('3').style.visibility = vis;
     document.getElementById('4').style.visibility = vis;
+    text.style.visibility = vis;
     if (nb !== 0) {
         document.getElementById('1').style.visibility = vis;
         document.getElementById('2').style.visibility = vis;
@@ -52,37 +56,48 @@ function setTextButton(options, nbButton = 0) {
     }
 }
 
-function year(opt, picture){
+function year(opt){
     //opt = opt.then(value =>console.log(value));
-    context(picture, years[0])
+    console.log(opt);
+    context(years[0])
     setTextButton([opt[2], opt[3], opt[4], opt[5]]);
     text.innerText = opt[1];
 }
 
-function context(picture, year){
+function context(year){
     setButtonVisibility(false, 4);
     windowJ.style.backgroundImage = "url('./Picture/" + year + ".png')";
     setTimeout(function(){
         nextButton.style.visibility = 'visible';
-        windowJ.style.backgroundImage = picture;
+        windowJ.style.backgroundImage = "url('./Picture/journal" + year + ".png')";
         return true;
     }, 2000);
 }
 
 function next(btn){
     path.push(parseInt(btn));
+    opt.shift();
     switch (years[0]) {
         case '2032' :
-            year(opt);
+            year(opt[0]);
             break;
         case '2035' :
-            year(opt);
+            year(opt[0]);
             break;
         case '2039' :
-            year(opt);
+            year(opt[0]);
             break;
         case '2043' :
-            year(opt);
+            year(opt[0]);
+            break;
+        case '2050' :
+            year(opt[0]);
+            break;
+        case '2056' :
+            year(opt[0]);
+            break;
+        case '2068' :
+            year(opt[0]);
             break;
     }
 }
@@ -118,8 +133,9 @@ async function getData() {
             array.push(chunk);
         }
         console.log(array);
-        year(array[0], "url('./Picture/journal2022r.png')");
-        return array;
+        opt = array;
+        // year(array[0], "url('./Picture/journal2022.png')");
+        return true;
     } else {
         console.log("HTTP-Error: " + response.status);
     }
@@ -127,8 +143,9 @@ async function getData() {
 
 function game(){
     addEventL();
-    getData();
-    //year(opt[0], "url('./Picture/journal2022r.png')");
+    windowJ.style.visibility = 'visible';
+    console.log(opt);
+    year(opt[0]);
 }
 
 
