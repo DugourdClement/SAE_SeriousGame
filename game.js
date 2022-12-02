@@ -57,7 +57,6 @@ function setTextButton(options, nbButton = 0) {
 }
 
 function year(opt){
-    //opt = opt.then(value =>console.log(value));
     console.log(opt);
     context(years[0])
     setTextButton([opt[2], opt[3], opt[4], opt[5]]);
@@ -134,7 +133,6 @@ async function getData() {
         }
         console.log(array);
         opt = array;
-        // year(array[0], "url('./Picture/journal2022.png')");
         return true;
     } else {
         console.log("HTTP-Error: " + response.status);
