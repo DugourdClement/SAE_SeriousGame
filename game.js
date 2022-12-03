@@ -145,18 +145,3 @@ function game(){
     console.log(opt);
     year(opt[0]);
 }
-
-
-
-
-/*Fonctionne pas*/
-document.getElementById("2032ressources").onclick = function() {
-    window.open("https://www.lemonde.fr/pixels/article/2020/12/10/la-cnil-inflige-des-amendes-a-google-et-amazon-pour-non-respect-de-la-legislation-sur-les-cookies_6062860_4408996.html");
-    window.open("https://www.lemonde.fr/pixels/article/2022/01/06/la-cnil-inflige-de-lourdes-amendes-a-google-et-facebook-pour-leurs-cookies_6108384_4408996.html");
-    window.open("https://www.economie.gouv.fr/entreprises/obligations-donnees-personnelles-rgpd ");
-}
-
-document.getElementById("2042ressources").onclick = function() {
-    window.open("https://observatoire-ia.ulaval.ca/petit-guide-sur-la-reconnaissance-faciale/");
-    window.open("https://www.amnesty.fr/liberte-d-expression/petitions/non-a-la-reconnaissance-faciale");
-}

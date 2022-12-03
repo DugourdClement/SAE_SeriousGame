@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 html,
 body {
   margin: 0;
@@ -5,13 +6,23 @@ body {
   box-sizing: border-box;
   font-family: "Quicksand", sans-serif;
   font-size: 62.5%;
-  background-color: #595c61;
+  background-color: #838181;
 }
 
 img {
   max-width: 100%;
 }
 
+/* Display nav barre mobile*/
+.sidenav{
+  display: none;
+}
+
+.openBtn{
+  display : none;
+}
+
+/* Nav barre computer*/
 .nav {
   width: 100%;
   height: 65px;
@@ -58,7 +69,6 @@ img {
 }
 
 .nav div.main_list ul li a {
-  text-shadow: 1px 0 0 black, 0 1px 0 black, 0 -1px 0 black, -1px 0 0 black;
   text-decoration: none;
   color: white;
   line-height: 65px;
@@ -82,8 +92,10 @@ img {
   width: 100%;
   height: 100vh;
   background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
-  background-position: center top;
-  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .nav {
@@ -93,7 +105,7 @@ img {
   transition: all 0.4s ease;
 }
 
-/* CSS de la fenetre */
+/* CSS window */
 #fenetre {
   display: flex;
   justify-content: space-around;
@@ -186,7 +198,7 @@ img {
 }
 
 .myP {
-  text-align:center;
+  text-align:justify;
   padding-left:15%;
   padding-right:15%;
   font-size: 20px;
@@ -202,7 +214,7 @@ img {
   position: relative;
   display: inline-block;
   padding: 25px 30px;
-  color: #da70d6;
+  color: #811fbd;
   text-decoration: none;
   text-transform: uppercase;
   transition: 0.5s;
@@ -215,12 +227,12 @@ img {
 }
 
 .play:hover{
-  background: #da70d6;
+  background: #811fbd;
   color: #050801;
-  box-shadow: 0 0 5px #da70d6,
-  0 0 25px #da70d6,
-  0 0 50px #da70d6,
-  0 0 15px #da70d6;
+  box-shadow: 0 0 5px #811fbd,
+  0 0 25px #811fbd,
+  0 0 50px #811fbd,
+  0 0 15px #811fbd;
 }
 
 .play span{
@@ -233,7 +245,7 @@ img {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg,transparent,#da70d6);
+  background: linear-gradient(90deg,transparent,#811fbd);
   animation: animate1 1s linear infinite;
 }
 @keyframes animate1{
@@ -249,7 +261,7 @@ img {
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg,transparent,#da70d6);
+  background: linear-gradient(90deg,transparent,#811fbd);
   animation: animate2 1s linear infinite;
   animation-delay: 0.25s;
 }
@@ -266,7 +278,7 @@ img {
   right: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg,transparent,#da70d6);
+  background: linear-gradient(90deg,transparent,#811fbd);
   animation: animate3 1s linear infinite;
   animation-delay: 0.50s;
 }
@@ -285,7 +297,7 @@ img {
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg,transparent,#da70d6  );
+  background: linear-gradient(90deg,transparent,#811fbd);
   animation: animate4 1s linear infinite;
   animation-delay: 0.75s;
 }
@@ -299,25 +311,135 @@ img {
   }
 }
 
-.imgConctact {
+.resstext{
+  text-decoration: none;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  font-size: 17px;
+}
+
+/* contacts */
+
+.containerCard {
+  height: 50vh;
+  width: 100vw;
+  gap: 12px;
+  max-height: 800px;
+  max-width: 1280px;
+  min-width: 1000px;
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  margin: 0 auto;
 }
 
-.imgFace{
-  width: 13%;
-  height: 15%;
-}
-.txt {
+.card {
+  height: 80%;
+  width: 20%;
+  border-radius: 10px;
+  transition: background 0.8s;
+  box-shadow: 0 70px 63px -60px #000;
   display: flex;
-  justify-content: space-around;
-  font-size: large;
-  text-align: center;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
+.card0 {
+  background: url("Picture/site/noemie.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card0:hover {
+  background: url("Picture/site/noemie.jpg") center center no-repeat;
+  background-size: 350px;
+}
+.card0:hover h2 {
+  opacity: 1;
+}
+.card0:hover .fa {
+  opacity: 1;
+}
+
+.card1 {
+  background: url("Picture/site/clement.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card1:hover {
+  background: url("Picture/site/clement.jpg") center center no-repeat;
+  background-size: 350px;
+}
+.card1:hover h2 {
+  opacity: 1;
+}
+.card1:hover .fa {
+  opacity: 1;
+}
+
+.card2 {
+  background: url("Picture/site/killian.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card2:hover {
+  background: url("Picture/site/killian.jpg") center center no-repeat;
+  background-size: 350px;
+}
+.card2:hover h2 {
+  opacity: 1;
+}
+.card2:hover .fa {
+  opacity: 1;
+}
+
+.card3 {
+  background: url("Picture/site/fabien.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card3:hover {
+  background: url("Picture/site/fabien.jpg") center center no-repeat;
+  background-size: 550px;
+}
+.card3:hover h2 {
+  opacity: 1;
+}
+.card3:hover .fa {
+  opacity: 1;
+}
+
+.card4 {
+  background: url("Picture/site/enzo.jpg") center center no-repeat;
+  background-size: 300px;
+}
+.card4:hover {
+  background: url("Picture/site/enzo.jpg") center center no-repeat;
+  background-size: 350px;
+}
+.card4:hover h2 {
+  opacity: 1;
+}
+.card4:hover .fa {
+  opacity: 1;
+}
+
+h2 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #fff;
+  margin: 20px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.fa {
+  opacity: 10;
+  transition: opacity 1s;
+}
+.icons {
+  width: 50px;
+  padding-bottom: 4%;
+  padding-left: 4%;
+}
+
+/*Footer*/
 
 .separator{
+  margin-top: 30px;
   height: 1px;
   width: 70%;
   background-color: white;
@@ -336,5 +458,5 @@ footer{
 }
 
 #logoFooter {
-  max-width: 15%;
+  max-width: 10%;
 }
