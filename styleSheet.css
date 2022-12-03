@@ -205,25 +205,19 @@ img {
 }
 
 .play{
-  width: 8%;
-  height: 7%;
+  height: fit-content;
   background-color: rgba(0, 0, 0, 0.87);
-  flex-direction: column;
-  align-content: center;
   text-align: center;
   position: relative;
   display: inline-block;
   padding: 25px 30px;
   color: #811fbd;
   text-decoration: none;
-  text-transform: uppercase;
   transition: 0.5s;
   letter-spacing: 4px;
   font-size: 43px;
   overflow: hidden;
-  margin-right: 50px;
-  margin-top: 300px;
-  margin-left: 50px;
+  margin: auto;
 }
 
 .play:hover{
