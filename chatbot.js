@@ -59,7 +59,6 @@ const bot = function () {
         choices.forEach(function (choice) {
             choice.disabled = 'disabled';
         });
-        return;
     };
 
     const handleChoice = async function (e) {

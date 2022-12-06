@@ -101,21 +101,6 @@ function next(btn){
     }
 }
 
-/* Intéréssenant si possible de récupérer depuis la bd direcement dans la class
-class year{
-    constructor(text, options) {
-        this._text = text;
-        this._options = options;
-    }
-    get options(){
-        return this._options;
-    }
-    get text(){
-        return this._text;
-    }
-}
-*/
-
 async function getData() {
     let response = await fetch('connectionBd.php');
 
