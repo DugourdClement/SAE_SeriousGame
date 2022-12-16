@@ -102,7 +102,7 @@ function next(btn){
 }
 
 async function getData() {
-    let response = await fetch('connectionBd.php');
+    let response = await fetch('game_data.php');
 
     if (response.ok) {
         let json = await response.json();

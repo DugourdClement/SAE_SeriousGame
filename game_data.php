@@ -1,16 +1,6 @@
 <?php
-header('Content-Type: application/json');
-$servername = "mysql-serious.alwaysdata.net";
-$username = "serious";
-$password = "minerim974";
-$dbname = "serious_bd";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-//echo "Connected successfully\n";
+include 'db_conn.php';
+$conn = createDBConn();
 
 for($i = 1; $i < 2; ++$i ){
     $sql = "SELECT texte.*, id_opt, opt FROM texte, option WHERE texte.id_texte = $i AND texte.id_texte = option.id_texte";
@@ -26,6 +16,6 @@ for($i = 1; $i < 2; ++$i ){
     } else {
         echo json_encode("0 results");
     }
-}
 
-$conn->close();
+    $conn->close();
+}
