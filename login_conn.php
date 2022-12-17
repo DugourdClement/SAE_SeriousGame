@@ -20,10 +20,10 @@ function getLogin($username, $password): void {
             header("Location: index.html");
             exit;
         } else {
-            echo '<div class="error-message">Login failed. Please try again.</div>';
+            echo '<div class="error-message">Votre connexion a échoué. Veuillez réessayer.</div>';
         }
     } else {
-        echo '<div class="error-message">Login failed. Please try again.</div>';
+        echo '<div class="error-message">Votre connexion a échoué. Veuillez réessayer.</div>';
     }
     $conn->close();
 }
@@ -42,18 +42,19 @@ header('Content-Type: text/html');
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
-
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="connexion.css">
   </head>
   <body>
-    <h1>Login</h1>
+  <div class="connexion">
+      <p class="sign" align="center">Se connecter</p>
     <form method="post">
-      <label for="username">Username:</label><br>
-      <input type="text" id="username" name="username"><br>
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password"><br><br>
-      <button type="submit" name="submit-button" value="1">Submit</button>
+      <input type="text" class="un" id="username" name="username" align="center" placeholder="Nom d'utilisateur"><br>
+      <input type="password" class="deux" id="password" name="password" align="center" placeholder="Mot de passe"><br><br>
+      <button type="submit" class="submit" align="center" name="submit-button" value="1">Envoyer</button>
     </form>
+  </div>
   </body>
 </html>
 
