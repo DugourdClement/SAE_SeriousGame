@@ -47,14 +47,14 @@ header('Content-Type: text/html');
     <link rel="stylesheet" href="connexion.css">
   </head>
   <body>
-  <div class="connexion">
-      <p class="sign" align="center">Se connecter</p>
-    <form method="post">
-      <input type="text" class="un" id="username" name="username" align="center" placeholder="Nom d'utilisateur"><br>
-      <input type="password" class="deux" id="password" name="password" align="center" placeholder="Mot de passe"><br><br>
-      <button type="submit" class="submit" align="center" name="submit-button" value="1">Envoyer</button>
-    </form>
-  </div>
+      <div class="connexion">
+          <p class="sign" >Se connecter</p>
+        <form method="post">
+          <input type="text" class="champ" id="username" name="username" placeholder="Nom d'utilisateur">
+          <input type="password" class="champ" id="password" name="password" placeholder="Mot de passe">
+          <button type="submit" class="submit" name="submit-button" value="1">Envoyer</button>
+        </form>
+      </div>
   </body>
 </html>
 
