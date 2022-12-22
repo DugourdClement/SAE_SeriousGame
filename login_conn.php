@@ -17,7 +17,7 @@ function getLogin($username, $password): void {
         if ($username == $db_username && password_verify($password, $db_password)) {
             $_SESSION['username'] = $username;
             $_SESSION['login'] = true;
-            header("Location: index.html");
+            header("Location: game_change.php");
             exit;
         } else {
             echo '<div class="error-message">Votre connexion a échoué. Veuillez réessayer.</div>';

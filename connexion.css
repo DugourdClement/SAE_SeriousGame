@@ -7,16 +7,13 @@ body {
 }
 
 .error-message{
-    display: flex;
-    justify-content: center;
     position: absolute;
-    top: 58%;
+    padding: 2px;
+    top: 44%;
     left: 50%;
     transform: translateX(-50%);
-    color: black;
-    text-align: center;
-    background-color: white;
-    font-size: 85%;
+    color: rgb(247, 35,12);
+    font-size: 90%;
 }
 
 .connexion {
@@ -29,6 +26,7 @@ body {
 
 .sign {
     padding-top: 10%;
+    padding-left: 35%;
     color: #8C55AA;
     font-weight: bold;
     font-size: 23px;
@@ -47,7 +45,8 @@ body {
     border: 2px solid rgba(0, 0, 0, 0.02);
     margin-left: 11%;
     text-align: center;
-    margin-bottom: 10%;
+    margin-bottom: 8%;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 form.form1 {
@@ -65,6 +64,7 @@ form.form1 {
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
     margin-bottom: 10%;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 @media (max-width: 600px) {
