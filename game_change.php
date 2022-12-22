@@ -49,20 +49,23 @@ if (isset($_POST['text'])) {
 
 }
 
-function modifAnnee($data):void{
+function modifAnnee($data):void
+{
     for ($i = 0; $i < 7; ++$i) {
-        echo '<div class="modfAnnee">';
-        echo '<p id="text-'; echo $i; echo '" contenteditable>'; echo json_encode($data[$i+1][1]); echo '</p>';
+        echo '<div class="modfAnnee">',
+        '<p id="text-', $i, '" contenteditable>', json_encode($data[$i + 1][1]), '</p>';
         for ($j = 0; $j < 4; ++$j) {
-            echo '<p id="opt-'; echo $i; echo $j;  echo '" contenteditable>'; echo json_encode($data[$i+1][$j+2]); echo '</p>';
+            echo '<p id="opt-', $i, $j, '" contenteditable>', json_encode($data[$i + 1][$j + 2]), '</p>';
         }
-        echo '<form action="game_change.php" method="post">';
-        for ($i = 0; $i < 5; ++$i) {
-            echo '<button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>';
-        }
-        echo '</form>';
+        echo '<form action="game_change.php" method="post">
+                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
+                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
+                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
+                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
+                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
+              </form>';
     }
-    echo '</div>';
+        echo '</div>';
 }
 
 header('Content-Type: text/html');
