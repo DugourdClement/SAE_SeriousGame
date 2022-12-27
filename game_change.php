@@ -4,7 +4,8 @@ include 'db_conn.php';
 /**
  * @throws Exception
  */
-function getData($maxSize): array {
+function getData($maxSize): array
+{
     $conn = createDBConn();
     $out = array();
 
@@ -27,7 +28,8 @@ function getData($maxSize): array {
     return $out;
 }
 
-function martixToString(): void{
+function martixToString(): void
+{
     try {
         $string = implode("; ", array_map(function ($inner) {
             return implode(", ", $inner);
@@ -44,28 +46,42 @@ try {
     $string = 'An error occurred: ' . $e->getMessage();
 }
 
-if (isset($_POST['text'])) {
-    $text = $_POST['text'];
+function modifyBd() : void
+{
+    $conn = createDBConn();
+    $id = $_POST['id'];
 
+    if ($id == 'text1') {
+        $text = $_POST['text1'];
+        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 1";
+        $conn->query($sql);
+    } elseif ($id == 'text2') {
+        $text = $_POST['text2'];
+        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 2";
+        $conn->query($sql);
+    } elseif ($id == 'text3') {
+        $text = $_POST['text3'];
+        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 3";
+        $conn->query($sql);
+    }
+    $conn->close();
 }
 
-function modifAnnee($data):void
+
+function modifAnnee($data, $i):void
 {
-    for ($i = 0; $i < 7; ++$i) {
-        echo '<div class="modfAnnee">',
-        '<p id="text-', $i, '" contenteditable>', json_encode($data[$i + 1][1]), '</p>';
-        for ($j = 0; $j < 4; ++$j) {
-            echo '<p id="opt-', $i, $j, '" contenteditable>', json_encode($data[$i + 1][$j + 2]), '</p>';
-        }
-        echo '<form action="game_change.php" method="post">
-                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
-                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
-                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
-                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
-                <button type = "submit" class="submit" name = "submit-button" value = "1" > Valider</button>
-              </form>';
+    echo '<div class="modifText">',
+            '<form action="game_change.php" method="post">',
+                '<p id="text-', $i, '" contenteditable>', json_encode($data[$i + 1][1]), '</p>', //One contenteditable for the text
+                '<button  class="submit" type="submit" form="form', $i, '"> Valider</button>
+            </form>';
+    for ($j = 0; $j < 4; ++$j) {
+        echo '<form action="game_change.php" method="post">',
+                '<p id="opt-', $i, $j, '" contenteditable>', json_encode($data[$i + 1][$j + 2]), '</p>', //Four contenteditable for the options
+                '<button  class="submit" type="submit" form="form', $i, $j, '"> Valider</button>
+            </form>';
     }
-        echo '</div>';
+    echo '</div>';
 }
 
 header('Content-Type: text/html');
@@ -83,6 +99,24 @@ header('Content-Type: text/html');
         <script defer src="game_change.js"></script>
     </head>
     <body>
-        <?php modifAnnee($data) ?>
+        <label for="menu">Select an option:</label><br>
+        <select name="menu" id="menu">
+            <option value="base">---</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+        </select>
+
+        <form id="form1" style="display: none;">
+            <?php if(isset($data)) modifAnnee($data, 0); ?>
+        </form>
+        <form id="form2" style="display: none;">
+            <?php if(isset($data)) modifAnnee($data, 1); ?>
+        </form>
+        <form id="form3" style="display: none;">
+            <?php if(isset($data)) modifAnnee($data, 2); ?>
+        </form>
+
+
     </body>
 </html>
