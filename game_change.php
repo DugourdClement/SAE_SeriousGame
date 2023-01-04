@@ -1,6 +1,8 @@
 <?php
 include 'db_conn.php';
 
+header('Content-Type: text/html');
+
 /**
  * @throws Exception
  */
@@ -10,7 +12,7 @@ function getData($maxSize): array
     $out = array();
 
     for ($i = 1; $i < $maxSize; ++$i) {
-        $sql = "SELECT texte.*, opt FROM texte, option WHERE texte.id_texte = $i AND texte.id_texte = option.id_texte";
+        $sql = "SELECT texte.*, opt FROM texte, option WHERE texte.id_texte = 10 + $i AND texte.id_texte = option.id_texte";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -28,17 +30,20 @@ function getData($maxSize): array
     return $out;
 }
 
-function martixToString(): void
+function modifyYearsForm($data, $i): void
 {
-    try {
-        $string = implode("; ", array_map(function ($inner) {
-            return implode(", ", $inner);
-        }, getData(2)));
-    } catch (Exception $e) {
-        $string = 'An error occurred: ' . $e->getMessage();
+    echo '<form action="game_change.php" method="POST" id="form_', $i, '">',
+    '<p id="text_', $i, '" contenteditable>', json_encode($data[$i][1]), '</p>', //One contenteditable for the text
+    '<button  class="submit" id="btnSubmit_', $i, '" type="submit" name="btnSubmit" form="form_', $i, '"> Valider</button>
+          </form>';
+    for ($j = 1; $j < 5; ++$j) {
+        echo '<form action="game_change.php" method="POST" id="form_', $i, $j, '">',
+        '<p id="text_', $i, $j, '" contenteditable>', json_encode($data[$i][$j + 1]), '</p>', //Four contenteditable for the options
+        '<button  class="submit" id="btnSubmit_', $i, $j, '" type="submit" name="btnSubmit" form="form_', $i, $j, '"> Valider</button>
+            </form>';
     }
-    echo $string;
 }
+
 
 try {
     $data = getData(2);
@@ -46,47 +51,22 @@ try {
     $string = 'An error occurred: ' . $e->getMessage();
 }
 
-function modifyBd() : void
-{
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //var_dump($_POST);
+    if(isset($_POST['idOpt'])) $idOpt = $_POST['idOpt'];
+    $idText = $_POST['idText'];
+    $text = $_POST['text'];
     $conn = createDBConn();
-    $id = $_POST['id'];
 
-    if ($id == 'text1') {
-        $text = $_POST['text1'];
-        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 1";
-        $conn->query($sql);
-    } elseif ($id == 'text2') {
-        $text = $_POST['text2'];
-        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 2";
-        $conn->query($sql);
-    } elseif ($id == 'text3') {
-        $text = $_POST['text3'];
-        $sql = "UPDATE texte SET texte='$text' WHERE texte.id_texte = 3";
-        $conn->query($sql);
+    if(isset($idOpt)) {
+        $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText+10 and option.id_opt = $idOpt+100";
+    } else{
+        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText+10";
     }
+    $conn->query($sql);
     $conn->close();
-}
-
-
-function modifAnnee($data, $i):void
-{
-    echo '<div class="modifText">',
-            '<form action="game_change.php" method="post">',
-                '<p id="text-', $i, '" contenteditable>', json_encode($data[$i + 1][1]), '</p>', //One contenteditable for the text
-                '<button  class="submit" type="submit" form="form', $i, '"> Valider</button>
-            </form>';
-    for ($j = 0; $j < 4; ++$j) {
-        echo '<form action="game_change.php" method="post">',
-                '<p id="opt-', $i, $j, '" contenteditable>', json_encode($data[$i + 1][$j + 2]), '</p>', //Four contenteditable for the options
-                '<button  class="submit" type="submit" form="form', $i, $j, '"> Valider</button>
-            </form>';
-    }
-    echo '</div>';
-}
-
-header('Content-Type: text/html');
-?>
-
+}else{
+echo '
 <!DOCTYPE html>
 <html  class="no-js" lang="">
     <head>
@@ -97,26 +77,43 @@ header('Content-Type: text/html');
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="game_change.css">
         <script defer src="game_change.js"></script>
+        <script defer src="jQuery-3.6.3.js"></script>
     </head>
     <body>
+    <p id="banner">Modification enregistée</p>
         <label for="menu">Select an option:</label><br>
         <select name="menu" id="menu">
             <option value="base">---</option>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+            <option value="option5">Option 5</option>
+            <option value="option6">Option 6</option>
+            <option value="option7">Option 7</option>
         </select>
 
-        <form id="form1" style="display: none;">
-            <?php if(isset($data)) modifAnnee($data, 0); ?>
-        </form>
-        <form id="form2" style="display: none;">
-            <?php if(isset($data)) modifAnnee($data, 1); ?>
-        </form>
-        <form id="form3" style="display: none;">
-            <?php if(isset($data)) modifAnnee($data, 2); ?>
-        </form>
-
-
+        <div class="form" id="form1" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 1);
+  echo '</div>
+        <div class="form" id="form2" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 2);
+  echo '</div>
+        <div class="form" id="form3" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 3);
+  echo '</div>
+        <div class="form" id="form4" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 4);
+  echo '</div>
+        <div class="form" id="form5" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 5);
+  echo '</div>
+        <div class="form" id="form6" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 6);
+  echo '</div>
+        <div class="form" id="form7" style="display: none;">';
+            if(isset($data)) modifyYearsForm($data, 7);
+  echo '</div>
     </body>
-</html>
+</html>';
+}
