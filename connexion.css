@@ -9,7 +9,7 @@ body {
 .error-message{
     position: absolute;
     padding: 2px;
-    top: 44%;
+    top: 53%;
     left: 50%;
     transform: translateX(-50%);
     color: rgb(247, 35,12);
@@ -26,7 +26,7 @@ body {
 
 .sign {
     padding-top: 10%;
-    padding-left: 35%;
+    padding-left: 32%;
     color: #8C55AA;
     font-weight: bold;
     font-size: 23px;
@@ -60,6 +60,7 @@ form.form1 {
     background: linear-gradient(to right, #811fbd, #8c06a4);
     border: 0;
     padding: 10px 40px;
+    margin-top: 10%;
     margin-left: 35%;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
