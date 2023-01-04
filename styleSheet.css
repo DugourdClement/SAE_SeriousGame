@@ -6,7 +6,7 @@ body {
   box-sizing: border-box;
   font-family: "Quicksand", sans-serif;
   font-size: 62.5%;
-  background-color: #838181;
+  background-color: #000000;
 }
 
 img {
@@ -108,6 +108,9 @@ img {
 /* CSS window */
 #fenetre {
   display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   justify-content: space-around;
   position: fixed;
   top: 10%;
@@ -198,10 +201,17 @@ img {
 }
 
 .myP {
+  color: #808080;
+  font-size: 17px;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Open Sans',sans-serif;
+  font-weight: 400;
+  line-height: 26px;
+  vertical-align: baseline;
   text-align:justify;
-  padding-left:15%;
-  padding-right:15%;
-  font-size: 20px;
+  padding-left:18%;
+  padding-right:18%;
 }
 
 .play{
@@ -307,24 +317,25 @@ img {
 
 .resstext{
   text-decoration: none;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Open Sans',sans-serif;
   color: white;
-  font-size: 17px;
+  font-size: 15px;
 }
 
 /* contacts */
 
 .containerCard {
-  height: 50vh;
+  height: 45vh;
   width: 100vw;
   gap: 12px;
-  max-height: 800px;
-  max-width: 1280px;
-  min-width: 1000px;
+  max-height: 600px;
+  max-width: 1000px;
+  min-width: 800px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 0 auto;
+  padding-bottom: 4%;
 }
 
 .card {
@@ -389,7 +400,7 @@ img {
 }
 .card3:hover {
   background: url("Picture/site/fabien.jpg") center center no-repeat;
-  background-size: 550px;
+  background-size: 350px;
 }
 .card3:hover h2 {
   opacity: 1;
@@ -432,25 +443,28 @@ h2 {
 
 /*Footer*/
 
-.separator{
-  margin-top: 30px;
-  height: 1px;
-  width: 70%;
-  background-color: white;
-  position: absolute;
+footer {
+  color: #bbbaba;
+  font-size: 16px;
+}
+footer * {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
 }
 
-footer{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+.copyright {
+  padding: 0.3em 1em;
+  background-color: #2d2d2d;
+}
+.footer-menu{
+  float: left;
+  margin-top: 10px;
 }
 
-.H5{
-  font-size: 300%;
+.copyright p {
+  font-size: 0.9em;
+  text-align: center;
 }
 
-#logoFooter {
-  max-width: 10%;
-}

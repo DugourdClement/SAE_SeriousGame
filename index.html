@@ -13,8 +13,6 @@
 
   </head>
   <body>
-    <div style="position:fixed; right: 20px; bottom: 20px; width:50px; height:50px; border-radius:50%; background-color:green;"></div>
-
     <!-- navbar pour mobile -->
     <div id="mySidenav" class="sidenav">
       <a id="closeBtn" href="#" class="close">×</a>
@@ -47,7 +45,7 @@
       </div>
     </nav>
 
-    <div class="home">
+    <div class="home" id="home">
       <a href="#" id="playButton" class="play">
         <span></span>
         <span></span>
@@ -57,7 +55,8 @@
       </a>
     </div>
 
-    <div id="fenetre">
+
+    <div id="fenetre" class="fenetre">
       <p id="text"class="text"></p>
       <div class="buttonRow">
         <div class="buttonCol">
@@ -74,7 +73,20 @@
 
     <div>
       <p  id="ressource" style="font-size: 500%; color:white;" class="myP" >Ressources</p>
-      <h4 class="myP">Conditions générales d'utilisation - 2022</h4>
+      <p class="myP" >L’éthique numérique est un sujet de plus en plus important dans le monde d’aujourd’hui, car de plus en plus de nos
+        vies quotidiennes sont médiatisées par la technologie. Qu’il s’agisse des médias sociaux, des achats en ligne ou de
+        la télémédecine, notre dépendance à l’égard de la technologie pour communiquer et interagir avec le monde qui nous
+        entoure a augmenté de façon exponentielle ces dernières années. En raison de cette dépendance accrue à l’égard de
+        la technologie, il faut tenir compte des répercussions éthiques de nos actions en ligne. <br>L’éthique numérique est
+        importante parce qu’elle va au cœur de ce que signifie être un bon membre responsable de la société. Tout comme
+        nous sommes censés nous comporter de manière éthique dans nos interactions hors ligne, il devrait en être de même
+        pour nos actions en ligne. En tenant compte des conséquences potentielles de nos actions et en nous efforçant de
+        faire ce qui est juste, nous pouvons créer un environnement en ligne plus sûr, plus inclusif et plus fiable pour tous.<br><br>
+        Voici des articles en lien avec CDCL, permettant d'approfondir vos connaissances sur les sujets évoqués.
+
+      </p>
+
+      <h4 class="myP"style="color: white;">Conditions générales d'utilisation - 2022</h4>
       <p class="myP">Cela vous arrive-t-il de lire en entier les conditions générales d'utilisation lorsque vous telechargez
         un réseau social? Ce long pavé, écrit en tout petit et qui semble très ennuyeux. La plupart des personnes les accepte
         sans jamais les lires, cela pourrait vous portez prejudice. Si l'on prend l'exemple de Facebook, l'entreprise se donne
@@ -85,7 +97,7 @@
         complètement votre lecture. Tinder peut modifier, diffuser et distribuer vos données même après suppression de votre
         compte. Pas très rassurant non ?</p>
 
-      <h4 class="myP">Collecte de données - 2032</h4>
+      <h4 class="myP" style="color: white;">Collecte de données - 2032</h4>
       <p class="myP">Peut importe qui nous sommes sur Internet, nos données sont collectées. Nom, Age, adresse, numero de
         téléphone, centre d'interets, ... Ces données sont pour la plupart soit revendues à d'autres entreprises qui
         cherche des profils comme le votre, soit en proposant de la publicité personnalisée directement sur les plateformes
@@ -99,7 +111,7 @@
         cookies. La CNIL "reproche aux entreprises d’avoir pisté leurs utilisateurs pour des fins publicitaires sans leur
         consentement". <a href="#" id="2032ressources" class="resstext" onclick="r2032()">Plus d'informations ici</a></p>
 
-      <h4 class="myP">Reconnaissance Faciale - 2035 </h4>
+      <h4 class="myP" style="color: white;">Reconnaissance Faciale - 2035 </h4>
       <p class="myP">La reconnaissance faciale pourrait être prise comme un outil de surveillance de masse pour les états
         ce qui est étiquement innaceptable. Il est important de relever deux types de reconaissance faciale : celle qui a
         des fins d'authentification (comparer votre visage à une photo) et celle à des fins d'identifcation (il s'agit ici
@@ -115,7 +127,7 @@
         individus. L'Etat se donnerait-il alors le droit d'identifier toute la population simplement parce qu'elle se trouve
         dans l'espace publique ? <a href="#" id="2035ressources" class="resstext" onclick="r2035()">Plus d'informations ici</a></p>
 
-      <h4 class="myP">Cookies - 2039 </h4>
+      <h4 class="myP"style="color: white;">Cookies - 2039 </h4>
       <p class="myP">Un cookie est un fichier texte qu'un site web va venir déposer sur votre ordinateur. Lorsque vous vous
         connectez à un site web, le site a besoin d'enregistrer une information sur votre ordinateur pour savoir que vous êtes
         connecté : on appelle ça l'identifiant de session. Les cookies servent également à enregistrer des préférences. Il existe
@@ -131,7 +143,29 @@
         alors par exemple avoir accès a votre panier en ligne mais aussi à votre compte bancaire si jamais vous étiez connecté
         au moment où le vol de cookies a eu lieu... <a href="#" id="2039ressources" class="resstext" onclick="r2039()">Plus d'informations ici</a></p>
 
-      <h4 class="myP">Neuralink</h4>
+      <h4 class="myP" style="color: white;">Publicité ciblé</h4>
+      <p class="myP">La publicité ciblée est une forme de publicité qui utilise des données sur les caractéristiques, le
+        comportement et les intérêts d’une personne pour offrir des publicités personnalisées. Cela se fait souvent au
+        moyen de témoins, qui sont de petites données stockées sur l’appareil d’une personne et utilisées pour suivre
+        son activité en ligne.
+        <br>L’objectif de la publicité ciblée est de diffuser des publicités plus pertinentes et plus
+        attrayantes pour les téléspectateurs individuels, dans l’espoir d’accroître l’efficacité de la publicité. Ceci
+        est réalisé en recueillant des données sur les intérêts du spectateur, les données démographiques et le comportement
+        en ligne, et en utilisant cette information pour sélectionner des publicités qui sont susceptibles de les intéresser.
+        <br>Bien que la publicité ciblée puisse être un moyen efficace d’atteindre des publics précis, elle soulève également
+        des préoccupations au sujet de la collecte et de l’utilisation des données personnelles. La quantité croissante
+        de données recueillies sur les personnes a suscité des préoccupations au sujet de la protection de la vie privée
+        et de la possibilité que ces données soient utilisées de façon non transparente ou équitable.
+        <br>En particulier, on s’inquiète de la capacité des entreprises à utiliser ces données pour manipuler le comportement et la prise
+        de décision des gens. Cela comprend l’utilisation de "sombres modèles" dans la publicité, qui sont conçus pour exploiter les préjugés et les vulnérabilités des gens afin d’influencer leur comportement.
+        <br>Il est important que les individus soient conscients des risques associés à la collecte et à l’utilisation de
+        leurs données personnelles, et qu’ils prennent des mesures pour protéger leur vie privée en ligne. Il faut notamment
+        être conscient des types de données qu’ils partagent, utiliser des outils et des technologies qui améliorent la
+        protection des renseignements personnels et connaître les risques et les inconvénients potentiels de la publicité
+        ciblée.
+      </p>
+
+      <h4 class="myP" style="color: white;">Neuralink</h4>
       <p class="myP">Vous ne le savez peut-être pas mais la société d'Elon Musk Neuralink vient de commencer à poser
         de nombreux implants cérébraux sur des personnes. En juillet 2016, Neuralink a été lancé dans le but de fabriquer
         des interfaces cerveaux-machines implantables. Depuis qu'elle a démarrer, l'entreprise a beaucoup progresser
@@ -146,6 +180,20 @@
         de la moelle épinière, Elon Musk annonce des objectifs médicaux ambitieux. Mais pouvons-nous être surs que
         ces innovations vont être utilisé à bon escient qu'il n'y a pas de volonté de manipulation des humains via
         à ces implants ? <a href="#" id="2043ressources" class="resstext" onclick="r20392()">Plus d'informations ici</a></p>
+
+      <h4 class="myP" style="color: white;">Transhumanisme</h4>
+      <p class="myP">Le transhumanisme est un mouvement qui préconise l’utilisation de la technologie pour améliorer la condition
+        humaine et réaliser des améliorations radicales dans les capacités et les traits humains. Cela comprend des choses
+        comme l’utilisation de l’intelligence artificielle, les interfaces cerveau-machine et l’édition de gènes pour augmenter
+        nos capacités physiques et mentales. Les partisans du transhumanisme soutiennent que ces technologies nous permettront
+        de surmonter bon nombre des limites de l’être humain, comme la maladie, le vieillissement et l’incapacité physique.
+        Ils croient que ces technologies nous permettront de créer un avenir meilleur pour l’humanité et de réaliser une
+        société post-humaine dans laquelle les humains sont en mesure de transcender leur forme biologique actuelle.Il y a
+        de nombreux avantages potentiels au transhumanisme, mais on s’inquiète aussi des risques et des inconvénients
+        potentiels. Certains craignent que la poursuite de ces technologies pourrait conduire à une distribution inégale
+        de leurs avantages, avec seulement les riches étant en mesure de se permettre de s’améliorer. D’autres s’inquiètent
+        des conséquences éthiques de l’utilisation de ces technologies pour modifier fondamentalement ce que signifie être
+        humain.</p>
 
       <p id="cartes" style="font-size: 32px; color:white;" class="myP">Contacts</p>
     </div>
@@ -185,8 +233,8 @@
 
   </body>
   <footer>
-    <div class="separator"></div>
-    <h5 class="H5"> copyrigth ・ All rigth not reserved ・ Unofficial WebSite</h5>
-    <img id="logoFooter" src="Picture/site/logosae.png" alt="car">
+    <div class="row copyright">
+      <p>Copyright &copy; 2023 CDCL developpers</p>
+    </div>
   </footer>
 </html>

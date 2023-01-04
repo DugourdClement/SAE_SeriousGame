@@ -38,23 +38,22 @@ header('Content-Type: text/html');
 
 <!DOCTYPE html>
 <html  class="no-js" lang="">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Connexion</title>
     <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
-      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="connexion.css">
-  </head>
-  <body>
-      <div class="connexion">
-          <p class="sign" >Se connecter</p>
-        <form method="post">
-          <input type="text" class="champ" id="username" name="username" placeholder="Nom d'utilisateur">
-          <input type="password" class="champ" id="password" name="password" placeholder="Mot de passe">
-          <button type="submit" class="submit" name="submit-button" value="1">Envoyer</button>
-        </form>
-      </div>
-  </body>
+</head>
+<body>
+<div class="connexion">
+    <p class="sign" >Se connecter</p>
+    <form method="post">
+        <input type="text" class="champ" id="username" name="username" placeholder="Nom d'utilisateur">
+        <input type="password" class="champ" id="password" name="password" placeholder="Mot de passe">
+        <button type="submit" class="submit" name="submit-button" value="1">Envoyer</button>
+    </form>
+</div>
+</body>
 </html>
-
