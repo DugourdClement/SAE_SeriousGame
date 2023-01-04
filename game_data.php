@@ -3,7 +3,7 @@ include 'db_conn.php';
 $conn = createDBConn();
 
 for($i = 1; $i < 2; ++$i ){
-    $sql = "SELECT texte.*, id_opt, opt FROM texte, option WHERE texte.id_texte = $i AND texte.id_texte = option.id_texte";
+    $sql = "SELECT texte.*, id_opt, opt FROM texte, option WHERE texte.id_texte = $i+10 AND texte.id_texte = option.id_texte";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
