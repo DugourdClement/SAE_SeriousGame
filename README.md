@@ -14,6 +14,9 @@ CDCL (**C**hoose your **D**ata, **C**hoose your **L**ife) est un projet scolaire
 
 ### Contributeurs
 **.** Fabien Routier
+
 **.** Clément Dugourd
+
 **.** Noémie Djérian
+
 **.** Enzo Mekerke
