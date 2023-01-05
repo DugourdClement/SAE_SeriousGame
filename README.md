@@ -2,6 +2,8 @@
 
 CDCL (**C**hoose your **D**ata, **C**hoose your **L**ife) est un projet scolaire de 2ème année de BUT Informatique. C'est un serious game (activité ludique mêlant une intention sérieuse) sur l'importance de l'éthique du numérique.   
 
+<img src="https://github.com/DugourdClement/SAE_SeriousGame/blob/main/Assets/Fond_site.png"/>
+
 #### Langages utilisés
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
