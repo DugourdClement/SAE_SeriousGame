@@ -65,19 +65,21 @@ function addEventListenerForm(idForm){
 
             const formData = new FormData();
             formData.append('text', window['text_' + idForm].innerHTML);
-            if(idForm.length === 2){
+            if(idForm.length === 2){ //If option
                 formData.append('idText', idForm.slice(0, -1));
                 formData.append('idOpt', idForm);
-            }
-            else formData.append('idText', idForm);
-            /*
+            } else if(idForm.length === 3){ //If multi text
+                formData.append('idText', idForm.slice(0, -2));
+                formData.append('idTextSup', idForm);
+            } else formData.append('idText', idForm);
+
             for (const value of formData.values()) {
                 console.log(value);
             }
             for (const key of formData.keys()) {
                 console.log(key);
             }
-            */
+
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'game_change.php');
             xhr.onload = function() {
@@ -91,9 +93,10 @@ function addEventListenerForm(idForm){
     }
 
     addEventListener(idForm);
-    for (let i = 1; i < 5; i++) {
+    for (let i = 1; i < 5; i++) { //a modifier pour qu'il le face automatiquement pour tout les text en plus
         addEventListener(idForm.toString() + i);
     }
+    addEventListener( 10 + idForm.toString());
 }
 
 
