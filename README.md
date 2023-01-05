@@ -15,7 +15,7 @@ CDCL (**C**hoose your **D**ata, **C**hoose your **L**ife) est un projet scolaire
 
 
 
-### Contributeurs
+## Contributeurs
 **.** Fabien Routier [LinkedIn](https://fr.linkedin.com/in/fabien-routier-230312251)
 
 **.** Clément Dugourd [LinkedIn](https://fr.linkedin.com/in/cl%C3%A9ment-dugourd-157374223)
