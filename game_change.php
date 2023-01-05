@@ -80,17 +80,18 @@ echo '
         <script defer src="jQuery-3.6.3.js"></script>
     </head>
     <body>
+     <div class="modification">
     <p id="banner">Modification enregistée</p>
-        <label for="menu">Select an option:</label><br>
+        <label for="menu">Choisir une année à modifier : </label><br>
         <select name="menu" id="menu">
             <option value="base">---</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
-            <option value="option5">Option 5</option>
-            <option value="option6">Option 6</option>
-            <option value="option7">Option 7</option>
+            <option value="option1">Année 2022</option>
+            <option value="option2">Année 2032</option>
+            <option value="option3">Année 2035</option>
+            <option value="option4">Année 2039</option>
+            <option value="option5">Année 2043</option>
+            <option value="option6">Année 2050</option>
+            <option value="option7">Année 2056</option>
         </select>
 
         <div class="form" id="form1" style="display: none;">';
@@ -114,6 +115,7 @@ echo '
         <div class="form" id="form7" style="display: none;">';
             if(isset($data)) modifyYearsForm($data, 7);
   echo '</div>
+</div>
     </body>
 </html>';
 }

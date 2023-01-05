@@ -94,8 +94,9 @@ img {
   background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
+  background-attachment: fixed;
+
 }
 
 .nav {
@@ -109,7 +110,6 @@ img {
 #fenetre {
   display: flex;
   background-repeat: no-repeat;
-  background-size: contain;
   background-position: center;
   justify-content: space-around;
   position: fixed;
