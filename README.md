@@ -18,12 +18,12 @@ Vous pouvez accéder au site web en appuyant [ici](http://cdcl-data.fr/).
 
 
 ## Contributeurs
-**.** Fabien Routier [LinkedIn](https://fr.linkedin.com/in/fabien-routier-230312251)
+**.** Fabien Routier [LinkedIn](https://fr.linkedin.com/in/fabien-routier-230312251) [Github](https://github.com/RoutierFabien)
 
-**.** Clément Dugourd [LinkedIn](https://fr.linkedin.com/in/cl%C3%A9ment-dugourd-157374223)
+**.** Clément Dugourd [LinkedIn](https://fr.linkedin.com/in/cl%C3%A9ment-dugourd-157374223) [Github](https://github.com/DugourdClement)
 
-**.** Noémie Djerian [LinkedIn](https://fr.linkedin.com/in/no%C3%A9mie-djerian-916211230)
+**.** Noémie Djerian [LinkedIn](https://fr.linkedin.com/in/no%C3%A9mie-djerian-916211230) [Github](https://github.com/noemiedjerian)
 
-**.** Enzo Mekerke [LinkedIn](https://fr.linkedin.com/in/enzo-mekerke-320264233)
+**.** Enzo Mekerke [LinkedIn](https://fr.linkedin.com/in/enzo-mekerke-320264233) [Github](https://github.com/EnzoMEKERKE)
 
-**.** Kilian Gil [LinkedIn](https://fr.linkedin.com/in/killian-gil-169b45183)
+**.** Kilian Gil [LinkedIn](https://fr.linkedin.com/in/killian-gil-169b45183) 
