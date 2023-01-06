@@ -4,7 +4,7 @@
     <title>Chatbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="Css/chatbot.css">
       <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
     <script src="https://unpkg.com/@babel/polyfill@7.6.0/dist/polyfill.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>

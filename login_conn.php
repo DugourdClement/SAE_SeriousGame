@@ -44,8 +44,8 @@ header('Content-Type: text/html');
     <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="connexion.css">
-    <link rel="stylesheet" href="styleSheet.css">
+    <link rel="stylesheet" href="Css/connexion.css">
+    <link rel="stylesheet" href="Css/styleSheet.css">
 
 
 </head>
