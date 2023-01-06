@@ -105,11 +105,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn = createDBConn();
 
     if(isset($idOpt)) {
-        $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText+10 and option.id_opt = $idOpt+100";
+        $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText and option.id_opt = $idOpt";
     } else if (isset($idTextSup)){
         $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idTextSup";
     } else{
-        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText+10";
+        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText";
     }
     $conn->query($sql);
     $conn->close();

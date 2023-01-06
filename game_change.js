@@ -59,12 +59,12 @@ function addEventListenerForm(){
 
             const formData = new FormData();
             formData.append('text', window['text_' + idForm].innerHTML);
-            if(idForm.length === 2){ //If option
-                formData.append('idText', idForm.slice(0, -1));
-                formData.append('idOpt', idForm);
-            } else if(idForm.length === 3){ //If multi text
+            if(/^\d+0\d$/.test(idForm)){ //If multi text
                 formData.append('idText', idForm.slice(0, -2));
                 formData.append('idTextSup', idForm);
+            }else if(idForm.length === 3){ //If option
+                formData.append('idText', idForm.slice(0, -1));
+                formData.append('idOpt', idForm);
             } else formData.append('idText', idForm);
 
             for (const value of formData.values()) {
