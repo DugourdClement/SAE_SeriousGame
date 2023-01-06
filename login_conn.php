@@ -45,8 +45,15 @@ header('Content-Type: text/html');
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="connexion.css">
+    <link rel="stylesheet" href="styleSheet.css">
+
+
 </head>
+
+<?php require("nav.php");?>
+
 <body>
+<div class="home" id="home">
 <div class="connexion">
     <p class="sign" >Se connecter</p>
     <form method="post">
@@ -54,6 +61,7 @@ header('Content-Type: text/html');
         <input type="password" class="champ" id="password" name="password" placeholder="Mot de passe">
         <button type="submit" class="submit" name="submit-button" value="1">Envoyer</button>
     </form>
+</div>
 </div>
 </body>
 </html>
