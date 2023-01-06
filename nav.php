@@ -3,7 +3,6 @@ header('Content-Type: text/html');
 ?>
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="navbar.css">
     <script defer src="web.js"></script>
 </head>
 <body>

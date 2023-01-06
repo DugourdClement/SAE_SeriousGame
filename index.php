@@ -10,8 +10,8 @@ header('Content-Type: text/html');
     <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="Css/styleSheet.css">
-    <link rel="stylesheet" href="Css/responsive.css">
+    <link rel="stylesheet" href="styleSheet.css">
+    <link rel="stylesheet" href="responsive.css">
     <script defer src="game.js"></script>
     <script defer src="web.js"></script>
   </head>
