@@ -9,11 +9,12 @@ body {
   background-color: #000000;
 }
 
+/* Display nav barre mobile*/
+
 img {
   max-width: 100%;
 }
 
-/* Display nav barre mobile*/
 .sidenav{
   display: none;
 }
