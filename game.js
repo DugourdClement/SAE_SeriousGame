@@ -2,12 +2,13 @@ const bouttonPlay = document.getElementById('playButton')
 const windowJ = document.getElementById('fenetre')
 const allButtons = document.getElementsByClassName('button');
 const nextButton = document.getElementById('5');
+const home = document.getElementById('home');
 const text = document.getElementById('text');
 const path = [];
 const years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
 var opt = [];
 
-bouttonPlay.addEventListener('click', openWindow)
+bouttonPlay.addEventListener('click', openWindow);
 
 function addEventL(){
     for (let i = 0; i < allButtons.length; i++) {
@@ -21,12 +22,13 @@ function addEventL(){
     });
 }
 
-async function openWindow(){
+async function openWindow() {
     let status = await getData();
-    if(status === true) {
+    if (status === true) {
         game();
     }
 }
+
 
 function setButtonVisibility(value, nb){
     let vis;
