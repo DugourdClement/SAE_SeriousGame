@@ -110,13 +110,13 @@ img {
     left: 50%;
     transform: translateX(-50%);
     color: rgb(247, 35,12);
-    margin-top: 1%;
     font-size: 230%;
 }
 
 .connexion {
     background-color: #FFFFFF;
     width: 25%;
+    height: 50%;
     margin: 10% auto;
     border-radius: 1.5em;
     box-shadow: 0 11px 35px 2px rgba(0, 0, 0, 0.14);
