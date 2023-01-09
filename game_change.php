@@ -17,6 +17,7 @@ function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another 
         $query->execute();
         $query->bind_result($nbChoice);
         $query->fetch();
+        $out[$i] = array("nbChoice" => $nbChoice);
         $query->close();
 
         for ($j = 1; $j < $nbChoice + 1; ++$j) {
@@ -29,12 +30,14 @@ function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another 
             $num_rows = mysqli_num_rows($result);
             if ($num_rows > 0) {
                 $row = $result->fetch_assoc();
+                $tmp1 = [];
                 $tmp1[] = $row["opt"];
                 $text = $row["texte"];
                 while ($row = $result->fetch_assoc()) {
                     $tmp1[] = $row["opt"];
                 }
-                $out[$i] = array("nbChoice" => $nbChoice, array("nbOpt" => $num_rows, $text, $tmp1));
+                $out[$i][$j] = array("nbOpt" => $num_rows, $text, $tmp1);
+
             } else {
                 throw new Exception("No data was recovering");
             }
@@ -71,21 +74,21 @@ function modifyYearsForm($data, $currentYear): void
 {
     for ($i = 1; $i < $data[$currentYear]["nbChoice"] + 1; ++$i) {
         echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, '">',
-        '<p id="text_', $i, $currentYear, '" contenteditable>', json_encode($data[$currentYear][$i-1][0]), '</p>', //One contenteditable for the text
+        '<p id="text_', $i, $currentYear, '" contenteditable>', json_encode($data[$currentYear][$i][0]), '</p>', //One contenteditable for the text
         '<button  class="submit" id="btnSubmit_', $i, $currentYear, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, '"> Valider</button>
           </form>';
-        for ($j = 1; $j < $data[$currentYear][$i-1]["nbOpt"] + 1; ++$j) {
+        for ($j = 1; $j < $data[$currentYear][$i]["nbOpt"] + 1; ++$j) {
             echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, $j, '">',
-            '<p id="text_', $i, $currentYear, $j, '" contenteditable>', json_encode($data[$currentYear][$i-1][1][$j - 1]), '</p>', //Four contenteditable for the options
+            '<p id="text_', $i, $currentYear, $j, '" contenteditable>', json_encode($data[$currentYear][$i][1][$j - 1]), '</p>', //Four contenteditable for the options
             '<button  class="submit" id="btnSubmit_', $i, $currentYear, $j, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, $j, '"> Valider</button>
             </form>';
         }
-        for ($j = 1; $j < $data[$currentYear][1]["nbTextSup"] + 1; ++$j) {
-            echo '<form action="game_change.php" method="POST" id="form_', $currentYear, '0', $j, '">',
-            '<p id="text_', $currentYear, '0', $j, '" contenteditable>', json_encode($data[$currentYear][1][$j-1]), '</p>', //Mutilple contenteditable for the other text
-            '<button  class="submit" id="btnSubmit_', $currentYear, '0', $j, '" type="submit" name="btnSubmit" form="form_', $currentYear, '0', $j, '"> Valider</button>
+    }
+    for ($j = 1; $j < $data[$currentYear][intval(["nbChoice"]) + 2]["nbTextSup"] + 1; ++$j) {
+        echo '<form action="game_change.php" method="POST" id="form_', $currentYear, '0', $j, '">',
+        '<p id="text_', $currentYear, '0', $j, '" contenteditable>', json_encode($data[$currentYear][intval(["nbChoice"]) + 2][$j -1]), '</p>', //Mutilple contenteditable for the other text
+        '<button  class="submit" id="btnSubmit_', $currentYear, '0', $j, '" type="submit" name="btnSubmit" form="form_', $currentYear, '0', $j, '"> Valider</button>
             </form>';
-        }
     }
     /*
     foreach ($data as $subarray) {

@@ -9,6 +9,7 @@ for ($i = 1; $i < 2; ++$i) {
     $query->execute();
     $query->bind_result($nbChoice);
     $query->fetch();
+    $out[$i] = array("nbChoice" => $nbChoice);
     $query->close();
 
     for ($j = 1; $j < $nbChoice + 1; ++$j) {
@@ -21,12 +22,13 @@ for ($i = 1; $i < 2; ++$i) {
         $num_rows = mysqli_num_rows($result);
         if ($num_rows > 0) {
             $row = $result->fetch_assoc();
+            $tmp1 = [];
             $tmp1[] = $row["opt"];
             $text = $row["texte"];
             while ($row = $result->fetch_assoc()) {
                 $tmp1[] = $row["opt"];
             }
-            $out[$i] = array("nbChoice" => $nbChoice, array("nbOpt" => $num_rows, $text, $tmp1));
+            $out[$i][$j] = array("nbOpt" => $num_rows, $text, $tmp1);
         } else {
             echo json_encode("No data was recovering");
         }
@@ -41,6 +43,7 @@ for ($i = 1; $i < 2; ++$i) {
 
     $num_rows = mysqli_num_rows($result);
     if ($num_rows > 0) {
+        $tmp2 = [];
         $tmp2["nbTextSup"] = $num_rows;
         while ($row = $result->fetch_assoc()) {
             $tmp2[] = $row["texte"];
