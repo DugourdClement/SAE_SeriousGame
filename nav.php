@@ -11,7 +11,7 @@ header('Content-Type: text/html');
     <ul>
         <li><a onclick="closeNav()" href="index.php#ressource">Ressources</a></li>
         <li><a onclick="closeNav()" href="#index.php#cartes">Contacts</a></li>
-        <li><a onclick="closeNav()" href="chatbot.php" target="_blank">ChatBox</a></li>
+        <li><a onclick="closeNav()" href="chatbot.php" target="_blank">Chatbot</a></li>
         <li><a href="login_conn.php">Connexion</a></li>
     </ul>
 </div>
