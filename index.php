@@ -34,12 +34,12 @@ header('Content-Type: text/html');
       <p id="text" class="text"></p>
       <div class="buttonRow">
         <div class="buttonCol">
-          <button id="1" class="button"></button>
-          <button id="3" class="button"></button>
+          <button id="1" class="button2"></button>
+          <button id="3" class="button2"></button>
         </div>
         <div class="buttonCol">
-          <button id="2" class="button"></button>
-          <button id="4" class="button"></button>
+          <button id="2" class="button2"></button>
+          <button id="4" class="button2"></button>
         </div>
         <button id="5" class="next">Suivant</button>
       </div>
