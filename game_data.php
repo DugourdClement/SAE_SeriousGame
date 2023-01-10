@@ -2,7 +2,7 @@
 include 'db_conn.php';
 $conn = createDBConn();
 
-for ($i = 1; $i < 2; ++$i) {
+for ($i = 1; $i < 8; ++$i) {
     $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP ?");
     $str = "^" . $i . "[[:digit:]]{1}$";
     $query->bind_param("s", $str);
@@ -13,8 +13,9 @@ for ($i = 1; $i < 2; ++$i) {
     $query->close();
 
     for ($j = 1; $j < $nbChoice + 1; ++$j) {
-        $query = $conn->prepare("SELECT texte, opt FROM texte, option WHERE texte.id_texte = ? + 9 + ? AND texte.id_texte = option.id_texte");
-        $query->bind_param("ii", $i, $j);
+        $query = $conn->prepare("SELECT texte, opt FROM texte, option WHERE texte.id_texte = ? + ? AND texte.id_texte = option.id_texte");
+        $var1 = $i * 10;
+        $query->bind_param("ii", $var1, $j);
         $query->execute();
         $result = $query->get_result();
         $query->close();
@@ -34,9 +35,9 @@ for ($i = 1; $i < 2; ++$i) {
         }
     }
 
-    $id = $i + ($i * 100);
-    $query = $conn->prepare("SELECT texte FROM texte WHERE texte.id_texte = ?");
-    $query->bind_param("i", $id);
+    $query = $conn->prepare("SELECT texte FROM texte WHERE texte.id_texte REGEXP ?");
+    $str = "^" . $i . "0[[:digit:]]{1}$";
+    $query->bind_param("s", $str);
     $query->execute();
     $result = $query->get_result();
     $query->close();
@@ -48,10 +49,11 @@ for ($i = 1; $i < 2; ++$i) {
         while ($row = $result->fetch_assoc()) {
             $tmp2[] = $row["texte"];
         }
+        $out[$i][$nbChoice + 1] = $tmp2;
     } else {
         echo json_encode("No data was recovering");
     }
-    $out[$i][] = $tmp2;
+
 }
 $conn->close();
 /*
