@@ -72,16 +72,16 @@ header('Content-Type: text/html');
         compte. Pas très rassurant non ?</p>
 
       <h4 class="myP" style="color: white;">Collecte de données - 2032</h4>
-      <p class="myP">Peut importe qui nous sommes sur Internet, nos données sont collectées. Nom, Age, adresse, numero de
-        téléphone, centre d'interets, ... Ces données sont pour la plupart soit revendues à d'autres entreprises qui
-        cherche des profils comme le votre, soit en proposant de la publicité personnalisée directement sur les plateformes
+      <p class="myP">Peu importe qui nous sommes sur Internet, nos données sont collectées. Nom, Âge, adresse, numéro de
+        téléphone, centres d'intêret... Ces données sont pour la plupart soit revendues à d'autres entreprises qui
+        cherchent des profils comme le votre, soit en proposant de la publicité personnalisée directement sur les plateformes
         qui ont vos données : le ciblage publicitaire. Les réseaux sociaux vont lire nos conversations, nos posts. Votre
-        naviguateur internet va enregistrer les sites visités et votre activité sur ces derniers (cookies). Tout ceci est
+        navigateur internet va enregistrer les sites visités et votre activité sur ces derniers (cookies). Tout ceci est
         le résultat de la gratuité des services que l'on utilise : « Si c'est gratuit, c'est que vous êtes le produit ».
-        Et l'éthique dans tout ça ? Est-ce morale que nos données sont collectées pour être réutilisé à des fins commerciales?
+        Et l'éthique dans tout ça ? Est-ce morale que nos données soient collectées pour être réutilisées à des fins commerciales?
         L'Europe a mis en place le RGPD, s'appliquant à tout organisme. Selon ce règlement, les données doivent être
-        traitées de manière licite, loyale, transparente,... Très étonnement, pas toutes les entreprises le respecte,
-        la CNIL à condamné récemment Google à une amende de 100 millions d'euros pour non-respect de la legislation sur les
+        traitées de manière licite, loyale, transparente,... Étonnement, pas toutes les entreprises ne le respecte,
+        la CNIL à condamné récemment Google à une amende de 100 millions d'euros pour non-respect de la législation sur les
         cookies. La CNIL "reproche aux entreprises d’avoir pisté leurs utilisateurs pour des fins publicitaires sans leur
         consentement". <a href="#" id="2032ressources" class="resstext" onclick="r2032()">Plus d'informations ici</a></p>
 
