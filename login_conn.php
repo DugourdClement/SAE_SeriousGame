@@ -5,8 +5,11 @@ function getLogin($username, $password): void {
     $conn = createDBConn();
     session_start();
 
-    $sql = "SELECT identifiant, mdp FROM utilisateur WHERE identifiant = '$username'";
-    $result = $conn->query($sql);
+    $query = $conn->prepare("SELECT identifiant, mdp FROM utilisateur WHERE identifiant = ?");
+    $query->bind_param("s", $username);
+    $query->execute();
+    $result = $query->get_result();
+    $query->close();
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();

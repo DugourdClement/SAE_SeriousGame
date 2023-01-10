@@ -6,62 +6,119 @@ header('Content-Type: text/html');
 /**
  * @throws Exception
  */
-function getData($maxSize): array
+function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another query
 {
     $conn = createDBConn();
-    $out = array();
 
-    for ($i = 1; $i < $maxSize; ++$i) {
-        $sql = "SELECT texte.*, opt FROM texte, option WHERE texte.id_texte = 10 + $i AND texte.id_texte = option.id_texte";
-        $result = $conn->query($sql);
+    for ($i = 1; $i < $nbYear; ++$i) {
+        $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP ?");
+        $str = "^" . $i . "[[:digit:]]{1}$";
+        $query->bind_param("s", $str);
+        $query->execute();
+        $query->bind_result($nbChoice);
+        $query->fetch();
+        $out[$i] = array("nbChoice" => $nbChoice);
+        $query->close();
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $tmp = array($i, $row["texte"], $row["opt"]);
-            while ($row = $result->fetch_assoc()) {
-                $tmp[] = $row["opt"];
+        for ($j = 1; $j < $nbChoice + 1; ++$j) {
+            $query = $conn->prepare("SELECT texte, opt FROM texte, option WHERE texte.id_texte = ? + 9 + ? AND texte.id_texte = option.id_texte");
+            $query->bind_param("ii", $i, $j);
+            $query->execute();
+            $result = $query->get_result();
+            $query->close();
+
+            $num_rows = mysqli_num_rows($result);
+            if ($num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $tmp1 = [];
+                $tmp1[] = $row["opt"];
+                $text = $row["texte"];
+                while ($row = $result->fetch_assoc()) {
+                    $tmp1[] = $row["opt"];
+                }
+                $out[$i][$j] = array("nbOpt" => $num_rows, $text, $tmp1);
+
+            } else {
+                throw new Exception("No data was recovering");
             }
-            $out[$i] = $tmp;
+        }
+
+        $id = $i + ($i * 100);
+        $query = $conn->prepare("SELECT texte FROM texte WHERE texte.id_texte = ?");
+        $query->bind_param("i", $id);
+        $query->execute();
+        $result = $query->get_result();
+        $query->close();
+        $num_rows = mysqli_num_rows($result);
+        if ($num_rows > 0) {
+            $tmp2["nbTextSup"] = $num_rows;
+            while ($row = $result->fetch_assoc()) {
+                $tmp2[] = $row["texte"];
+            }
         } else {
             throw new Exception("No data was recovering");
         }
+        $out[$i][] = $tmp2;
     }
     $conn->close();
+    /*
+    foreach ($out as $subarray) {
+        print_r($subarray);
+        echo "\n";
+    }
+    */
     return $out;
 }
 
-function modifyYearsForm($data, $i): void
+function modifyYearsForm($data, $currentYear): void
 {
-    echo '<form action="game_change.php" method="POST" id="form_', $i, '">',
-    '<p id="text_', $i, '" contenteditable>', json_encode($data[$i][1]), '</p>', //One contenteditable for the text
-    '<button  class="submit" id="btnSubmit_', $i, '" type="submit" name="btnSubmit" form="form_', $i, '"> Valider</button>
+    for ($i = 1; $i < $data[$currentYear]["nbChoice"] + 1; ++$i) {
+        echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, '">',
+        '<p id="text_', $i, $currentYear, '" contenteditable>', json_encode($data[$currentYear][$i][0]), '</p>', //One contenteditable for the text
+        '<button  class="submit" id="btnSubmit_', $i, $currentYear, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, '"> Valider</button>
           </form>';
-    for ($j = 1; $j < 5; ++$j) {
-        echo '<form action="game_change.php" method="POST" id="form_', $i, $j, '">',
-        '<p id="text_', $i, $j, '" contenteditable>', json_encode($data[$i][$j + 1]), '</p>', //Four contenteditable for the options
-        '<button  class="submit" id="btnSubmit_', $i, $j, '" type="submit" name="btnSubmit" form="form_', $i, $j, '"> Valider</button>
+        for ($j = 1; $j < $data[$currentYear][$i]["nbOpt"] + 1; ++$j) {
+            echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, $j, '">',
+            '<p id="text_', $i, $currentYear, $j, '" contenteditable>', json_encode($data[$currentYear][$i][1][$j - 1]), '</p>', //Four contenteditable for the options
+            '<button  class="submit" id="btnSubmit_', $i, $currentYear, $j, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, $j, '"> Valider</button>
+            </form>';
+        }
+    }
+    for ($j = 1; $j < $data[$currentYear][intval(["nbChoice"]) + 2]["nbTextSup"] + 1; ++$j) {
+        echo '<form action="game_change.php" method="POST" id="form_', $currentYear, '0', $j, '">',
+        '<p id="text_', $currentYear, '0', $j, '" contenteditable>', json_encode($data[$currentYear][intval(["nbChoice"]) + 2][$j -1]), '</p>', //Mutilple contenteditable for the other text
+        '<button  class="submit" id="btnSubmit_', $currentYear, '0', $j, '" type="submit" name="btnSubmit" form="form_', $currentYear, '0', $j, '"> Valider</button>
             </form>';
     }
+    /*
+    foreach ($data as $subarray) {
+        print_r($subarray);
+        echo "\n";
+    }
+    */
 }
 
 
 try {
     $data = getData(2);
 } catch (Exception $e) {
-    $string = 'An error occurred: ' . $e->getMessage();
+    echo '<script>console.log("An error occurred: "', $e->getMessage(), ')</script>';
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //var_dump($_POST);
     if(isset($_POST['idOpt'])) $idOpt = $_POST['idOpt'];
+    if(isset($_POST['idTextSup'])) $idTextSup = $_POST['idTextSup'];
     $idText = $_POST['idText'];
     $text = $_POST['text'];
     $conn = createDBConn();
 
     if(isset($idOpt)) {
-        $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText+10 and option.id_opt = $idOpt+100";
+        $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText and option.id_opt = $idOpt";
+    } else if (isset($idTextSup)){
+        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idTextSup";
     } else{
-        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText+10";
+        $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText";
     }
     $conn->query($sql);
     $conn->close();
@@ -80,7 +137,6 @@ echo '
         <script defer src="jQuery-3.6.3.js"></script>
     </head>
     <body>
-     <div class="modification">
     <p id="banner">Modification enregistée</p>
         <label for="menu">Choisir une année à modifier : </label><br>
         <select name="menu" id="menu">
@@ -115,7 +171,6 @@ echo '
         <div class="form" id="form7" style="display: none;">';
             if(isset($data)) modifyYearsForm($data, 7);
   echo '</div>
-</div>
     </body>
 </html>';
 }

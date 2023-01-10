@@ -1,4 +1,5 @@
 function menu() {
+    addEventListenerForm();
     let menu = document.getElementById("menu");
     menu.addEventListener("change", function() {
         hideAllOption();
@@ -6,31 +7,24 @@ function menu() {
         let selectedOption = this.value;
         switch (selectedOption) {
             case "option1" :
-                addEventListenerForm(1);
                 document.getElementById("form1").style.display = "block";
                 break;
             case "option2" :
-                addEventListenerForm(2);
                 document.getElementById("form2").style.display = "block";
                 break;
             case "option3" :
-                addEventListenerForm(3);
                 document.getElementById("form3").style.display = "block";
                 break;
             case "option4" :
-                addEventListenerForm(4);
                 document.getElementById("form4").style.display = "block";
                 break;
             case "option5" :
-                addEventListenerForm(5);
                 document.getElementById("form5").style.display = "block";
                 break;
             case "option6" :
-                addEventListenerForm(6);
                 document.getElementById("form6").style.display = "block";
                 break;
             case "option7" :
-                addEventListenerForm(7);
                 document.getElementById("form7").style.display = "block";
                 break;
         }
@@ -49,7 +43,7 @@ function bannerShow(){
     banner = $(banner);
     banner.css('visibility', 'visible');
     banner.css('opacity', '1');
-    banner.fadeIn();
+
     setTimeout(function() {
         banner.fadeTo(1000, 0, function() {
             banner.css('visibility', 'hidden');
@@ -57,27 +51,29 @@ function bannerShow(){
     }, 3000);
 }
 
-function addEventListenerForm(idForm){
-    function addEventListener(idForm) {
+function addEventListenerForm(){
+    function addCustomEventListener(idForm) {
         console.log(idForm);
         document.getElementById('btnSubmit_' + idForm).addEventListener('click', function (event) {
             event.preventDefault();
 
             const formData = new FormData();
             formData.append('text', window['text_' + idForm].innerHTML);
-            if(idForm.length === 2){
+            if(/^\d+0\d$/.test(idForm)){ //If multi text
+                formData.append('idText', idForm.slice(0, -2));
+                formData.append('idTextSup', idForm);
+            }else if(idForm.length === 3){ //If option
                 formData.append('idText', idForm.slice(0, -1));
                 formData.append('idOpt', idForm);
-            }
-            else formData.append('idText', idForm);
-            /*
+            } else formData.append('idText', idForm);
+
             for (const value of formData.values()) {
                 console.log(value);
             }
             for (const key of formData.keys()) {
                 console.log(key);
             }
-            */
+
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'game_change.php');
             xhr.onload = function() {
@@ -90,9 +86,21 @@ function addEventListenerForm(idForm){
         });
     }
 
-    addEventListener(idForm);
-    for (let i = 1; i < 5; i++) {
-        addEventListener(idForm.toString() + i);
+    let allButtons = document.getElementsByClassName("form");
+    for (let i = 1; i < allButtons.length + 1; i++) {
+        document.querySelectorAll(`button[id^='btnSubmit_${i}']`).forEach(button => {
+            if (new RegExp(`${i}[1-9][1-5]$`).test(button.id)) { //For each answer
+                addCustomEventListener(button.id.slice(-3));
+            }
+            else if (new RegExp(`${i}[1-9]$`).test(button.id)) { //For each question
+                addCustomEventListener(button.id.slice(-2));
+            }
+        });
+        document.querySelectorAll(`button[id^='btnSubmit_${i}0']`).forEach(button => { //For each context text
+            if (new RegExp(`${i}0[1-9]$`).test(button.id)) {
+                addCustomEventListener(button.id.slice(-3));
+            }
+        });
     }
 }
 

@@ -30,6 +30,7 @@ img {
   position: fixed;
   line-height: 65px;
   text-align: center;
+  z-index: 1; /* sans ça, boutons de la navbar non cliquables lorsque l'on scroll */
 }
 
 .nav div.logo {
