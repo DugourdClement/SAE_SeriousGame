@@ -186,11 +186,13 @@ img {
 
 .text{
   position: absolute;
-  bottom: 25%;
+  bottom: 16%;
   width: 75%;
   padding: 10px 10px;
   font-weight: bold;
   color: white;
+  text-shadow: 0.1em 0.1em 0.1em black;
+  text-align: center;
 }
 
 .myH2 {
