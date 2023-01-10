@@ -1,3 +1,7 @@
+<?php
+header('Content-Type: text/html');
+?>
+
 <!doctype html>
   <html class="no-js" lang="">
   <head>
@@ -7,45 +11,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="styleSheet.css">
-    <link rel="stylesheetResponsive" href="responsive.css">
+    <link rel="stylesheet" href="responsive.css">
     <script defer src="game.js"></script>
     <script defer src="web.js"></script>
-
   </head>
   <body>
-    <!-- navbar pour mobile -->
-    <div id="mySidenav" class="sidenav">
-      <a id="closeBtn" href="#" class="close">×</a>
-      <ul>
-        <li><a onclick="closeNav()" href="#ressource">Ressources</a></li>
-        <li><a onclick="closeNav()" href="#cartes">Contacts</a></li>
-        <li><a onclick="closeNav()" href="chatbot.html" target="_blank">ChatBox</a></li>
-      </ul>
-    </div>
-    <a href="#" id="openBtn">
-      <span class="burger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
-    </a>
 
-    <!--navbar pour ordinateur -->
-    <nav class="nav">
-      <div class="container">
-        <div class="logo"><a href="#"><img id="logoManette" src="Picture/site/logosae.png" alt=" retour en haut "></a></div>
-        <div id="mainListDiv" class="main_list">
-          <ul class="navlinks">
-            <li><a href="#ressource">Ressources</a></li>
-            <li><a href="#cartes">Contacts</a></li>
-            <li><a href="chatbot.html" target="_blank">ChatBox</a></li>
-            <li><a href="login_conn.php">Connexion</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <?php require("nav.php");?>
 
-    <div class="home" id="home">
+  <div class="home" id="home">
       <a href="#" id="playButton" class="play">
         <span></span>
         <span></span>
@@ -57,7 +31,7 @@
 
 
     <div id="fenetre" class="fenetre">
-      <p id="text"class="text"></p>
+      <p id="text" class="text"></p>
       <div class="buttonRow">
         <div class="buttonCol">
           <button id="1" class="button"></button>
@@ -71,7 +45,7 @@
       </div>
     </div>
 
-    <div>
+   <div>
       <p  id="ressource" style="font-size: 500%; color:white;" class="myP" >Ressources</p>
       <p class="myP" >L’éthique numérique est un sujet de plus en plus important dans le monde d’aujourd’hui, car de plus en plus de nos
         vies quotidiennes sont médiatisées par la technologie. Qu’il s’agisse des médias sociaux, des achats en ligne ou de
@@ -86,7 +60,7 @@
 
       </p>
 
-      <h4 class="myP"style="color: white;">Conditions générales d'utilisation - 2022</h4>
+      <h4 class="myP" style="color: white;">Conditions générales d'utilisation - 2022</h4>
       <p class="myP">Cela vous arrive-t-il de lire en entier les conditions générales d'utilisation lorsque vous telechargez
         un réseau social? Ce long pavé, écrit en tout petit et qui semble très ennuyeux. La plupart des personnes les accepte
         sans jamais les lires, cela pourrait vous portez prejudice. Si l'on prend l'exemple de Facebook, l'entreprise se donne
@@ -127,7 +101,7 @@
         individus. L'Etat se donnerait-il alors le droit d'identifier toute la population simplement parce qu'elle se trouve
         dans l'espace publique ? <a href="#" id="2035ressources" class="resstext" onclick="r2035()">Plus d'informations ici</a></p>
 
-      <h4 class="myP"style="color: white;">Cookies - 2039 </h4>
+      <h4 class="myP" style="color: white;">Cookies - 2039 </h4>
       <p class="myP">Un cookie est un fichier texte qu'un site web va venir déposer sur votre ordinateur. Lorsque vous vous
         connectez à un site web, le site a besoin d'enregistrer une information sur votre ordinateur pour savoir que vous êtes
         connecté : on appelle ça l'identifiant de session. Les cookies servent également à enregistrer des préférences. Il existe
