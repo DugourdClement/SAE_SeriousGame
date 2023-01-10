@@ -1,17 +1,21 @@
 const buttonPlay = document.getElementById('playButton')
 const windowJ = document.getElementById('fenetre')
-const allButtons = document.getElementsByClassName('button');
 const nextButton = document.getElementById('5');
-const home = document.getElementById('home');
+const body = document.querySelector("body");
 const text = document.getElementById('text');
 const path = [];
 const years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
 var opt = [];
 
+const allButtons = [];
+for (let i = 1; i < 5; i++) {
+    allButtons.push(document.getElementById(i.toString()));
+}
+
 buttonPlay.addEventListener('click', openWindow);
 
 function createClickPromiseAnswer(){
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         allButtons[0].addEventListener("click", () => {
             path.push(parseInt(allButtons[0].getAttribute('id')));
             resolve();
@@ -32,10 +36,11 @@ function createClickPromiseAnswer(){
 }
 
 function createClickPromiseNext(){
-    return new Promise((resolve, reject) => {
+    nextButton.style.visibility = 'visible';
+    return new Promise((resolve) => {
         nextButton.addEventListener("click", () => {
-            nextButton.style.visibility = 'visible';
             resolve();
+            nextButton.style.visibility = 'hidden';
         });
     });
 }
@@ -43,40 +48,39 @@ function createClickPromiseNext(){
 async function openWindow() {
     let status = await getData();
     if (status === true) {
+        body.style.overflow = "hidden";
         game();
     }
 }
 
-
 function setButtonVisibility(value, nb){
-    let vis;
-    if(value === false) vis = 'hidden';
-    else vis = 'visible';
-    document.getElementById('3').style.visibility = vis;
-    document.getElementById('4').style.visibility = vis;
-    text.style.visibility = vis;
+    allButtons[0].style.visibility = value;
+    allButtons[1].style.visibility = value;
+    text.style.visibility = value;
+    if (nb === 3) {
+        allButtons[2].style.visibility = value;
+    }
     if (nb === 4) {
-        document.getElementById('1').style.visibility = vis;
-        document.getElementById('2').style.visibility = vis;
+        allButtons[2].style.visibility = value;
+        allButtons[3].style.visibility = value;
     }
 }
 
 function setTextButton(options) {
-    setButtonVisibility(true, 4)
-    let buttons = allButtons;
-    if(options.length !== 4) {
-        let twoButtons = []; // a aranger
-        twoButtons.push(document.getElementById('1'));
-        twoButtons.push(document.getElementById('2'));
-        buttons = twoButtons;
+    setButtonVisibility('hidden', 4);
+    let buttons = [];
+    for (let i = 0; i < options.length; i++) {
+        buttons.push(allButtons[i]);
     }
+    setButtonVisibility('visible',  buttons.length);
+
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].innerHTML = options[i];
+        console.log(buttons[i])
     }
 }
 
 async function displayChoice(choiceNumber, opt) {
-    setButtonVisibility(true, 4);
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
     text.innerText = opt[0];
     setTextButton(opt[1]);
@@ -85,70 +89,66 @@ async function displayChoice(choiceNumber, opt) {
 }
 
 async function displayTextSup(textNumber, opt) {
-    setButtonVisibility(false, 4);
+    setButtonVisibility('hidden', 4);
     text.style.visibility = 'visible';
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + textNumber + ".jpg')";
-    text.innerText = opt[0];
+    text.innerText = opt;
     let clickPromise = createClickPromiseNext();
     await clickPromise;
-    nextButton.style.visibility = 'hidden';
 }
 
-async function consequence(opt) {
-    let firstYear = /^1\d*$/;
-    if (firstYear.test(path.toString())) {
-        await displayChoice("1_1", opt[2]);
+async function year2022(opt) {
+    await displayTextSup(1, opt[3][0]);
+    await displayChoice(1, opt[1]);
+
+    let choice = /^1\d*$/;
+    if (choice.test(path.toString())) {
+        await displayChoice(1, opt[2]);
     }else{
-        await displayTextSup("1_1", opt[4]);
+        await displayTextSup("1_1", opt[3][1]);
     }
 
-}
-
-async function year(opt) {
-    console.log(opt);
-    await displayTextSup(1, opt[3]);
-    await displayChoice(1, opt[1]);
-    await consequence(opt);
     years.shift();
     console.log(years);
 }
 
-function context(){
-    setButtonVisibility(false, 4);
-    windowJ.style.backgroundImage = "url('./Picture/années/" + years[0] + ".png')";
-    setTimeout(function(){
-        nextButton.style.visibility = 'visible';
-        windowJ.style.backgroundImage = "url('./Picture/journal/journal" + years[0] + ".png')";
-        return true;
-    }, 2000);
+async function year2032(opt) {
+    await displayTextSup(1, opt[3][0]);
+    await displayChoice(1, opt[1]);
+    await displayTextSup(2, opt[3][1]);
+    await displayChoice(2, opt[2]);
+
+    years.shift();
+    console.log(years);
 }
 
-function next(btn){ //utilité ?
-    path.push(parseInt(btn));
-    //opt.shift();
-    switch (years[0]) {
-        case '2032' :
-            year(opt[0]);
-            break;
-        case '2035' :
-            year(opt[0]);
-            break;
-        case '2039' :
-            year(opt[0]);
-            break;
-        case '2043' :
-            year(opt[0]);
-            break;
-        case '2050' :
-            year(opt[0]);
-            break;
-        case '2056' :
-            year(opt[0]);
-            break;
-        case '2068' :
-            year(opt[0]);
-            break;
+async function year2035(opt) {
+    let choice = /^\d{2}0\d*$/;
+    if (choice.test(path.toString())) {
+        await displayTextSup(1, opt[3][0]);
+    }else{
+        await displayTextSup(2, opt[3][1]);
     }
+    await displayTextSup(3, opt[3][2]);
+    await displayChoice(3, opt[2]);
+    await displayChoice(4, opt[1]);
+
+    years.shift();
+    console.log(years);
+}
+
+async function context() {
+    setButtonVisibility('hidden', 4);
+    let clickPromise = createClickPromiseNext();
+    nextButton.style.visibility = "hidden";
+    windowJ.style.backgroundImage = "url('./Picture/années/" + years[0] + ".png')";
+    setTimeout(function () {
+        windowJ.style.backgroundImage = "url('./Picture/journal/journal" + years[0] + ".png')";
+        nextButton.style.visibility = "visible";
+        return true;
+    }, 2000);
+
+    await clickPromise.then();
 }
 
 async function getData() {
@@ -163,15 +163,16 @@ async function getData() {
 }
 
 async function start() {
-    let clickPromise = createClickPromiseNext();
-    await clickPromise;
-
-    year(opt[1]);
+    await context();
+    await year2022(opt[1]);
+    await context();
+    await year2032(opt[2]);
+    await context();
+    await year2035(opt[3]);
 }
 
 function game(){
     windowJ.style.visibility = 'visible';
     console.log(opt);
-    context();
     start();
 }

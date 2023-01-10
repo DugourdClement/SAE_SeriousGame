@@ -58,7 +58,7 @@ function addEventListenerForm(){
             event.preventDefault();
 
             const formData = new FormData();
-            formData.append('text', window['text_' + idForm].innerHTML);
+            formData.append('text', JSON.stringify(window['text_' + idForm].innerHTML));
             if(/^\d+0\d$/.test(idForm)){ //If multi text
                 formData.append('idText', idForm.slice(0, -2));
                 formData.append('idTextSup', idForm);
