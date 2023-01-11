@@ -16,22 +16,16 @@ buttonPlay.addEventListener('click', openWindow);
 
 function createClickPromiseAnswer(){
     return new Promise((resolve) => {
-        allButtons[0].addEventListener("click", () => {
-            path.push(parseInt(allButtons[0].getAttribute('id')));
+        function handleClick() {
+            path.push(parseInt(this.getAttribute('id')));
             resolve();
-        });
-        allButtons[1].addEventListener("click", () => {
-            path.push(parseInt(allButtons[1].getAttribute('id')));
-            resolve();
-        });
-        allButtons[2].addEventListener("click", () => {
-            path.push(parseInt(allButtons[2].getAttribute('id')));
-            resolve();
-        });
-        allButtons[3].addEventListener("click", () => {
-            path.push(parseInt(allButtons[3].getAttribute('id')));
-            resolve();
-        });
+            for (let i = 0; i < allButtons.length; i++) {
+                allButtons[i].removeEventListener("click", handleClick);
+            }
+        }
+        for (let i = 0; i < allButtons.length; i++) {
+            allButtons[i].addEventListener("click", handleClick);
+        }
     })
 }
 
@@ -84,6 +78,7 @@ async function displayChoice(choiceNumber, opt) {
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
     setTextButton(opt[1]);
     text.innerText = opt[0];
+    //removeClickPromiseAnswer();
     let clickPromise = createClickPromiseAnswer();
     await clickPromise;
 }
@@ -104,7 +99,17 @@ async function year2022(opt) {
     let choice = /^1\d*$/;
     if (choice.test(path.toString())) {
         await displayChoice(1, opt[2]);
-        let choice = /^11\d*$/;
+        function openPopup(rs) {
+            opened =  window.open("CGU/cgu" + rs +".html", "Popup", "width=800,height=700");
+        }
+        let choiceTwitter = /^1,1\d*$/;
+        let choiceInsta = /^1,2\d*$/;
+        let choiceFacebook = /^1,3\d*$/;
+        let choiceSnap= /^1,4\d*$/;
+        if(choiceTwitter.test(path.toString())) await openPopup("twitter");
+        else if(choiceInsta.test(path.toString())) await openPopup("insta");
+        else if(choiceFacebook.test(path.toString())) await openPopup("fb");
+        else if(choiceSnap.test(path.toString())) await openPopup("snap");
     }else{
         await displayTextSup("1_1", opt[3][1]);
     }
