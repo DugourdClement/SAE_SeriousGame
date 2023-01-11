@@ -76,14 +76,14 @@ function modifyYearsForm($data, $currentYear): void
 {
     $nbChoice = $data[$currentYear]["nbChoice"] + 1;
     for ($i = 1; $i < $nbChoice; ++$i) {
-        echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, '">',
-        '<p id="text_', $i, $currentYear, '" contenteditable>', json_decode($data[$currentYear][$i][0]), '</p>', //One contenteditable for the text
-        '<button  class="submit" id="btnSubmit_', $i, $currentYear, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, '"> Valider</button>
+        echo '<form action="game_change.php" method="POST" id="form_', $currentYear, $i, '">',
+        '<p id="text_', $currentYear, $i, '" contenteditable>', json_decode($data[$currentYear][$i][0]), '</p>', //One contenteditable for the text
+        '<button  class="submit" id="btnSubmit_', $currentYear, $i, '" type="submit" name="btnSubmit" form="form_', $currentYear, $i, '"> Valider</button>
           </form>';
         for ($j = 1; $j < $data[$currentYear][$i]["nbOpt"] + 1; ++$j) {
-            echo '<form action="game_change.php" method="POST" id="form_', $i, $currentYear, $j, '">',
-            '<p id="text_', $i, $currentYear, $j, '" contenteditable>', json_decode($data[$currentYear][$i][1][$j - 1]), '</p>', //Four contenteditable for the options
-            '<button  class="submit" id="btnSubmit_', $i, $currentYear, $j, '" type="submit" name="btnSubmit" form="form_', $i, $currentYear, $j, '"> Valider</button>
+            echo '<form action="game_change.php" method="POST" id="form_', $currentYear, $i, $j, '">',
+            '<p id="text_',$currentYear, $i, $j, '" contenteditable>', json_decode($data[$currentYear][$i][1][$j - 1]), '</p>', //Four contenteditable for the options
+            '<button  class="submit" id="btnSubmit_', $currentYear, $i, $j, '" type="submit" name="btnSubmit" form="form_', $currentYear, $i, $j, '"> Valider</button>
             </form>';
         }
     }
