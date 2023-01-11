@@ -41,8 +41,8 @@ header('Content-Type: text/html');
           <button id="2" class="button"></button>
           <button id="4" class="button"></button>
         </div>
-        <button id="5" class="next">Suivant</button>
       </div>
+        <button id="5" class="next">Suivant</button>
     </div>
 
    <div>

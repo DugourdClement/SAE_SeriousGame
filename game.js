@@ -54,15 +54,16 @@ async function openWindow() {
 }
 
 function setButtonVisibility(value, nb){
-    allButtons[0].style.visibility = value;
-    allButtons[1].style.visibility = value;
+    setElementEmpty(nb);
     text.style.visibility = value;
-    if (nb === 3) {
-        allButtons[2].style.visibility = value;
+    for (let i = 0; i < nb; i++) {
+        allButtons[i].style.visibility = value;
     }
-    if (nb === 4) {
-        allButtons[2].style.visibility = value;
-        allButtons[3].style.visibility = value;
+}
+function setElementEmpty(nb){
+    text.innerHTML = '';
+    for (let i = 0; i < nb; i++) {
+        allButtons[i].innerHTML = '';
     }
 }
 
@@ -76,14 +77,13 @@ function setTextButton(options) {
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].innerHTML = options[i];
-        console.log(buttons[i])
     }
 }
 
 async function displayChoice(choiceNumber, opt) {
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
-    text.innerText = opt[0];
     setTextButton(opt[1]);
+    text.innerText = opt[0];
     let clickPromise = createClickPromiseAnswer();
     await clickPromise;
 }
@@ -104,6 +104,7 @@ async function year2022(opt) {
     let choice = /^1\d*$/;
     if (choice.test(path.toString())) {
         await displayChoice(1, opt[2]);
+        let choice = /^11\d*$/;
     }else{
         await displayTextSup("1_1", opt[3][1]);
     }
@@ -130,7 +131,9 @@ async function year2035(opt) {
         await displayTextSup(2, opt[3][1]);
     }
     await displayTextSup(3, opt[3][2]);
+    text.style.bottom = '29%';
     await displayChoice(3, opt[2]);
+    text.style.bottom = '25%';
     await displayChoice(4, opt[1]);
 
     years.shift();
@@ -147,7 +150,6 @@ async function context() {
         nextButton.style.visibility = "visible";
         return true;
     }, 2000);
-
     await clickPromise.then();
 }
 
