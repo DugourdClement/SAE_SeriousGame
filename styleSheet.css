@@ -165,7 +165,7 @@ img {
 }
 
 .button:hover {
- color: #E7E000;
+  color: #E7E000;
 }
 
 .button:hover .text {
@@ -191,9 +191,9 @@ img {
   padding: 10px 10px;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 1em;
-  font-weight: bold;
   color: white;
   text-align: center;
+  font-family: 'Open Sans',sans-serif;
 }
 
 .myH2 {
@@ -472,4 +472,3 @@ footer * {
   font-size: 0.9em;
   text-align: center;
 }
-
