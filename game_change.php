@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $conn->query($sql);
     $conn->close();
 }else{
-echo '
+    echo '
 <!DOCTYPE html>
 <html  class="no-js" lang="">
     <head>
@@ -140,6 +140,10 @@ echo '
         <script defer src="jQuery-3.6.3.js"></script>
     </head>
     <body>
+    <header>
+    <div class="logo"><a href="index.php"><img id="logoManette" src="Picture/site/logosae.png" alt=" retour en haut "></a></div>
+    </header>
+    <div id="change">
     <p id="banner">Modification enregistée</p>
         <label for="menu">Choisir une année à modifier : </label><br>
         <select name="menu" id="menu">
@@ -154,26 +158,27 @@ echo '
         </select>
 
         <div class="form" id="form1" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 1);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 1);
+    echo '</div>
         <div class="form" id="form2" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 2);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 2);
+    echo '</div>
         <div class="form" id="form3" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 3);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 3);
+    echo '</div>
         <div class="form" id="form4" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 4);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 4);
+    echo '</div>
         <div class="form" id="form5" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 5);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 5);
+    echo '</div>
         <div class="form" id="form6" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 6);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 6);
+    echo '</div>
         <div class="form" id="form7" style="display: none;">';
-            if(isset($data)) modifyYearsForm($data, 7);
-  echo '</div>
+    if(isset($data)) modifyYearsForm($data, 7);
+    echo '</div>
+    </div>
     </body>
 </html>';
 }

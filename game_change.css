@@ -1,12 +1,16 @@
 html{
     background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-body{
+#change{
     font-family: 'Open Sans',sans-serif;
     background-color: #FFFFFF;
     width: 60%;
-    margin: 5% auto;
+    margin: 2% auto;
     border-radius: 1em;
     padding-bottom: 3%;
     box-shadow: 0 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -51,4 +55,16 @@ form{
     align-items: center;
     flex-direction: row;
     padding-bottom: 2%;
+}
+
+#logoManette{
+    float: left;
+    width: 6rem;
+    height: 6rem;
+    padding-left: 1rem;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
 }

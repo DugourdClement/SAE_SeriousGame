@@ -1,11 +1,6 @@
 <?php
 header('Content-Type: text/html');
 ?>
-<!DOCTYPE html>
-<head>
-    <script defer src="web.js"></script>
-</head>
-<body>
 <div id="mySidenav" class="sidenav">
     <a id="closeBtn" href="#" class="close">×</a>
     <ul>
@@ -37,5 +32,3 @@ header('Content-Type: text/html');
         </div>
     </div>
 </nav>
-</body>
-</html>
