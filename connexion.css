@@ -105,9 +105,8 @@ img {
 
 .error-message{
     position: absolute;
-    padding: 2px;
-    top: 53%;
     left: 50%;
+    top : 65%;
     transform: translateX(-50%);
     color: rgb(247, 35,12);
     font-size: 230%;
@@ -116,7 +115,7 @@ img {
 .connexion {
     background-color: #FFFFFF;
     width: 25%;
-    height: 50%;
+    height: 55%;
     margin: 10% auto;
     border-radius: 1.5em;
     box-shadow: 0 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -158,7 +157,6 @@ form.form1 {
     background: linear-gradient(to right, #811fbd, #8c06a4);
     border: 0;
     padding: 10px 40px;
-    margin-top: 10%;
     margin-left: 35%;
     font-size: 13px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
