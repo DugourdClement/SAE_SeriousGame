@@ -12,6 +12,12 @@ for (let i = 1; i < 5; i++) {
     allButtons.push(document.getElementById(i.toString()));
 }
 
+let isMaried = false;
+let goodJob = false;
+let hasChildren = false;
+let newJob = false;
+let chipped = false;
+
 buttonPlay.addEventListener('click', openWindow);
 
 function createClickPromiseAnswer(){
@@ -40,10 +46,13 @@ function createClickPromiseNext(){
 }
 
 async function openWindow() {
+    windowJ.style.visibility = 'visible';
+    text.style.visibility = 'visible';
+    text.innerText = "Chargement...";
     let status = await getData();
     if (status === true) {
         body.style.overflow = "hidden";
-        game();
+        await game();
     }
 }
 
@@ -78,7 +87,6 @@ async function displayChoice(choiceNumber, opt) {
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
     setTextButton(opt[1]);
     text.innerText = opt[0];
-    //removeClickPromiseAnswer();
     let clickPromise = createClickPromiseAnswer();
     await clickPromise;
 }
@@ -100,12 +108,17 @@ async function year2022(opt) {
     if (choice.test(path.toString())) {
         await displayChoice(1, opt[2]);
         function openPopup(rs) {
-            opened =  window.open("CGU/cgu" + rs +".html", "Popup", "width=800,height=700");
+            return new Promise((resolve) => {
+                let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
+                opened.onunload = () => {
+                    resolve();
+                };
+            });
         }
-        let choiceTwitter = /^1,1\d*$/;
-        let choiceInsta = /^1,2\d*$/;
-        let choiceFacebook = /^1,3\d*$/;
-        let choiceSnap= /^1,4\d*$/;
+        let choiceTwitter = /^1,1$/;
+        let choiceInsta = /^1,2$/;
+        let choiceFacebook = /^1,3$/;
+        let choiceSnap= /^1,4$/;
         if(choiceTwitter.test(path.toString())) await openPopup("twitter");
         else if(choiceInsta.test(path.toString())) await openPopup("insta");
         else if(choiceFacebook.test(path.toString())) await openPopup("fb");
@@ -121,6 +134,7 @@ async function year2022(opt) {
 async function year2032(opt) {
     await displayTextSup(1, opt[3][0]);
     await displayChoice(1, opt[1]);
+    if(path.slice(-1)[0] === 2) goodJob = true;
     await displayTextSup(2, opt[3][1]);
     await displayChoice(2, opt[2]);
 
@@ -129,7 +143,7 @@ async function year2032(opt) {
 }
 
 async function year2035(opt) {
-    let choice = /^\d{2}0\d*$/;
+    let choice = /^(\d+,\d+)*0$/;
     if (choice.test(path.toString())) {
         await displayTextSup(1, opt[3][0]);
     }else{
@@ -144,6 +158,91 @@ async function year2035(opt) {
     years.shift();
     console.log(years);
 }
+
+async function year2039(opt){
+    await displayTextSup(1, opt[2][0]);
+    await displayChoice(1, opt[1]);
+    if(path.slice(-1)[0] === 1) isMaried = true;
+    await displayTextSup(1, opt[2][1]);
+    let choice = /^(\d+,\d+){2}1$/;
+    if(choice.test(path.toString())){
+        await displayTextSup(2, opt[2][2]);
+    }else await displayTextSup(2, opt[2][3]);
+    choice = /^\d+,\d+,2.*$/;
+    if(choice.test(path.toString())){
+        await displayTextSup(4, opt[2][4]);
+    }
+
+    years.shift();
+    console.log(years);
+}
+
+async function year2043(opt){
+    if (isMaried) {
+        await displayTextSup(1, opt[2][0]);
+        if (goodJob) await displayTextSup(1, opt[2][1]);
+        else await displayTextSup(1, opt[2][2]);
+    }
+    let choice = /^(\d+,\d+){2}1$/;
+    if(choice.test(path.toString())) await displayTextSup(2, opt[2][3]);
+    choice = /^\d+,\d+,2.*$/;
+    if(choice.test(path.toString())) await displayTextSup(3, opt[2][4]); //manque une condition
+    if(isMaried) {
+        if (choice.test(path.toString())) await displayTextSup(4, opt[2][5]);
+        else await displayTextSup(4, opt[2][6]);
+        if (goodJob) {
+            await displayTextSup(5, opt[2][7]);
+            hasChildren = true;
+        }
+        else await displayTextSup(6, opt[2][8]);
+    }
+
+    years.shift();
+    console.log(years);
+}
+
+async function year2050(opt){
+    if(hasChildren) {
+        await displayTextSup(1, opt[7][1]);
+        await displayChoice(2, opt[2]);
+        if(path.slice(-1)[0] === 1) newJob = true;
+    }
+    else {
+        await displayTextSup(3, opt[7][0]);
+        await displayChoice(2, opt[1]);
+        if(path.slice(-1)[0] === 1) newJob = true;
+    }
+    if(newJob){
+        await displayTextSup(4, opt[7][2]);
+        await displayChoice(4, opt[3]);
+        if(path.slice(-1)[0] === 1) chipped = true;
+    } else {
+        await displayTextSup(5, opt[7][3]);
+        await displayChoice(5, opt[4]);
+        if(path.slice(-1)[0] === 1) {
+            await displayTextSup(6, opt[7][4]);
+            await displayChoice(7, opt[5]);
+        } else {
+            await displayTextSup(6, opt[7][5]);
+            await displayChoice(7, opt[6]);
+        }
+    }
+
+    years.shift();
+    console.log(years);
+}
+
+async function year2056(opt){
+    if (chipped){
+        await displayTextSup(1, opt[3][0]);
+        await displayChoice(1, opt[1]);
+    } else {
+        await displayTextSup(1, opt[3][1]);
+        await displayChoice(1, opt[2]);
+    }
+
+}
+
 
 async function context() {
     setButtonVisibility('hidden', 4);
@@ -169,17 +268,20 @@ async function getData() {
     }
 }
 
-async function start() {
+async function game() {
+    console.log(opt);
     await context();
     await year2022(opt[1]);
     await context();
     await year2032(opt[2]);
     await context();
     await year2035(opt[3]);
-}
-
-function game(){
-    windowJ.style.visibility = 'visible';
-    console.log(opt);
-    start();
+    await context();
+    await year2039(opt[4]);
+    await context();
+    await year2043(opt[5]);
+    await context();
+    await year2050(opt[6]);
+    await context();
+    await year2056(opt[7]);
 }
