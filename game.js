@@ -13,10 +13,12 @@ for (let i = 1; i < 5; i++) {
 }
 
 let isMaried = false;
-let goodJob = false;
+let hasGoodJob = false;
 let hasChildren = false;
-let newJob = false;
-let chipped = false;
+let hasNewJob = false;
+let isChipped = false;
+let prison = false;
+
 
 buttonPlay.addEventListener('click', openWindow);
 
@@ -133,27 +135,24 @@ async function year2022(opt) {
 
 async function year2032(opt) {
     await displayTextSup(1, opt[3][0]);
-    await displayChoice(1, opt[1]);
-    if(path.slice(-1)[0] === 2) goodJob = true;
+    await displayChoice(1, opt[1]); //netoyer son profil
+    if(path.slice(-1)[0] === 1) hasGoodJob = true;
     await displayTextSup(2, opt[3][1]);
-    await displayChoice(2, opt[2]);
+    await displayChoice(2, opt[2]); //colect données rs + intenet
 
     years.shift();
     console.log(years);
 }
 
 async function year2035(opt) {
-    let choice = /^(\d+,\d+)*0$/;
-    if (choice.test(path.toString())) {
-        await displayTextSup(1, opt[3][0]);
-    }else{
-        await displayTextSup(2, opt[3][1]);
-    }
-    await displayTextSup(3, opt[3][2]);
+    if (hasGoodJob) await displayTextSup(1, opt[3][0]); //taf bien
+    else await displayTextSup(2, opt[3][1]); //taf nul
+
+    await displayTextSup(3, opt[3][2]); //google
     text.style.bottom = '29%';
     await displayChoice(3, opt[2]);
     text.style.bottom = '25%';
-    await displayChoice(4, opt[1]);
+    await displayChoice(4, opt[1]); //reco facial
 
     years.shift();
     console.log(years);
@@ -163,15 +162,12 @@ async function year2039(opt){
     await displayTextSup(1, opt[2][0]);
     await displayChoice(1, opt[1]);
     if(path.slice(-1)[0] === 1) isMaried = true;
+
     await displayTextSup(1, opt[2][1]);
-    let choice = /^(\d+,\d+){2}1$/;
-    if(choice.test(path.toString())){
-        await displayTextSup(2, opt[2][2]);
-    }else await displayTextSup(2, opt[2][3]);
-    choice = /^\d+,\d+,2.*$/;
-    if(choice.test(path.toString())){
-        await displayTextSup(4, opt[2][4]);
-    }
+    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]); //se fait appeler par son nom dans la rue
+    else await displayTextSup(2, opt[2][3]); //ne se fait pas appeler par son nom dans la rue
+
+    if(/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]); //ammende rs
 
     years.shift();
     console.log(years);
@@ -180,21 +176,23 @@ async function year2039(opt){
 async function year2043(opt){
     if (isMaried) {
         await displayTextSup(1, opt[2][0]);
-        if (goodJob) await displayTextSup(1, opt[2][1]);
-        else await displayTextSup(1, opt[2][2]);
+        if (hasGoodJob) await displayTextSup(1, opt[2][1]); //confiant pour enfant
+        else await displayTextSup(1, opt[2][2]); //inquié pour enfant
     }
-    let choice = /^(\d+,\d+){2}1$/;
-    if(choice.test(path.toString())) await displayTextSup(2, opt[2][3]);
-    choice = /^\d+,\d+,2.*$/;
-    if(choice.test(path.toString())) await displayTextSup(3, opt[2][4]); //manque une condition
+
+    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][3]); //ammende car reco facial
+
+    let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString()); //reco facial + colecte données
+    if(isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
+
+    if(faceRecognitionData) await displayTextSup(3, opt[2][4]); //lettre police
     if(isMaried) {
-        if (choice.test(path.toString())) await displayTextSup(4, opt[2][5]);
+        if (faceRecognitionData) await displayTextSup(4, opt[2][5]);
         else await displayTextSup(4, opt[2][6]);
-        if (goodJob) {
-            await displayTextSup(5, opt[2][7]);
-            hasChildren = true;
+        if (hasChildren) {
+            await displayTextSup(5, opt[2][7]); //enfant
         }
-        else await displayTextSup(6, opt[2][8]);
+        else await displayTextSup(6, opt[2][8]); //pas enfant
     }
 
     years.shift();
@@ -205,41 +203,60 @@ async function year2050(opt){
     if(hasChildren) {
         await displayTextSup(1, opt[7][1]);
         await displayChoice(2, opt[2]);
-        if(path.slice(-1)[0] === 1) newJob = true;
+        if(path.slice(-1)[0] === 1) hasNewJob = true;
     }
     else {
         await displayTextSup(3, opt[7][0]);
         await displayChoice(2, opt[1]);
-        if(path.slice(-1)[0] === 1) newJob = true;
-    }
-    if(newJob){
+        if(path.slice(-1)[0] === 1) hasNewJob = true;
+    } //3eme option pas d'enfant, pas marrié mais on lui propose le newJob
+
+    if(hasNewJob){
         await displayTextSup(4, opt[7][2]);
         await displayChoice(4, opt[3]);
-        if(path.slice(-1)[0] === 1) chipped = true;
-    } else {
+        if(path.slice(-1)[0] === 1) isChipped = true;
+    } else if (!hasGoodJob) {
         await displayTextSup(5, opt[7][3]);
         await displayChoice(5, opt[4]);
         if(path.slice(-1)[0] === 1) {
             await displayTextSup(6, opt[7][4]);
             await displayChoice(7, opt[5]);
+            if(path.slice(-1)[0] === 1) prison = true;
         } else {
             await displayTextSup(6, opt[7][5]);
             await displayChoice(7, opt[6]);
+            if(path.slice(-1)[0] === 1) prison = true;
         }
-    }
+    } //textSup monotonie de la vie si 3eme option au dessus mais bon travail
 
     years.shift();
     console.log(years);
 }
 
 async function year2056(opt){
-    if (chipped){
+    if (isChipped){
         await displayTextSup(1, opt[3][0]);
         await displayChoice(1, opt[1]);
     } else {
         await displayTextSup(1, opt[3][1]);
         await displayChoice(1, opt[2]);
     }
+
+    async function end(nb){
+        setButtonVisibility('hidden', 4);
+        windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
+        let clickPromise = createClickPromiseNext();
+        await clickPromise;
+    }
+
+    await displayTextSup(1, opt[3][2]);
+    if(isMaried){
+        if(isChipped)await end(1);
+        else await end(2);
+    } else if(isChipped) await end(3);
+    else if (!prison) await end(4);
+    else if(prison) await end(5);
+
 
 }
 
@@ -261,7 +278,6 @@ async function getData() {
     let response = await fetch('game_data.php');
     if (response.ok) {
         opt = await response.json();
-        //console.log(opt);
         return true;
     } else {
         console.log("HTTP-Error: " + response.status);
