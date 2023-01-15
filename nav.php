@@ -1,13 +1,26 @@
 <?php
+function login(): void
+{
+    echo '<script>console.log("aled")</script>';
+    if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+        echo '<li><a href="login.php">Connexion</a></li>';
+    } else {
+        echo '<li><a href="game_change.php">Modification</a></li>';
+        echo '<li><a href="logout.php">Déconnexion</a></li>';
+    }
+}
+
 header('Content-Type: text/html');
-?>
+
+echo '
 <div id="mySidenav" class="sidenav">
     <a id="closeBtn" href="#" class="close">×</a>
     <ul>
         <li><a onclick="closeNav()" href="index.php#ressource">Ressources</a></li>
         <li><a onclick="closeNav()" href="#index.php#cartes">Contacts</a></li>
-        <li><a onclick="closeNav()" href="chatbot.php" target="_blank">Chatbot</a></li>
-        <li><a href="login_conn.php">Connexion</a></li>
+        <li><a onclick="closeNav()" href="chatbot.php" target="_blank">Chatbot</a></li>';
+login();
+echo '
     </ul>
 </div>
 <a href="#" id="openBtn">
@@ -26,9 +39,10 @@ header('Content-Type: text/html');
             <ul class="navlinks">
                 <li><a href="index.php#ressource">Ressources</a></li>
                 <li><a href="index.php#cartes">Contacts</a></li>
-                <li><a href="chatbot.php" target="_blank">ChatBox</a></li>
-                <li><a href="login_conn.php">Connexion</a></li>
+                <li><a href="chatbot.php" target="_blank">ChatBox</a></li>';
+login();
+echo '
             </ul>
         </div>
     </div>
-</nav>
+</nav>';

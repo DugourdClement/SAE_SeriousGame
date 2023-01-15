@@ -1,5 +1,11 @@
 <?php
 include 'db_conn.php';
+session_start();
+
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+    header('Location: login.php');
+    exit;
+}
 
 header('Content-Type: text/html');
 

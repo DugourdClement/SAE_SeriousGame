@@ -1,5 +1,6 @@
 <?php
 include 'db_conn.php';
+session_start();
 
 function getLogin($username, $password): void {
     $conn = createDBConn();

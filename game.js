@@ -106,25 +106,21 @@ async function year2022(opt) {
     await displayTextSup(1, opt[3][0]);
     await displayChoice(1, opt[1]);
 
-    let choice = /^1\d*$/;
-    if (choice.test(path.toString())) {
+    if (/^1\d*$/.test(path.toString())) {
         await displayChoice(1, opt[2]);
         function openPopup(rs) {
             return new Promise((resolve) => {
                 let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
+                path.shift();
                 opened.onunload = () => {
                     resolve();
                 };
             });
         }
-        let choiceTwitter = /^1,1$/;
-        let choiceInsta = /^1,2$/;
-        let choiceFacebook = /^1,3$/;
-        let choiceSnap= /^1,4$/;
-        if(choiceTwitter.test(path.toString())) await openPopup("twitter");
-        else if(choiceInsta.test(path.toString())) await openPopup("insta");
-        else if(choiceFacebook.test(path.toString())) await openPopup("fb");
-        else if(choiceSnap.test(path.toString())) await openPopup("snap");
+        if(/^1,1$/.test(path.toString())) await openPopup("twitter");
+        else if(/^1,2$/.test(path.toString())) await openPopup("insta");
+        else if(/^1,3$/.test(path.toString())) await openPopup("fb");
+        else if(/^1,4$/.test(path.toString())) await openPopup("snap");
     }else{
         await displayTextSup("1_1", opt[3][1]);
     }
@@ -249,7 +245,7 @@ async function year2056(opt){
         await clickPromise;
     }
 
-    await displayTextSup(1, opt[3][2]);
+    await displayTextSup(1, opt[3][2]); //image de fond
     if(isMaried){
         if(isChipped)await end(1);
         else await end(2);
