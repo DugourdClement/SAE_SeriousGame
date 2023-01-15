@@ -107,7 +107,6 @@ async function year2022(opt) {
     await displayChoice(1, opt[1]);
 
     if (/^1\d*$/.test(path.toString())) {
-        await displayChoice(1, opt[2]);
         function openPopup(rs) {
             return new Promise((resolve) => {
                 let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
@@ -117,6 +116,8 @@ async function year2022(opt) {
                 };
             });
         }
+
+        await displayChoice(1, opt[2]);
         if(/^1,1$/.test(path.toString())) await openPopup("twitter");
         else if(/^1,2$/.test(path.toString())) await openPopup("insta");
         else if(/^1,3$/.test(path.toString())) await openPopup("fb");
