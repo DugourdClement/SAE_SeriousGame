@@ -3,9 +3,9 @@ const windowJ = document.getElementById('fenetre')
 const nextButton = document.getElementById('5');
 const body = document.querySelector("body");
 const text = document.getElementById('text');
-const path = [];
-const years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
-var opt = [];
+let path = [];
+let years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
+let opt = [];
 
 const allButtons = [];
 for (let i = 1; i < 5; i++) {
@@ -21,7 +21,6 @@ let isChipped = false;
 let prison = false;
 let armsUp = false;
 let hardWork = false;
-
 
 buttonPlay.addEventListener('click', openWindow);
 
@@ -48,6 +47,24 @@ function createClickPromiseNext(){
             nextButton.style.visibility = 'hidden';
         });
     });
+}
+
+function reset(){
+    windowJ.style.backgroundImage = "none";
+    windowJ.style.visibility = 'hidden';
+    text.style.visibility = 'hidden';
+    body.style.overflow = "visible";
+    years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
+    path = [];
+    isMaried = false;
+    hasGoodJob = false;
+    hasChildren = false;
+    GouvWork = false;
+    hasNewJob = false;
+    isChipped = false;
+    prison = false;
+    armsUp = false;
+    hardWork = false;
 }
 
 async function openWindow() {
@@ -130,7 +147,6 @@ async function year2022(opt) {
     }
 
     years.shift();
-    console.log(years);
 }
 
 async function year2032(opt) {
@@ -141,7 +157,6 @@ async function year2032(opt) {
     await displayChoice(2, opt[2]); //colect données rs + intenet
 
     years.shift();
-    console.log(years);
 }
 
 async function year2035(opt) {
@@ -155,7 +170,6 @@ async function year2035(opt) {
     await displayChoice(4, opt[1]); //reco facial
 
     years.shift();
-    console.log(years);
 }
 
 async function year2039(opt){
@@ -164,35 +178,34 @@ async function year2039(opt){
     if(path.slice(-1)[0] === 1) isMaried = true;
 
     await displayTextSup(1, opt[2][1]);
-    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]); //se fait appeler par son nom dans la rue
-    else await displayTextSup(2, opt[2][3]); //ne se fait pas appeler par son nom dans la rue
+    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]);
+    else await displayTextSup(2, opt[2][3]);
 
-    if(/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]); //ammende rs
+    if(/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]);
 
     years.shift();
-    console.log(years);
 }
 
 async function year2043(opt){
     if (isMaried) {
         await displayTextSup(1, opt[3][0]);
-        if (hasGoodJob) await displayTextSup(1, opt[3][1]); //confiant pour enfant
-        else await displayTextSup(1, opt[3][2]); //inquié pour enfant
+        if (hasGoodJob) await displayTextSup(1, opt[3][1]);
+        else await displayTextSup(1, opt[3][2]);
     }
 
-    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]); //ammende car reco facial
+    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]);
 
-    let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString()); //reco facial + colecte données
+    let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString());
     if(isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
 
-    if(faceRecognitionData) await displayTextSup(3, opt[3][4]); //lettre police
+    if(faceRecognitionData) await displayTextSup(3, opt[3][4]);
     if(isMaried) {
         if (faceRecognitionData) await displayTextSup(4, opt[3][5]);
         else await displayTextSup(4, opt[3][6]);
         if (hasChildren) {
-            await displayTextSup(5, opt[3][7]); //enfant
+            await displayTextSup(5, opt[3][7]);
         }
-        else await displayTextSup(6, opt[3][8]); //pas enfant
+        else await displayTextSup(6, opt[3][8]);
     }
 
     if(!isMaried){
@@ -202,7 +215,6 @@ async function year2043(opt){
     }
 
     years.shift();
-    console.log(years);
 }
 
 async function year2050(opt){
@@ -211,7 +223,7 @@ async function year2050(opt){
         await displayChoice(2, opt[2]);
         if(path.slice(-1)[0] === 1) hasNewJob = true;
     }
-    else {
+    else if (isMaried){
         await displayTextSup(3, opt[9][0]);
         await displayChoice(2, opt[1]);
         if(path.slice(-1)[0] === 1) hasNewJob = true;
@@ -231,7 +243,7 @@ async function year2050(opt){
         await displayTextSup(4, opt[9][2]);
         await displayChoice(4, opt[3]);
         if(path.slice(-1)[0] === 1) isChipped = true;
-    } else if (!hasGoodJob) {
+    } else if (!hasGoodJob && !hardWork) {
         await displayTextSup(5, opt[9][3]);
         await displayChoice(5, opt[4]);
         if(path.slice(-1)[0] === 1) {
@@ -247,7 +259,6 @@ async function year2050(opt){
     if(GouvWork && hasGoodJob) await displayTextSup(3, opt[9][7]);
 
     years.shift();
-    console.log(years);
 }
 
 async function year2056(opt){
@@ -258,8 +269,8 @@ async function year2056(opt){
         await displayTextSup(1, opt[3][1]);
         await displayChoice(1, opt[2]);
     }
-    if (hardWork) await displayTextSup(1, opt[3][2]);
-    if (armsUp) await displayTextSup(1, opt[3][3]);
+    if (hardWork) await displayTextSup(2, opt[3][2]);
+    if (armsUp) await displayTextSup(3, opt[3][3]);
 
     async function end(nb){
         setButtonVisibility('hidden', 4);
@@ -267,15 +278,16 @@ async function year2056(opt){
         await createClickPromiseNext();
     }
 
-    await displayTextSup(1, opt[3][2]); //image de fond
+    await displayTextSup(1, opt[3][4]);
+    windowJ.style.backgroundImage = "none";
+
     if(isMaried){
         if(isChipped)await end(1);
         else await end(2);
     } else if(isChipped) await end(3);
-    else if (!prison) await end(4);
-    else if(prison) await end(5);
     else if (hardWork) await end(5);
-
+    else if (!prison || !armsUp || !hasGoodJob) await end(4);
+    else if(prison) await end(5);
 }
 
 
@@ -284,12 +296,17 @@ async function context() {
     let clickPromise = createClickPromiseNext();
     nextButton.style.visibility = "hidden";
     windowJ.style.backgroundImage = "url('./Picture/années/" + years[0] + ".png')";
-    setTimeout(function () {
+
+    setTimeout(async function () {
         windowJ.style.backgroundImage = "url('./Picture/journal/journal" + years[0] + ".png')";
         nextButton.style.visibility = "visible";
-        return true;
     }, 2000);
     await clickPromise;
+
+    if (years[0] !== '2043' && years[0] !== '2056') {
+        windowJ.style.backgroundImage = "url('./Picture/journal/journalSup" + years[0] + ".jpg')";
+    }
+    await createClickPromiseNext();
 }
 
 async function getData() {
@@ -318,4 +335,5 @@ async function game() {
     await year2050(opt[6]);
     await context();
     await year2056(opt[7]);
+    reset();
 }
