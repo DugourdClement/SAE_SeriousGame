@@ -1,7 +1,6 @@
 <?php
 function login(): void
 {
-    echo '<script>console.log("aled")</script>';
     if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         echo '<li><a href="login.php">Connexion</a></li>';
     } else {

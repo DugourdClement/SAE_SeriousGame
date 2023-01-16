@@ -15,9 +15,12 @@ for (let i = 1; i < 5; i++) {
 let isMaried = false;
 let hasGoodJob = false;
 let hasChildren = false;
+let GouvWork = false;
 let hasNewJob = false;
 let isChipped = false;
 let prison = false;
+let armsUp = false;
+let hardWork = false;
 
 
 buttonPlay.addEventListener('click', openWindow);
@@ -89,8 +92,7 @@ async function displayChoice(choiceNumber, opt) {
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
     setTextButton(opt[1]);
     text.innerText = opt[0];
-    let clickPromise = createClickPromiseAnswer();
-    await clickPromise;
+    await createClickPromiseAnswer();
 }
 
 async function displayTextSup(textNumber, opt) {
@@ -98,8 +100,7 @@ async function displayTextSup(textNumber, opt) {
     text.style.visibility = 'visible';
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + textNumber + ".jpg')";
     text.innerText = opt;
-    let clickPromise = createClickPromiseNext();
-    await clickPromise;
+    await createClickPromiseNext();
 }
 
 async function year2022(opt) {
@@ -107,21 +108,23 @@ async function year2022(opt) {
     await displayChoice(1, opt[1]);
 
     if (/^1\d*$/.test(path.toString())) {
+        await displayChoice(1, opt[2]);
+        /*  function for open a popup when a option is clicked but do not work
         function openPopup(rs) {
             return new Promise((resolve) => {
                 let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
-                path.shift();
                 opened.onunload = () => {
                     resolve();
                 };
             });
         }
 
-        await displayChoice(1, opt[2]);
-        if(/^1,1$/.test(path.toString())) await openPopup("twitter");
-        else if(/^1,2$/.test(path.toString())) await openPopup("insta");
-        else if(/^1,3$/.test(path.toString())) await openPopup("fb");
-        else if(/^1,4$/.test(path.toString())) await openPopup("snap");
+            if (choice.slice(-1)[0] === 1) await openPopup("twitter");
+            else if (choice.slice(-1)[0] === 2) await openPopup("insta");
+            else if (choice.slice(-1)[0] === 3) await openPopup("fb");
+            else if (choice.slice(-1)[0] === 4) await openPopup("snap");
+         */
+
     }else{
         await displayTextSup("1_1", opt[3][1]);
     }
@@ -172,24 +175,30 @@ async function year2039(opt){
 
 async function year2043(opt){
     if (isMaried) {
-        await displayTextSup(1, opt[2][0]);
-        if (hasGoodJob) await displayTextSup(1, opt[2][1]); //confiant pour enfant
-        else await displayTextSup(1, opt[2][2]); //inquié pour enfant
+        await displayTextSup(1, opt[3][0]);
+        if (hasGoodJob) await displayTextSup(1, opt[3][1]); //confiant pour enfant
+        else await displayTextSup(1, opt[3][2]); //inquié pour enfant
     }
 
-    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][3]); //ammende car reco facial
+    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]); //ammende car reco facial
 
     let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString()); //reco facial + colecte données
     if(isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
 
-    if(faceRecognitionData) await displayTextSup(3, opt[2][4]); //lettre police
+    if(faceRecognitionData) await displayTextSup(3, opt[3][4]); //lettre police
     if(isMaried) {
-        if (faceRecognitionData) await displayTextSup(4, opt[2][5]);
-        else await displayTextSup(4, opt[2][6]);
+        if (faceRecognitionData) await displayTextSup(4, opt[3][5]);
+        else await displayTextSup(4, opt[3][6]);
         if (hasChildren) {
-            await displayTextSup(5, opt[2][7]); //enfant
+            await displayTextSup(5, opt[3][7]); //enfant
         }
-        else await displayTextSup(6, opt[2][8]); //pas enfant
+        else await displayTextSup(6, opt[3][8]); //pas enfant
+    }
+
+    if(!isMaried){
+        if(hasGoodJob) await displayChoice(8, opt[1]);
+        else await displayChoice(7, opt[2]);
+        if(path.slice(-1)[0] === 1) GouvWork = true;
     }
 
     years.shift();
@@ -198,33 +207,44 @@ async function year2043(opt){
 
 async function year2050(opt){
     if(hasChildren) {
-        await displayTextSup(1, opt[7][1]);
+        await displayTextSup(1, opt[9][1]);
         await displayChoice(2, opt[2]);
         if(path.slice(-1)[0] === 1) hasNewJob = true;
     }
     else {
-        await displayTextSup(3, opt[7][0]);
+        await displayTextSup(3, opt[9][0]);
         await displayChoice(2, opt[1]);
         if(path.slice(-1)[0] === 1) hasNewJob = true;
-    } //3eme option pas d'enfant, pas marrié mais on lui propose le newJob
+    }
+    if(GouvWork && !hasGoodJob) {
+        await displayChoice(2, opt[7]);
+        if(path.slice(-1)[0] === 1) armsUp = true;
+    }
+    else if (!GouvWork && !isMaried){
+        await displayTextSup(6, opt[9][6]);
+        await displayChoice(7, opt[8]);
+        if(path.slice(-1)[0] === 2) hardWork = true;
+        else prison = true;
+    }
 
     if(hasNewJob){
-        await displayTextSup(4, opt[7][2]);
+        await displayTextSup(4, opt[9][2]);
         await displayChoice(4, opt[3]);
         if(path.slice(-1)[0] === 1) isChipped = true;
     } else if (!hasGoodJob) {
-        await displayTextSup(5, opt[7][3]);
+        await displayTextSup(5, opt[9][3]);
         await displayChoice(5, opt[4]);
         if(path.slice(-1)[0] === 1) {
-            await displayTextSup(6, opt[7][4]);
+            await displayTextSup(6, opt[9][4]);
             await displayChoice(7, opt[5]);
             if(path.slice(-1)[0] === 1) prison = true;
         } else {
-            await displayTextSup(6, opt[7][5]);
+            await displayTextSup(6, opt[9][5]);
             await displayChoice(7, opt[6]);
             if(path.slice(-1)[0] === 1) prison = true;
         }
-    } //textSup monotonie de la vie si 3eme option au dessus mais bon travail
+    }
+    if(GouvWork && hasGoodJob) await displayTextSup(3, opt[9][7]);
 
     years.shift();
     console.log(years);
@@ -238,12 +258,13 @@ async function year2056(opt){
         await displayTextSup(1, opt[3][1]);
         await displayChoice(1, opt[2]);
     }
+    if (hardWork) await displayTextSup(1, opt[3][2]);
+    if (armsUp) await displayTextSup(1, opt[3][3]);
 
     async function end(nb){
         setButtonVisibility('hidden', 4);
         windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
-        let clickPromise = createClickPromiseNext();
-        await clickPromise;
+        await createClickPromiseNext();
     }
 
     await displayTextSup(1, opt[3][2]); //image de fond
@@ -253,7 +274,7 @@ async function year2056(opt){
     } else if(isChipped) await end(3);
     else if (!prison) await end(4);
     else if(prison) await end(5);
-
+    else if (hardWork) await end(5);
 
 }
 
@@ -268,7 +289,7 @@ async function context() {
         nextButton.style.visibility = "visible";
         return true;
     }, 2000);
-    await clickPromise.then();
+    await clickPromise;
 }
 
 async function getData() {
