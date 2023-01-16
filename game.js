@@ -278,8 +278,7 @@ async function year2056(opt){
         await createClickPromiseNext();
     }
 
-    await displayTextSup(1, opt[3][4]);
-    windowJ.style.backgroundImage = "none";
+    await displayTextSup(4, opt[3][4]);
 
     if(isMaried){
         if(isChipped)await end(1);
