@@ -4,7 +4,7 @@ header('Content-Type: text/html');
 ?>
 
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="fr">
 <head>
     <meta charset="utf-8">
     <title>CDCL- Jeu Interactif</title>
