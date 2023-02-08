@@ -1,5 +1,5 @@
 <?php
-include 'db_conn.php';
+require 'SPDO.php';
 session_start();
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
@@ -14,36 +14,36 @@ header('Content-Type: text/html');
  */
 function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another query
 {
-    $conn = createDBConn();
+    $conn = SPDO::getInstance();
+
 
     for ($i = 1; $i < $nbYear; ++$i) {
         $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP ?");
         $str = "^" . $i . "[[:digit:]]{1}$";
-        $query->bind_param("s", $str);
+        $query->bindParam("s", $str);
         $query->execute();
-        $query->bind_result($nbChoice);
+        $nbChoice = $query->fetchAll();
         $query->fetch();
         $out[$i] = array("nbChoice" => $nbChoice);
-        $query->close();
 
         for ($j = 1; $j < $nbChoice + 1; ++$j) {
             $query = $conn->prepare("SELECT texte, opt FROM texte, option WHERE texte.id_texte = ? + ? AND texte.id_texte = option.id_texte");
             $var1 = $i * 10;
-            $query->bind_param("ii", $var1, $j);
+            $query->bindParam("ii", $var1, $j);
             $query->execute();
-            $result = $query->get_result();
-            $query->close();
+            $result = $query->fetchAll();
 
-            $num_rows = mysqli_num_rows($result);
-            if ($num_rows > 0) {
-                $row = $result->fetch_assoc();
+            if (sizeof($result) > 0) {
+                $row = $result[0];
                 $tmp1 = [];
                 $tmp1[] = json_encode($row["opt"]);
                 $text = json_encode($row["texte"]);
-                while ($row = $result->fetch_assoc()) {
+                $h = 1;
+                while ($row = $result[$h]) {
                     $tmp1[] = json_encode($row["opt"]);
+                    $h++;
                 }
-                $out[$i][$j] = array("nbOpt" => $num_rows, $text, $tmp1);
+                $out[$i][$j] = array("nbOpt" => sizeof($result), $text, $tmp1);
 
             } else {
                 throw new Exception("No data was recovering at {$i} in texte or opt query");
@@ -52,23 +52,23 @@ function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another 
 
         $query = $conn->prepare("SELECT texte FROM texte WHERE texte.id_texte REGEXP ?");
         $str = "^" . $i . "0[[:digit:]]{1}$";
-        $query->bind_param("s", $str);
+        $query->bindParam("s", $str);
         $query->execute();
-        $result = $query->get_result();
-        $query->close();
-        $num_rows = mysqli_num_rows($result);
-        if ($num_rows > 0) {
+        $result = $query->fetchAll();
+
+        if (sizeof($result) > 0) {
             $tmp2 = [];
-            $tmp2["nbTextSup"] = $num_rows;
-            while ($row = $result->fetch_assoc()) {
+            $tmp2["nbTextSup"] = sizeof($result);
+            $h = 1;
+            while ($row = $result[$h]) {
                 $tmp2[] = json_encode($row["texte"]);
+                $h++;
             }
             $out[$i][$nbChoice + 1] = $tmp2;
         } else {
             throw new Exception("No data was recovering at {$i} in textSup query");
         }
     }
-    $conn->close();
     /*
     foreach ($out as $subarray) {
         print_r($subarray);
@@ -115,12 +115,13 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $conn = SPDO::getInstance();
+
     //var_dump($_POST);
     if(isset($_POST['idOpt'])) $idOpt = $_POST['idOpt'];
     if(isset($_POST['idTextSup'])) $idTextSup = $_POST['idTextSup'];
     $idText = $_POST['idText'];
     $text = $_POST['text'];
-    $conn = createDBConn();
 
     if(isset($idOpt)) {
         $sql = "UPDATE option SET opt=$text WHERE option.id_texte = $idText and option.id_opt = $idOpt";
@@ -129,8 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else{
         $sql = "UPDATE texte SET texte=$text WHERE texte.id_texte = $idText";
     }
-    $conn->query($sql);
-    $conn->close();
+    $conn->query($sql); 
 }else{
     echo '
 <!DOCTYPE html>

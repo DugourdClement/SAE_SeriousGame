@@ -1,19 +1,17 @@
 <?php
-include 'db_conn.php';
 session_start();
 
 function getLogin($username, $password): void {
-    $conn = createDBConn();
-    session_start();
+    require 'SPDO.php';
+    $conn = SPDO::getInstance();
 
-    $query = $conn->prepare("SELECT identifiant, mdp FROM utilisateur WHERE identifiant = ?");
-    $query->bind_param("s", $username);
+    $query = $conn->prepare("SELECT identifiant, mdp FROM utilisateur WHERE identifiant = :user");
+    $query->bindParam("user", $username);
     $query->execute();
-    $result = $query->get_result();
-    $query->close();
+    $result = $query->fetchAll();
 
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
+    if (sizeof($result) > 0) {
+        $row = $result[0];
 
         $db_username = $row['identifiant'];
         $db_password = $row['mdp'];
@@ -29,7 +27,6 @@ function getLogin($username, $password): void {
     } else {
         echo '<div class="error-message">Votre connexion a échoué. Veuillez réessayer.</div>';
     }
-    $conn->close();
 }
 
 if (isset($_POST['submit-button'])) {
