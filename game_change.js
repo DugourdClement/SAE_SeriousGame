@@ -1,3 +1,7 @@
+/**
+ * fonction qui permet de changer le texte d'une question
+ * @returns {string}
+ */
 function menu() {
     addEventListenerForm();
     let menu = document.getElementById("menu");
@@ -31,6 +35,9 @@ function menu() {
     });
 }
 
+/**
+ * fonction qui permet de cacher toutes les options
+ */
 function hideAllOption(){
     const allForm = document.getElementsByClassName("form");
     for (let i = 0; i < allForm.length; i++) {
@@ -51,6 +58,13 @@ function bannerShow(){
     }, 3000);
 }
 
+/**
+ * Cette fonction ajoute un gestionnaire d'événements personnalisé pour chaque bouton d'envoi de formulaire.
+ * Le gestionnaire d'événements envoie une requête POST pour enregistrer les données du formulaire.
+ * Les données sont stockées dans un objet FormData et envoyées à la page game_change.php.
+ *
+ * @return void
+ */
 function addEventListenerForm(){
     function addCustomEventListener(idForm) {
         console.log(idForm);
@@ -103,7 +117,5 @@ function addEventListenerForm(){
         });
     }
 }
-
-
 
 menu();

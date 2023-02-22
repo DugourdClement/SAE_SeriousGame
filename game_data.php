@@ -2,6 +2,7 @@
 include 'SPDO.php';
 $conn = createDBConn();
 
+// boucle for pour récupérer les données de la base de données et les mettre dans un tableau $out
 for ($i = 1; $i < 8; ++$i) {
     $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP ?");
     $str = "^" . $i . "[[:digit:]]{1}$";

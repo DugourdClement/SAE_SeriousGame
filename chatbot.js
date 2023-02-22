@@ -1,3 +1,6 @@
+/**
+ * Chatbot
+ */
 const bot = function () {
 
     const peekobot = document.getElementById('chatbot');

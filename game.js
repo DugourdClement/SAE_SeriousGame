@@ -24,6 +24,11 @@ let hardWork = false;
 
 buttonPlay.addEventListener('click', openWindow);
 
+/**
+ * Crée une promesse qui se résout lorsqu'un bouton est cliqué.
+ *
+ * @returns {Promise} Une promesse qui se résout lorsqu'un bouton est cliqué.
+ */
 function createClickPromiseAnswer(){
     return new Promise((resolve) => {
         function handleClick() {
@@ -39,6 +44,11 @@ function createClickPromiseAnswer(){
     })
 }
 
+/**
+ * Crée une promesse qui est résolue lorsque le bouton "Next" est cliqué.
+ * Le bouton "Next" devient visible dès l'appel de cette fonction.
+ * @return Promise Une promesse qui est résolue lorsqu'on clique sur le bouton "Next".
+ */
 function createClickPromiseNext(){
     nextButton.style.visibility = 'visible';
     return new Promise((resolve) => {
@@ -49,6 +59,12 @@ function createClickPromiseNext(){
     });
 }
 
+/**
+ * Réinitialise les variables et les éléments de l'interface graphique à leur état initial.
+ * Utile pour recommencer le jeu à partir de zéro...
+ *
+ * @return void
+ */
 function reset(){
     windowJ.style.backgroundImage = "none";
     windowJ.style.visibility = 'hidden';
@@ -67,6 +83,10 @@ function reset(){
     hardWork = false;
 }
 
+/**
+ * Ouvre la fenêtre de jeu et affiche un message de chargement. ( utile pour quand le chargement à la bd est long )
+ * Récupère les données nécessaires via getData() avant de lancer la partie.
+ */
 async function openWindow() {
     windowJ.style.visibility = 'visible';
     text.style.visibility = 'visible';
@@ -78,6 +98,12 @@ async function openWindow() {
     }
 }
 
+/**
+ Modifie la visibilité des boutons et du texte.
+ @param {string} value - La valeur de visibilité pour le texte et les boutons.
+ @param {number} nb - Le nombre de boutons à modifier.
+ @returns {void}
+ */
 function setButtonVisibility(value, nb){
     setElementEmpty(nb);
     text.style.visibility = value;
@@ -85,6 +111,12 @@ function setButtonVisibility(value, nb){
         allButtons[i].style.visibility = value;
     }
 }
+
+/**
+ Efface le contenu des éléments texte et boutons.
+ @param {number} nb - Le nombre de boutons à modifier.
+ @returns {void}
+ */
 function setElementEmpty(nb){
     text.innerHTML = '';
     for (let i = 0; i < nb; i++) {
@@ -92,6 +124,11 @@ function setElementEmpty(nb){
     }
 }
 
+/**
+
+ Cette fonction permet de modifier le texte et la visibilité des boutons en fonction des options passées en paramètre.
+ @param {Array} options - Les options qui seront affichées sur les boutons.
+ */
 function setTextButton(options) {
     setButtonVisibility('hidden', 4);
     let buttons = [];
@@ -105,6 +142,12 @@ function setTextButton(options) {
     }
 }
 
+/**
+ * Affiche le choix de l'utilisateur et les options qui lui sont proposées.
+ * @param choiceNumber
+ * @param opt
+ * @returns {Promise<void>}
+ */
 async function displayChoice(choiceNumber, opt) {
     windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
     setTextButton(opt[1]);
@@ -112,6 +155,12 @@ async function displayChoice(choiceNumber, opt) {
     await createClickPromiseAnswer();
 }
 
+/**
+ * Affiche le texte supplémentaire et les options qui lui sont proposées.
+ * @param textNumber
+ * @param opt
+ * @returns {Promise<void>}
+ */
 async function displayTextSup(textNumber, opt) {
     setButtonVisibility('hidden', 4);
     text.style.visibility = 'visible';
@@ -120,6 +169,11 @@ async function displayTextSup(textNumber, opt) {
     await createClickPromiseNext();
 }
 
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2022.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2022(opt) {
     await displayTextSup(1, opt[3][0]);
     await displayChoice(1, opt[1]);
@@ -149,6 +203,11 @@ async function year2022(opt) {
     years.shift();
 }
 
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2032.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2032(opt) {
     await displayTextSup(1, opt[3][0]);
     await displayChoice(1, opt[1]); //netoyer son profil
@@ -158,7 +217,11 @@ async function year2032(opt) {
 
     years.shift();
 }
-
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2035.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2035(opt) {
     if (hasGoodJob) await displayTextSup(1, opt[3][0]); //taf bien
     else await displayTextSup(2, opt[3][1]); //taf nul
@@ -172,6 +235,11 @@ async function year2035(opt) {
     years.shift();
 }
 
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2036.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2039(opt){
     await displayTextSup(1, opt[2][0]);
     await displayChoice(1, opt[1]);
@@ -186,6 +254,11 @@ async function year2039(opt){
     years.shift();
 }
 
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2043.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2043(opt){
     if (isMaried) {
         await displayTextSup(1, opt[3][0]);
@@ -216,7 +289,11 @@ async function year2043(opt){
 
     years.shift();
 }
-
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2050.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2050(opt){
     if(hasChildren) {
         await displayTextSup(1, opt[9][1]);
@@ -261,6 +338,11 @@ async function year2050(opt){
     years.shift();
 }
 
+/**
+ * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2056.
+ * @param opt - Les options qui seront affichées sur les boutons.
+ * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
+ */
 async function year2056(opt){
     if (isChipped){
         await displayTextSup(1, opt[3][0]);
@@ -289,7 +371,11 @@ async function year2056(opt){
     else if(prison) await end(5);
 }
 
+/**
 
+ Fonction asynchrone qui affiche le contexte du jeu et crée une promesse de clic sur le bouton suivant.
+ @returns {Promise} Une promesse résolue une fois que l'utilisateur a cliqué sur le bouton suivant.
+ */
 async function context() {
     setButtonVisibility('hidden', 4);
     let clickPromise = createClickPromiseNext();
@@ -308,6 +394,10 @@ async function context() {
     await createClickPromiseNext();
 }
 
+/**
+ * Fonction asynchrone qui récupère les données du jeu.
+ * @returns {Promise<boolean>} - Une promesse résolue une fois que les données ont été récupérées.
+ */
 async function getData() {
     let response = await fetch('game_data.php');
     if (response.ok) {
@@ -318,6 +408,10 @@ async function getData() {
     }
 }
 
+/**
+ * Fonction asynchrone qui lance le jeu.
+ * @returns {Promise<void>} - Une promesse résolue une fois que le jeu est terminé.
+ */
 async function game() {
     console.log(opt);
     await context();
