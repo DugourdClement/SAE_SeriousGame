@@ -1,4 +1,8 @@
 <?php
+/**
+ * Fonction qui permet de savoir si l'utilisateur est connecté ou non
+ * @return void
+ */
 function login(): void
 {
     if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
@@ -12,7 +16,8 @@ function login(): void
 header('Content-Type: text/html');
 
 echo '
-<div id="mySidenav" class="sidenav">
+<!--navbar pour ordinateur -->
+<div class="sidenav">
     <a id="closeBtn" href="#" class="close">×</a>
     <ul>
         <li><a onclick="closeNav()" href="#ressource">Ressources</a></li>

@@ -274,6 +274,7 @@ header('Content-Type: text/html');
 </div>
 
 </body>
+
 <footer>
     <div class="row copyright">
         <p>Copyright &copy; 2023 CDCL developpers</p>

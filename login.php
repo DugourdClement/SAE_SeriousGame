@@ -1,6 +1,13 @@
 <?php
 session_start();
 
+/**
+ * Cette fonction vérifie si l'utilisateur a saisi des identifiants valides et le connecte s'il est authentifié.
+ *
+ * @param string $username Le nom d'utilisateur saisi par l'utilisateur.
+ * @param string $password Le mot de passe saisi par l'utilisateur.
+ * @return void
+ */
 function getLogin($username, $password): void {
     require 'SPDO.php';
     $conn = SPDO::getInstance();
@@ -29,6 +36,12 @@ function getLogin($username, $password): void {
     }
 }
 
+/**
+ * Cette fonction vérifie si l'utilisateur a cliqué sur le bouton de connexion.
+ * Si c'est le cas, elle appelle la fonction getLogin().
+ * @return void
+ * @see getLogin()
+ */
 if (isset($_POST['submit-button'])) {
     getLogin($_POST['username'],$_POST['password']);
 }

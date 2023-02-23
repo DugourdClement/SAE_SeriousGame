@@ -10,7 +10,11 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
 header('Content-Type: text/html');
 
 /**
+ * fonction pour récupérer les données de la base de données et les mettre dans un tableau $out
+ * @param int $nbYear
+ * @return array
  * @throws Exception
+ * @throws PDOException
  */
 function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another query
 {
@@ -78,6 +82,11 @@ function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another 
     return $out;
 }
 
+/**
+ * fonction pour permettant la modification des données de la base de données
+ * @param array $data
+ * @param int $currentYear
+ */
 function modifyYearsForm($data, $currentYear): void
 {
     $nbChoice = $data[$currentYear]["nbChoice"] + 1;
