@@ -13,6 +13,31 @@ final class Choice implements JsonSerializable
         $this->opt = $opt;
     }
 
+    /**
+     * @return string
+     */
+    public function getChoice(): string
+    {
+        return $this->choice;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbOpt(): int
+    {
+        return $this->nbOpt;
+    }
+
+    /**
+     * @return array
+     */
+    public function getOpt(): array
+    {
+        return $this->opt;
+    }
+
+
     public function jsonSerialize(): array
     {
         return [

@@ -25,7 +25,6 @@ let hardWork = false;
 
 buttonPlay.addEventListener('click', openWindow);
 
-function createClickPromiseAnswer() {
 /**
  * Crée une promesse qui se résout lorsqu'un bouton est cliqué.
  *
@@ -47,7 +46,6 @@ function createClickPromiseAnswer(){
     })
 }
 
-function createClickPromiseNext() {
 /**
  * Crée une promesse qui est résolue lorsque le bouton "Next" est cliqué.
  * Le bouton "Next" devient visible dès l'appel de cette fonction.
@@ -63,7 +61,6 @@ function createClickPromiseNext(){
     });
 }
 
-function reset() {
 /**
  * Réinitialise les variables et les éléments de l'interface graphique à leur état initial.
  * Utile pour recommencer le jeu à partir de zéro...
@@ -103,7 +100,6 @@ async function openWindow() {
     }
 }
 
-function setButtonVisibility(value, nb) {
 /**
  Modifie la visibilité des boutons et du texte.
  @param {string} value - La valeur de visibilité pour le texte et les boutons.
@@ -117,8 +113,6 @@ function setButtonVisibility(value, nb){
         allButtons[i].style.visibility = value;
     }
 }
-
-function setElementEmpty(nb) {
 
 /**
  Efface le contenu des éléments texte et boutons.
@@ -225,6 +219,7 @@ async function year2032(opt) {
 
     years.shift();
 }
+
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2035.
  * @param opt - Les options qui seront affichées sur les boutons.
@@ -243,7 +238,6 @@ async function year2035(opt) {
     years.shift();
 }
 
-async function year2039(opt) {
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2036.
  * @param opt - Les options qui seront affichées sur les boutons.
@@ -263,7 +257,6 @@ async function year2039(opt){
     years.shift();
 }
 
-async function year2043(opt) {
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2043.
  * @param opt - Les options qui seront affichées sur les boutons.
@@ -299,8 +292,6 @@ async function year2043(opt){
     years.shift();
 }
 
-async function year2050(opt) {
-    if (hasChildren) {
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2050.
  * @param opt - Les options qui seront affichées sur les boutons.
@@ -348,8 +339,6 @@ async function year2050(opt){
     years.shift();
 }
 
-async function year2056(opt) {
-    if (isChipped) {
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2056.
  * @param opt - Les options qui seront affichées sur les boutons.

@@ -28,7 +28,7 @@ class LogoutTest extends PHPUnit_Framework_TestCase
         $header = ob_get_clean();
 
         // assert
-        $this->assertEquals('Location: http://localhost/login.php', $header);
+        $this->assertEquals('Location: http://localhost/ViewLogin.php', $header);
     }
 }
 

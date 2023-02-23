@@ -61,7 +61,7 @@ function bannerShow(){
 /**
  * Cette fonction ajoute un gestionnaire d'événements personnalisé pour chaque bouton d'envoi de formulaire.
  * Le gestionnaire d'événements envoie une requête POST pour enregistrer les données du formulaire.
- * Les données sont stockées dans un objet FormData et envoyées à la page game_change.php.
+ * Les données sont stockées dans un objet FormData et envoyées à la page ViewModification.php.
  *
  * @return void
  */

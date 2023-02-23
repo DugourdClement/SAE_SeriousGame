@@ -8,7 +8,7 @@ function login(): void
     if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
         echo '<li><a href="ViewLogin.php">Connexion</a></li>';
     } else {
-        echo '<li><a href="ViewModification.php">Modification</a></li>';
+        echo '<li><a href="gui/ViewModification.php">Modification</a></li>';
         echo '<li><a href="logout.php">Déconnexion</a></li>';
     }
 }
