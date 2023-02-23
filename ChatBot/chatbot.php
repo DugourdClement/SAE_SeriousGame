@@ -4,12 +4,12 @@
     <title>Chatbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="ChatBot/chatbot.csstbot.css">
       <link rel="icon" type="image/png" sizes="16x16" href="Picture/site/icone.png">
     <script src="https://unpkg.com/@babel/polyfill@7.6.0/dist/polyfill.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="conversation.js"></script>
-    <script type="text/babel" data-presets="es2015,es2016,es2017" src="chatbot.js"></script>
+    <script type="text/babel" data-presets="es2015,es2016,es2017" src="ChatBot/chatbot.jsatbot.js"></script>
 
   </head>
   <body>

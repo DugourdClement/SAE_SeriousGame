@@ -15,6 +15,7 @@ header('Content-Type: text/html');
     <link rel="stylesheet" href="responsive.css">
     <script defer src="game.js"></script>
     <script defer src="web.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 

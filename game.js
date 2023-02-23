@@ -6,6 +6,7 @@ const text = document.getElementById('text');
 let path = [];
 let years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
 let opt = [];
+let yearData = {};
 
 const allButtons = [];
 for (let i = 1; i < 5; i++) {
@@ -24,7 +25,7 @@ let hardWork = false;
 
 buttonPlay.addEventListener('click', openWindow);
 
-function createClickPromiseAnswer(){
+function createClickPromiseAnswer() {
     return new Promise((resolve) => {
         function handleClick() {
             path.push(parseInt(this.getAttribute('id')));
@@ -33,13 +34,14 @@ function createClickPromiseAnswer(){
                 allButtons[i].removeEventListener("click", handleClick);
             }
         }
+
         for (let i = 0; i < allButtons.length; i++) {
             allButtons[i].addEventListener("click", handleClick);
         }
     })
 }
 
-function createClickPromiseNext(){
+function createClickPromiseNext() {
     nextButton.style.visibility = 'visible';
     return new Promise((resolve) => {
         nextButton.addEventListener("click", () => {
@@ -49,7 +51,7 @@ function createClickPromiseNext(){
     });
 }
 
-function reset(){
+function reset() {
     windowJ.style.backgroundImage = "none";
     windowJ.style.visibility = 'hidden';
     text.style.visibility = 'hidden';
@@ -68,24 +70,25 @@ function reset(){
 }
 
 async function openWindow() {
+    await getData();
     windowJ.style.visibility = 'visible';
     text.style.visibility = 'visible';
     text.innerText = "Chargement...";
-    let status = await getData();
-    if (status === true) {
+    if (typeof yearData === 'object' && Object.keys(yearData).length === 0) {
         body.style.overflow = "hidden";
         await game();
     }
 }
 
-function setButtonVisibility(value, nb){
+function setButtonVisibility(value, nb) {
     setElementEmpty(nb);
     text.style.visibility = value;
     for (let i = 0; i < nb; i++) {
         allButtons[i].style.visibility = value;
     }
 }
-function setElementEmpty(nb){
+
+function setElementEmpty(nb) {
     text.innerHTML = '';
     for (let i = 0; i < nb; i++) {
         allButtons[i].innerHTML = '';
@@ -98,7 +101,7 @@ function setTextButton(options) {
     for (let i = 0; i < options.length; i++) {
         buttons.push(allButtons[i]);
     }
-    setButtonVisibility('visible',  buttons.length);
+    setButtonVisibility('visible', buttons.length);
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].innerHTML = options[i];
@@ -126,7 +129,7 @@ async function year2022(opt) {
 
     if (/^1\d*$/.test(path.toString())) {
         await displayChoice(1, opt[2]);
-        /*  function for open a popup when a option is clicked but do not work
+        /*  function for open a popup when an option is clicked but do not work
         function openPopup(rs) {
             return new Promise((resolve) => {
                 let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
@@ -142,7 +145,7 @@ async function year2022(opt) {
             else if (choice.slice(-1)[0] === 4) await openPopup("snap");
          */
 
-    }else{
+    } else {
         await displayTextSup("1_1", opt[3][1]);
     }
 
@@ -152,7 +155,7 @@ async function year2022(opt) {
 async function year2032(opt) {
     await displayTextSup(1, opt[3][0]);
     await displayChoice(1, opt[1]); //netoyer son profil
-    if(path.slice(-1)[0] === 1) hasGoodJob = true;
+    if (path.slice(-1)[0] === 1) hasGoodJob = true;
     await displayTextSup(2, opt[3][1]);
     await displayChoice(2, opt[2]); //colect données rs + intenet
 
@@ -172,97 +175,94 @@ async function year2035(opt) {
     years.shift();
 }
 
-async function year2039(opt){
+async function year2039(opt) {
     await displayTextSup(1, opt[2][0]);
     await displayChoice(1, opt[1]);
-    if(path.slice(-1)[0] === 1) isMaried = true;
+    if (path.slice(-1)[0] === 1) isMaried = true;
 
     await displayTextSup(1, opt[2][1]);
-    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]);
+    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]);
     else await displayTextSup(2, opt[2][3]);
 
-    if(/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]);
+    if (/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]);
 
     years.shift();
 }
 
-async function year2043(opt){
+async function year2043(opt) {
     if (isMaried) {
         await displayTextSup(1, opt[3][0]);
         if (hasGoodJob) await displayTextSup(1, opt[3][1]);
         else await displayTextSup(1, opt[3][2]);
     }
 
-    if(/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]);
+    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]);
 
     let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString());
-    if(isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
+    if (isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
 
-    if(faceRecognitionData) await displayTextSup(3, opt[3][4]);
-    if(isMaried) {
+    if (faceRecognitionData) await displayTextSup(3, opt[3][4]);
+    if (isMaried) {
         if (faceRecognitionData) await displayTextSup(4, opt[3][5]);
         else await displayTextSup(4, opt[3][6]);
         if (hasChildren) {
             await displayTextSup(5, opt[3][7]);
-        }
-        else await displayTextSup(6, opt[3][8]);
+        } else await displayTextSup(6, opt[3][8]);
     }
 
-    if(!isMaried){
-        if(hasGoodJob) await displayChoice(8, opt[1]);
+    if (!isMaried) {
+        if (hasGoodJob) await displayChoice(8, opt[1]);
         else await displayChoice(7, opt[2]);
-        if(path.slice(-1)[0] === 1) GouvWork = true;
+        if (path.slice(-1)[0] === 1) GouvWork = true;
     }
 
     years.shift();
 }
 
-async function year2050(opt){
-    if(hasChildren) {
+async function year2050(opt) {
+    if (hasChildren) {
         await displayTextSup(1, opt[9][1]);
         await displayChoice(2, opt[2]);
-        if(path.slice(-1)[0] === 1) hasNewJob = true;
-    }
-    else if (isMaried){
+        if (path.slice(-1)[0] === 1) hasNewJob = true;
+    } else if (isMaried) {
         await displayTextSup(3, opt[9][0]);
         await displayChoice(2, opt[1]);
-        if(path.slice(-1)[0] === 1) hasNewJob = true;
+        if (path.slice(-1)[0] === 1) hasNewJob = true;
     }
-    if(GouvWork && !hasGoodJob) {
+    if (GouvWork && !hasGoodJob) {
         await displayChoice(2, opt[7]);
-        if(path.slice(-1)[0] === 1) armsUp = true;
-    }
-    else if (!GouvWork && !isMaried){
+        if (path.slice(-1)[0] === 1) armsUp = true;
+    } else if (!GouvWork && !isMaried) {
         await displayTextSup(6, opt[9][6]);
         await displayChoice(7, opt[8]);
-        if(path.slice(-1)[0] === 2) hardWork = true;
+        if (path.slice(-1)[0] === 2) hardWork = true;
         else prison = true;
     }
 
-    if(hasNewJob){
+    if (hasNewJob) {
         await displayTextSup(4, opt[9][2]);
         await displayChoice(4, opt[3]);
-        if(path.slice(-1)[0] === 1) isChipped = true;
+        if (path.slice(-1)[0] === 1) isChipped = true;
     } else if (!hasGoodJob && !hardWork) {
         await displayTextSup(5, opt[9][3]);
         await displayChoice(5, opt[4]);
-        if(path.slice(-1)[0] === 1) {
+        if (path.slice(-1)[0] === 1) {
             await displayTextSup(6, opt[9][4]);
             await displayChoice(7, opt[5]);
-            if(path.slice(-1)[0] === 1) prison = true;
+            if (path.slice(-1)[0] === 1) prison = true;
         } else {
             await displayTextSup(6, opt[9][5]);
             await displayChoice(7, opt[6]);
-            if(path.slice(-1)[0] === 1) prison = true;
+            if (path.slice(-1)[0] === 1) prison = true;
         }
     }
-    if(GouvWork && hasGoodJob) await displayTextSup(3, opt[9][7]);
+    if (GouvWork && hasGoodJob) await displayTextSup(3, opt[9][7]);
 
     years.shift();
 }
 
-async function year2056(opt){
-    if (isChipped){
+async function year2056(opt) {
+    if (isChipped) {
         await displayTextSup(1, opt[3][0]);
         await displayChoice(1, opt[1]);
     } else {
@@ -272,7 +272,7 @@ async function year2056(opt){
     if (hardWork) await displayTextSup(2, opt[3][2]);
     if (armsUp) await displayTextSup(3, opt[3][3]);
 
-    async function end(nb){
+    async function end(nb) {
         setButtonVisibility('hidden', 4);
         windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
         await createClickPromiseNext();
@@ -280,13 +280,13 @@ async function year2056(opt){
 
     await displayTextSup(4, opt[3][4]);
 
-    if(isMaried){
-        if(isChipped)await end(1);
+    if (isMaried) {
+        if (isChipped) await end(1);
         else await end(2);
-    } else if(isChipped) await end(3);
+    } else if (isChipped) await end(3);
     else if (hardWork) await end(5);
     else if (!prison || !armsUp || !hasGoodJob) await end(4);
-    else if(prison) await end(5);
+    else if (prison) await end(5);
 }
 
 
@@ -309,17 +309,24 @@ async function context() {
 }
 
 async function getData() {
-    let response = await fetch('game_data.php');
-    if (response.ok) {
-        opt = await response.json();
-        return true;
-    } else {
-        console.log("HTTP-Error: " + response.status);
-    }
+    $.ajax({
+            url: 'game_data.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (json) {
+                console.log(json);
+                yearData = json;
+            },
+            error: function (xhr, status, error) {
+                console.log('Error: ' + error);
+            }
+        }).then(function () {
+            return true;
+        });
 }
 
 async function game() {
-    console.log(opt);
+    console.log(yearData);
     await context();
     await year2022(opt[1]);
     await context();

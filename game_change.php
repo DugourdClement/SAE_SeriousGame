@@ -18,9 +18,9 @@ function getData($nbYear): array //$nbYear = 2but must be 7 maybe use a another 
 
 
     for ($i = 1; $i < $nbYear; ++$i) {
-        $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP ?");
+        $query = $conn->prepare("SELECT COUNT(*) FROM texte WHERE texte.id_texte REGEXP :regex");
         $str = "^" . $i . "[[:digit:]]{1}$";
-        $query->bindParam("s", $str);
+        $query->bindParam(":regex", $str);
         $query->execute();
         $nbChoice = $query->fetchAll();
         $query->fetch();

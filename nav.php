@@ -17,7 +17,7 @@ echo '
     <ul>
         <li><a onclick="closeNav()" href="#ressource">Ressources</a></li>
         <li><a onclick="closeNav()" href="#cartes">Contacts</a></li>
-        <li><a onclick="closeNav()" href="chatbot.php" target="_blank">Chatbot</a></li>';
+        <li><a onclick="closeNav()" href="ChatBot/chatbot.php" target="_blank">Chatbot</a></li>';
 login();
 echo '
     </ul>
@@ -38,7 +38,7 @@ echo '
             <ul class="navlinks">
                 <li><a href="#ressource">Ressources</a></li>
                 <li><a href="#cartes">Contacts</a></li>
-                <li><a href="chatbot.php" target="_blank">ChatBox</a></li>';
+                <li><a href="ChatBot/chatbot.php" target="_blank">ChatBox</a></li>';
 login();
 echo '
             </ul>
