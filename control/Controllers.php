@@ -6,6 +6,9 @@ class Controllers
     {
         if( $modificationForm->authenticate($login, $password, $data) ) {
 
+            $_SESSION['username'] = $login; //maybe need to put it in ViewModification.php
+            $_SESSION['isLogin'] = true;
+
             $modificationForm->getAllForm($data);
         }
     }

@@ -12,10 +12,8 @@ function login(): void
         echo '<li><a href="logout.php">Déconnexion</a></li>';
     }
 }
+?>
 
-header('Content-Type: text/html');
-
-echo '
 <!--navbar pour ordinateur -->
 <div class="sidenav">
     <a id="closeBtn" href="#" class="close">×</a>
@@ -23,10 +21,10 @@ echo '
         <li><a onclick="closeNav()" href="#ressource">Ressources</a></li>
         <li><a onclick="closeNav()" href="#cartes">Contacts</a></li>
         <li><a onclick="closeNav()" href="ChatBot/ViewChatbot.php" target="_blank">Chatbot</a></li>';
-login();
-echo '
+        <?php login(); ?>
     </ul>
 </div>
+
 <a href="#" id="openBtn">
   <span class="burger">
     <span></span>
@@ -44,9 +42,8 @@ echo '
                 <li><a href="#ressource">Ressources</a></li>
                 <li><a href="#cartes">Contacts</a></li>
                 <li><a href="ChatBot/ViewChatbot.php" target="_blank">ChatBox</a></li>';
-login();
-echo '
+                <?php login(); ?>
             </ul>
         </div>
     </div>
-</nav>';
+</nav>

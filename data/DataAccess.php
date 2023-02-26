@@ -21,9 +21,9 @@ class DataAccess implements DataAccessInterface
     {
         // query for the associated textSup
         try {
-            $query = "SELECT COUNT(*) as nbTextSup, GROUP_CONCAT(texte SEPARATOR ', ') as textSup FROM texte WHERE id_texte REGEXP :regexSup";
+            $query = "SELECT COUNT(DISTINCT id_texte) as nbTextSup, GROUP_CONCAT(texte SEPARATOR ', ') as textSup FROM texte WHERE id_texte REGEXP :regexSup";
             $prepareQuery = $this->dataAccess->prepare($query);
-            $regexSup = "^" . $year . "0\d$";
+            $regexSup = "/^" . $year . "0\d$/";
             $prepareQuery->execute(array(':regexSup' => $regexSup));
             $textSup = $prepareQuery->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -32,22 +32,22 @@ class DataAccess implements DataAccessInterface
 
         // query for the different choices
         try {
-            $query = "SELECT COUNT(*) as nbChoice, id_texte, texte FROM texte WHERE id_texte REGEXP :regex";
+            $query = "SELECT texte FROM texte WHERE id_texte REGEXP :regex GROUP BY texte";
             $prepareQuery = $this->dataAccess->prepare($query);
-            $regex = "^" . $year . "\d$";
+            $regex = "^{$year}\d$";
             $prepareQuery->execute(array(':regex' => $regex));
             $choices = $prepareQuery->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-
+echo "année " . $year;
         $arrayChoices = [];
         foreach ($choices as $choice) {
             $id_texte = $choice['id_texte'];
 
             // query for the options
             try {
-                $query = "SELECT COUNT(*) as nbOpt, GROUP_CONCAT(opt SEPARATOR ', ') as opts FROM option WHERE id_texte = :id_texte";
+                $query = "SELECT GROUP_CONCAT(opt SEPARATOR ', ') as opts FROM option WHERE id_texte = :id_texte";
                 $prepareQuery = $this->dataAccess->prepare($query);
                 $prepareQuery->execute(array(':id_texte' => $id_texte));
                 $options = $prepareQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -56,24 +56,27 @@ class DataAccess implements DataAccessInterface
             }
 
             // create object Choice for each choice
-            $arrayChoices[] = new Choice($choice['texte'], $options[0]['nbOpt'], explode(', ', $options[0]['opts']));
+            $arrayChoices[] = new Choice($choice['texte'], count($options), explode(', ', $options[0]['opts']));
+            echo  count($options);
         }
+        echo count($choices);
+        echo count($textSup);
 
         // create object YearData with all the data concatenated
-        return new YearData($year, $textSup["nbTextSup"], explode(',', $textSup['textSup']), $choices[0]["nbChoice"], $arrayChoices);
+        return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);
     }
 
     function isUser($username, $password)
     {
         try {
-            $query = "SELECT COUNT(*) as nbUser FROM utilisateur WHERE identifiant = :username AND mdp = :password";
+            $query = "SELECT mdp FROM utilisateur WHERE identifiant = :username";
             $prepareQuery = $this->dataAccess->prepare($query);
-            $prepareQuery->execute(array(':username' => $username, ':password' => $password));
+            $prepareQuery->execute(array(':username' => $username));
             $user = $prepareQuery->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-        if ($user['nbUser'] == 1)
+        if (password_verify($password, $user['mdp']))
             return true;
         else
             return false;

@@ -26,7 +26,7 @@ try {
 // initialisation du controller
 $controller = new Controllers();
 
-// intialisation du cas d'utilisation AnnoncesChecking
+// intialisation du cas d'utilisation ModificationForm
 $modificationForm = new ModificationForm() ;
 
 // intialisation du presenter avec accès aux données de ModificationForm
@@ -52,12 +52,12 @@ elseif ( '/sae/index.php/connection' == $uri ){
 
     $vueLogin->display();
 }
-elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['login']) && isset($_POST['password']) ) {
+elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) ) {
 
-    $controller->modificationAction($_POST['login'], $_POST['password'], $data, $modificationForm);
+    $controller->modificationAction($_POST['username'], $_POST['password'], $data, $modificationForm);
 
     $layout = new Layout("gui/layout.html" );
-    $vueLogin= new ViewLogin( $layout);
+    $vueLogin= new ViewModification( $layout, $presenter );
 
     $vueLogin->display();
 }

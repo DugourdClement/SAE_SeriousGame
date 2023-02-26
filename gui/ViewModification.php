@@ -8,10 +8,16 @@ class ViewModification extends View
     {
         parent::__construct($layout);
 
+        if( $presenter->getAllFormHTML() == null ){ //change this to display the error message and not use the header
+            header( "refresh:5;url=/sae/index.php/connection" );
+            echo 'Erreur de login et/ou de mot de passe (redirection automatique dans 5 sec.)';
+            exit;
+        }
+
         $this->title = 'Modification des données';
 
         $this->content = '
-                    <script defer src="js/game_change.js"></script>
+                    <script defer src="gui/js/game_change.js"></script>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <header>
                         <div class="logo"><a href="index.php"><img id="logoManette" src="gui/Picture/site/logosae.png"
@@ -33,6 +39,6 @@ class ViewModification extends View
                         </select>
                      </div>';
 
-        $this->content = $presenter->getAllFormHTML();
+        $this->content .= $presenter->getAllFormHTML();
     }
 }

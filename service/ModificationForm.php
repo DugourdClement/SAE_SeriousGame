@@ -12,9 +12,9 @@ class ModificationForm
         return $this->modificationTxt;
     }
 
-    public function authenticate( $login, $password, $data )
+    public function authenticate( $username, $password, $data )
     {
-        $user = $data->getUser( $login, $password );
+        $user = $data->isUser( $username, $password );
         return ( $user != null );
     }
 
@@ -22,7 +22,7 @@ class ModificationForm
     {
         $this->modificationTxt = array();
 
-        for ($i = 0; $i < 7; $i++){
+        for ($i = 1; $i < 8; $i++){
             $this->modificationTxt[] = $data->getYearData($i);
         }
     }

@@ -5,18 +5,18 @@ final class YearData implements JsonSerializable
     private int $year;
     private int $nbTextSup;
     private array $textSup;
-    private int $nbChoice;
+    private int $nbChoices;
     private array $choices;
 
-    public function __construct(int $year, int $nbTextSup, array $textSup, int $nbChoice, array $choice)
+    public function __construct(int $year, int $nbTextSup, array $textSup, int $nbChoices, array $choices)
     {
         $this->year = $year;
 
         $this->nbTextSup = $nbTextSup;
         $this->textSup = $textSup;
 
-        $this->nbChoice = $nbChoice;
-        $this->choices = $choice;
+        $this->nbChoices = $nbChoices;
+        $this->choices = $choices;
 
     }
 
@@ -47,9 +47,9 @@ final class YearData implements JsonSerializable
     /**
      * @return int
      */
-    public function getNbChoice(): int
+    public function getNbChoices(): int
     {
-        return $this->nbChoice;
+        return $this->nbChoices;
     }
 
     /**
@@ -68,7 +68,7 @@ final class YearData implements JsonSerializable
             'year' => $this->year,
             'nbTextSup' => $this->nbTextSup,
             'textSup' => $this->textSup,
-            'nbChoice' => $this->nbChoice,
+            'nbChoice' => $this->nbChoices,
             'choice' => $this->choices,
         ];
     }
