@@ -13,8 +13,9 @@ class ViewChatbot extends View
         $this->content = '
             <script src="https://unpkg.com/@babel/polyfill@7.6.0/dist/polyfill.min.js"></script>
             <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-            <script src="gui/js/conversation.js"></script>
-            <script type="text/babel" data-presets="es2015,es2016,es2017" src="gui/js/chatbot.js"></script>
+            
+            <script src="/sae/gui/js/conversation.js"></script>
+            <script type="text/babel" data-presets="es2015,es2016,es2017" src="/sae/gui/js/chatbot.js"></script>
             
             <header class="text-center">
                 <h1 class="xl reset-margin large-margin">CHATBOT</h1>

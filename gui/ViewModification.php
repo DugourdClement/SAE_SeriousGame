@@ -17,7 +17,7 @@ class ViewModification extends View
         $this->title = 'Modification des données';
 
         $this->content = '
-                    <script defer src="gui/js/game_change.js"></script>
+                    <script defer src="/sae/gui/js/game_change.js"></script>
                     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                     <header>
                         <div class="logo"><a href="index.php"><img id="logoManette" src="gui/Picture/site/logosae.png"

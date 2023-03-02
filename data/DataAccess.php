@@ -23,7 +23,7 @@ class DataAccess implements DataAccessInterface
         try {
             $query = "SELECT COUNT(DISTINCT id_texte) as nbTextSup, GROUP_CONCAT(texte SEPARATOR ', ') as textSup FROM texte WHERE id_texte REGEXP :regexSup";
             $prepareQuery = $this->dataAccess->prepare($query);
-            $regexSup = "/^" . $year . "0\d$/";
+            $regexSup = "^{$year}\d$";
             $prepareQuery->execute(array(':regexSup' => $regexSup));
             $textSup = $prepareQuery->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -32,7 +32,7 @@ class DataAccess implements DataAccessInterface
 
         // query for the different choices
         try {
-            $query = "SELECT texte FROM texte WHERE id_texte REGEXP :regex GROUP BY texte";
+            $query = "SELECT texte, id_texte FROM texte WHERE id_texte REGEXP :regex GROUP BY texte";
             $prepareQuery = $this->dataAccess->prepare($query);
             $regex = "^{$year}\d$";
             $prepareQuery->execute(array(':regex' => $regex));
@@ -40,14 +40,14 @@ class DataAccess implements DataAccessInterface
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-echo "année " . $year;
+        echo "année " . $year;
         $arrayChoices = [];
         foreach ($choices as $choice) {
             $id_texte = $choice['id_texte'];
 
             // query for the options
             try {
-                $query = "SELECT GROUP_CONCAT(opt SEPARATOR ', ') as opts FROM option WHERE id_texte = :id_texte";
+                $query = "SELECT opt FROM option WHERE id_texte = :id_texte";
                 $prepareQuery = $this->dataAccess->prepare($query);
                 $prepareQuery->execute(array(':id_texte' => $id_texte));
                 $options = $prepareQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -56,11 +56,11 @@ echo "année " . $year;
             }
 
             // create object Choice for each choice
-            $arrayChoices[] = new Choice($choice['texte'], count($options), explode(', ', $options[0]['opts']));
-            echo  count($options);
+            $arrayChoices[] = new Choice($choice['texte'], count($options), array_column($options, 'opt'));
+            echo  " nb opt : " . count($options);
         }
-        echo count($choices);
-        echo count($textSup);
+        echo " nb choix : " . count($choices);
+
 
         // create object YearData with all the data concatenated
         return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);

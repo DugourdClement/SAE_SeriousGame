@@ -4,9 +4,6 @@ class ModificationForm
 {
     protected $modificationTxt;
 
-    /**
-     * @return mixed
-     */
     public function getModificationTxt()
     {
         return $this->modificationTxt;

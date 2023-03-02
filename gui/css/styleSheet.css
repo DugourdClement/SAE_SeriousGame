@@ -355,11 +355,11 @@ img {
 
 }
 .card0 {
-  background: url("gui/Picture/site/noemie.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
   background-size: 300px;
 }
 .card0:hover {
-  background: url("gui/Picture/site/noemie.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
   background-size: 350px;
 }
 .card0:hover h2 {
@@ -370,11 +370,11 @@ img {
 }
 
 .card1 {
-  background: url("gui/Picture/site/clement.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
   background-size: 300px;
 }
 .card1:hover {
-  background: url("gui/Picture/site/clement.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
   background-size: 350px;
 }
 .card1:hover h2 {
@@ -385,11 +385,11 @@ img {
 }
 
 .card2 {
-  background: url("gui/Picture/site/killian.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
   background-size: 300px;
 }
 .card2:hover {
-  background: url("gui/Picture/site/killian.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
   background-size: 350px;
 }
 .card2:hover h2 {
@@ -400,11 +400,11 @@ img {
 }
 
 .card3 {
-  background: url("gui/Picture/site/fabien.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
   background-size: 300px;
 }
 .card3:hover {
-  background: url("gui/Picture/site/fabien.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
   background-size: 350px;
 }
 .card3:hover h2 {
@@ -415,11 +415,11 @@ img {
 }
 
 .card4 {
-  background: url("gui/Picture/site/enzo.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
   background-size: 300px;
 }
 .card4:hover {
-  background: url("gui/Picture/site/enzo.jpg") center center no-repeat;
+  background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
   background-size: 350px;
 }
 .card4:hover h2 {
@@ -448,27 +448,20 @@ h2 {
 
 /*Footer*/
 
-footer {
+footer{
+  height: 50px;
+  background-color: #2d2d2d;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   color: #bbbaba;
   font-size: 16px;
-}
-footer * {
-  font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
 }
 
 .copyright {
   padding: 0.3em 1em;
-  background-color: #2d2d2d;
-}
-.footer-menu{
-  float: left;
-  margin-top: 10px;
-}
-
-.copyright p {
+  color: white;
   font-size: 0.9em;
   text-align: center;
 }
+
