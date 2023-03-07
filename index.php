@@ -6,7 +6,7 @@ include_once 'data/DataAccess.php';
 include_once 'data/SPDO.php';
 include_once 'control/Controllers.php';
 include_once 'control/Presenter.php';
-include_once 'service/ModificationForm.php';
+include_once 'service/YearDataAccess.php';
 include_once 'service/OutputData.php';
 include_once 'gui/ViewAccueil.php';
 include_once 'gui/ViewModification.php';
@@ -31,10 +31,10 @@ $controller = new Controllers();
 // initialisation de l'output pour le transfert des données
 $outputData = new OutputData();
 
-// initialisation du cas d'utilisation ModificationForm
-$modificationForm = new ModificationForm($outputData) ;
+// initialisation du cas d'utilisation YearDataAccess
+$yearDataAccess = new YearDataAccess($outputData) ;
 
-// initialisation du presenter avec accès aux données de ModificationForm
+// initialisation du presenter avec accès aux données de YearDataAccess
 $presenter = new Presenter($outputData);
 
 // chemin de l'URL demandée au navigateur
@@ -65,7 +65,7 @@ elseif ( '/sae/index.php/deconnexion' == $uri && isset($_SESSION)){
 }
 elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) ) {
 
-    $controller->modificationAction($_POST['username'], $_POST['password'], $data, $modificationForm);
+    $controller->modificationAction($_POST['username'], $_POST['password'], $data, $yearDataAccess);
 
     $layout = new Layout("gui/layout.html" );
     $vueLogin= new ViewModification( $layout, $presenter );

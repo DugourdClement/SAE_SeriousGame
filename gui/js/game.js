@@ -401,19 +401,19 @@ async function context() {
  */
 async function getData() {
     $.ajax({
-            url: 'game_data.php',
-            type: 'GET',
-            dataType: 'json',
-            success: function (json) {
-                console.log(json);
-                yearData = json;
-            },
-            error: function (xhr, status, error) {
-                console.log('Error: ' + error);
-            }
-        }).then(function () {
-            return true;
-        });
+        url: 'Controllers.php',
+        type: 'post',
+        data: {functionName: 'gameAction'},
+        success: function(response) {
+            console.log(response);
+            yearData = response;
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error);
+        }
+    }).then(function () {
+        return true;
+    });
 }
 
 /**

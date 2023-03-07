@@ -1,9 +1,9 @@
 <?php
 
-class ModificationForm
+class YearDataAccess
 {
     protected $outputData;
-    protected $modificationTxt;
+    protected $yearDataTxt;
 
     public function __construct($outputData)
     {
@@ -16,14 +16,14 @@ class ModificationForm
         return ( $user != null );
     }
 
-    public function getAllForm( $data )
+    public function getYearsData( $data )
     {
-        $this->modificationTxt = array();
+        $this->yearDataTxt = array();
 
         for ($i = 1; $i < 8; $i++){
-            $this->modificationTxt[] = $data->getYearData($i);
+            $this->yearDataTxt[] = $data->getYearData($i);
         }
 
-        $this->outputData->setOutputData($this->modificationTxt);
+        $this->outputData->setOutputData($this->yearDataTxt);
     }
 }

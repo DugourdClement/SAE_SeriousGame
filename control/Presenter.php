@@ -52,9 +52,9 @@ class Presenter
                 ++$y;
             }
 
-
             return $content;
         }
+
         return null;
     }
 }

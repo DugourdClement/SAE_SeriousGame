@@ -2,14 +2,26 @@
 
 class Controllers
 {
-    public function modificationAction($login, $password, $data, $modificationForm)
+    public function modificationAction($login, $password, $data, $yearDataAccess)
     {
-        if( $modificationForm->authenticate($login, $password, $data) ) {
+        if( $yearDataAccess->authenticate($login, $password, $data) ) {
 
             $_SESSION['username'] = $login; //maybe need to put it in ViewModification.php
             $_SESSION['isLogin'] = true;
 
-            $modificationForm->getAllForm($data);
+            $yearDataAccess->getYearsData($data);
+        }
+    }
+
+    public function gameAction($data, $yearDataAccess)
+    {
+        if (isset($_POST['functionName'])) {
+
+            $functionName = $_POST['functionName'];
+            if ($functionName == 'gameAction') {
+
+                echo json_encode($yearDataAccess->getYearsData($data));
+            }
         }
     }
 }
