@@ -5,31 +5,37 @@
 function menu() {
     addEventListenerForm();
     let menu = document.getElementById("menu");
+    let divs = document.querySelectorAll(".option");
+    let body = document.body;
+
     menu.addEventListener("change", function() {
         hideAllOption();
-
-        let selectedOption = this.value;
-        switch (selectedOption) {
-            case "option1" :
-                document.getElementById("form1").style.display = "block";
+        switch (this.value) {
+            case "option1":
+                divs[0].setAttribute("style", "display:none;");
+                // Adjust body height to fit displayed div height
+                body.style.height = divs[0].offsetHeight + "px";
+                console.log(divs[0].getAttribute("height"));
                 break;
-            case "option2" :
-                document.getElementById("form2").style.display = "block";
+            case "option2":
+                divs[1].setAttribute("style", "display:none;");
                 break;
-            case "option3" :
-                document.getElementById("form3").style.display = "block";
+            case "option3":
+                divs[2].setAttribute("style", "display:none;");
                 break;
-            case "option4" :
-                document.getElementById("form4").style.display = "block";
+            case "option4":
+                divs[3].setAttribute("style", "display:none;");
                 break;
-            case "option5" :
-                document.getElementById("form5").style.display = "block";
+            case "option5":
+                divs[4].setAttribute("style", "display:none;");
                 break;
-            case "option6" :
-                document.getElementById("form6").style.display = "block";
+            case "option6":
+                divs[5].setAttribute("style", "display:none;");
                 break;
-            case "option7" :
-                document.getElementById("form7").style.display = "block";
+            case "option7":
+                divs[6].setAttribute("style", "display:none;");
+                break;
+            default:
                 break;
         }
     });
@@ -39,9 +45,9 @@ function menu() {
  * fonction qui permet de cacher toutes les options
  */
 function hideAllOption(){
-    const allForm = document.getElementsByClassName("form");
-    for (let i = 0; i < allForm.length; i++) {
-        allForm[i].style.display = "none";
+    const allYear = document.getElementsByClassName("yearModif");
+    for (let i = 0; i < allYear.length; i++) {
+        allYear.item(i).style.display = "none";
     }
 }
 

@@ -2,11 +2,12 @@
 
 class ModificationForm
 {
+    protected $outputData;
     protected $modificationTxt;
 
-    public function getModificationTxt()
+    public function __construct($outputData)
     {
-        return $this->modificationTxt;
+        $this->outputData = $outputData;
     }
 
     public function authenticate( $username, $password, $data )
@@ -22,5 +23,7 @@ class ModificationForm
         for ($i = 1; $i < 8; $i++){
             $this->modificationTxt[] = $data->getYearData($i);
         }
+
+        $this->outputData->setOutputData($this->modificationTxt);
     }
 }

@@ -2,24 +2,24 @@
 
 class Presenter
 {
-    protected $modificationCheck;
+    protected $outputData;
 
-    public function __construct($annoncesCheck)
+    public function __construct($outputData)
     {
-        $this->modificationCheck = $annoncesCheck;
+        $this->outputData = $outputData;
     }
 
     public function getAllFormHTML()
     {
         $content = null;
 
-        if ($this->modificationCheck->getModificationTxt() != null) {
+        if ($this->outputData->getOutputData() != null) {
             $y = 1;
-            foreach ($this->modificationCheck->getModificationTxt() as $yearData) {
+            foreach ($this->outputData->getOutputData() as $yearData) {
 
                 $nbChoice = $yearData->getNbChoices() + 1;
 
-                $content .= '<div class="year" id="div"' . $y . ' style="display: none;">'; //One form to rule them all
+                $content .= '<div class="yearModif" id="div' . $y . '" style="display: none;">'; //One form to rule them all
 
                 $choices = $yearData->getChoices();
                 for ($c = 1; $c < $nbChoice; ++$c) { //One content-editable for the choice
@@ -55,5 +55,6 @@ class Presenter
 
             return $content;
         }
+        return null;
     }
 }

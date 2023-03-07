@@ -40,7 +40,7 @@ class DataAccess implements DataAccessInterface
         } catch (PDOException $e) {
             return $e->getMessage();
         }
-        echo "année " . $year;
+
         $arrayChoices = [];
         foreach ($choices as $choice) {
             $id_texte = $choice['id_texte'];
@@ -57,10 +57,8 @@ class DataAccess implements DataAccessInterface
 
             // create object Choice for each choice
             $arrayChoices[] = new Choice($choice['texte'], count($options), array_column($options, 'opt'));
-            echo  " nb opt : " . count($options);
-        }
-        echo " nb choix : " . count($choices);
 
+        }
 
         // create object YearData with all the data concatenated
         return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);

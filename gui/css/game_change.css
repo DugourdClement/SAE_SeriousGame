@@ -1,16 +1,19 @@
 #change{
     font-family: 'Open Sans',sans-serif;
     background-color: #FFFFFF;
-    width: 60%;
-    margin: 2% auto;
     border-radius: 1em;
-    padding-bottom: 3%;
     box-shadow: 0 11px 35px 2px rgba(0, 0, 0, 0.14);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: baseline;
+    padding-left: 15rem;
+    padding-right: 15rem;
+    padding-bottom: 1rem;
 }
 
 .submitModif{
     height: 100%;
-    margin-right: 10%;
     background: #868686;
     color: #fff;
     border: 1px solid #eee;
@@ -18,12 +21,21 @@
 }
 
 #banner {
-    visibility: hidden;
+    /* visibility: hidden; */
     background-color: forestgreen;
 }
 
 label{
-    margin-left: 3%;
+    /* margin-left: 3%; */
+    /* margin-right: 3%; */
+    /* padding-left: 10em; */
+    /* padding-right: 10rem; */
+    /* left: 0; */
+    /* display: flex; */
+    /* position: relative; */
+    /* flex-direction: column; */
+    /* width: 50%; */
+    /* align-items: flex-start; */
 }
 
 .textModif{
@@ -35,18 +47,20 @@ label{
     margin-left: 3%;
 }
 
-
-#year{
-    display: flex;
-    flex-direction: column;
+.yearModif{
+    background-color: white;
+    width: 90%;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
 }
 
 .formModif{
-    gap: 10%;
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding-bottom: 2%;
+    margin: 0.5rem;
+    justify-content: space-around;
+    border: thin dotted black;
 }
 
 #logoManette{
@@ -55,9 +69,10 @@ label{
     height: 6rem;
     padding-left: 1rem;
 }
-/*
-body{
+
+#modifContainer{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
-*/
