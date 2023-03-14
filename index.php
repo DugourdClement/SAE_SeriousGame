@@ -63,10 +63,9 @@ elseif ( '/sae/index.php/deconnexion' == $uri && isset($_SESSION)){
     session_destroy();
     header( "refresh:0;url=/sae/index.php/connection" );
 }
-elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) ) {
+elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['g-recaptcha-response']) ) {
 
-    $controller->modificationAction($_POST['username'], $_POST['password'], $data, $yearDataAccess);
-
+    $controller->modificationAction($_POST['username'], $_POST['password'], $_POST['g-recaptcha-response'], $data, $yearDataAccess);
     $layout = new Layout("gui/layout.html" );
     $vueLogin= new ViewModification( $layout, $presenter );
 

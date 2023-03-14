@@ -10,20 +10,11 @@ class YearDataAccess
         $this->outputData = $outputData;
     }
 
-    public function authenticate( $username, $password, $data )
+    public function authenticate( $username, $password, $response, $data )
     {
-        $user = $data->isUser( $username, $password );
-        return ( $user != null );
-    }
-
-    public function getYearsData( $data )
-    {
-        $this->yearDataTxt = array();
-
-        for ($i = 1; $i < 8; $i++){
-            $this->yearDataTxt[] = $data->getYearData($i);
+        if( $data->isUser($username, $password) != null && $data->verifyCaptcha($response)) {
+            return true;
         }
-
-        $this->outputData->setOutputData($this->yearDataTxt);
+        return false; // ici on rentre la
     }
 }

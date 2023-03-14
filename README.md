@@ -16,7 +16,6 @@ Vous pouvez accéder au site web en appuyant [ici](http://cdcl-data.fr/).
 
 
 
-
 ## Contributeurs
 **.** Fabien Routier [LinkedIn](https://fr.linkedin.com/in/fabien-routier-230312251) [Github](https://github.com/RoutierFabien)
 

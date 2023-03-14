@@ -11,7 +11,7 @@ class Presenter
 
     public function getAllFormHTML()
     {
-        $content = null;
+        $content = "null";
 
         if ($this->outputData->getOutputData() != null) {
             $y = 1;
