@@ -58,18 +58,24 @@ ini_set('session.gc_maxlifetime', 3600);
 session_set_cookie_params(3600);
 session_start();
 
+// définition du layout à utiliser en fonction de la session
+$layoutTemplate = "gui/layout.html";
+if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
+    $layoutTemplate = "gui/layoutLogged.html";
+}
+
 // route la requête en interne
 // i.e. lance le bon contrôleur en focntion de la requête effectuée
 if ('/sae/' == $uri || '/sae/index.php' == $uri) {
 
-    $layout = new Layout("gui/layout.html");
+    $layout = new Layout($layoutTemplate);
     $vueAccueil = new ViewAccueil($layout);
 
     $vueAccueil->display();
 } elseif ('/sae/index.php/connection' == $uri) {
 
     session_destroy();
-    $layout = new Layout("gui/layout.html");
+    $layout = new Layout($layoutTemplate);
     $vueLogin = new ViewLogin($layout);
 
     $vueLogin->display();
@@ -78,7 +84,8 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
     session_unset();
     session_destroy();
     header("refresh:0;url=/sae/index.php/connection");
-} elseif ('/sae/index.php/modification' == $uri && isset($_POST['login']) && isset($_POST['password'])
+}
+elseif ('/sae/index.php/modification' == $uri && isset($_POST['login']) && isset($_POST['password'])
     && isset($_POST['g-recaptcha-response'])) {
 
     $error = $controller->authenticateAction($userCheck, $dataUsers);
@@ -93,14 +100,14 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
 
         $controller->modificationAction($yearCheck, $dataYears);
 
-        $layout = new Layout("gui/layout.html");
+        $layout = new Layout($layoutTemplate);
         $vueLogin = new ViewModification($layout, $presenter);
 
         $vueLogin->display();
     }
 } elseif ('/sae/index.php/chatbot' == $uri) {
 
-    $layout = new Layout("gui/layout.html");
+    $layout = new Layout($layoutTemplate);
     $vueChatBot = new ViewChatbot($layout);
 
     $vueChatBot->display();
@@ -113,7 +120,7 @@ else {
 if ('/sae/index.php/error' == $uri) {
     // Affichage d'un message d'erreur
 
-    $layout = new Layout("gui/layout.html");
+    $layout = new Layout($layoutTemplate);
     $vueError = new ViewError($layout, $error, $redirect);
 
     $vueError->display();

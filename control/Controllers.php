@@ -24,7 +24,7 @@ class Controllers
                     return 'Vous etes un robot !';
                 }
 
-                $_SESSION['login'] = $_POST['login'];
+                $_SESSION['isLogged'] = true;
             } else {
                 return 'Veuillez remplir tous les champs !';
             }

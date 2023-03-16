@@ -12,7 +12,7 @@ class ViewLogin extends View
         $this->content = '
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-            <div class="window" id="home">
+            <div class="home" id="home">
                 <div class="connexion">
                     <p class="login">Se connecter</p>
                     <form id="formLogin" method="post" action="/sae/index.php/modification">

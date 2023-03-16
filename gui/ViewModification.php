@@ -20,7 +20,7 @@ class ViewModification extends View
                     <header>
                      
                     </header>
-                    <div id="modifContainer">
+                    <div class="home">
                         <div id="change">
                             <p id="banner">Modification enregistée</p>
                             <label for="menu">Choisir une année à modifier : </label><br>
