@@ -2,18 +2,41 @@
 
 class Controllers
 {
-    public function modificationAction($login, $password, $response, $data, $yearDataAccess)
+    protected $outputData;
+
+    public function __construct($outputData)
     {
-        if( $yearDataAccess->authenticate($login, $password, $response, $data)) {
+        $this->outputData = $outputData;
+    }
+    public function authenticateAction($userChecking, $data)
+    {
+        if (!isset($_SESSION['login'])) {
 
-            $_SESSION['username'] = $login; //maybe need to put it in ViewModification.php
-            $_SESSION['isLogin'] = true;
+            if (isset($_POST['login']) && isset($_POST['password'])) {
+                $userChecking->authenticate($_POST['login'], $_POST['password'], $data);
+                if (!$this->outputData->getOutputData()) {
 
-            $yearDataAccess->getYearData($data);
+                    return 'Mauvais identifiant ou mot de passe !';
+                }
+                $userChecking->verifyCaptcha($_POST['g-recaptcha-response'], $data);
+                if (!$this->outputData->getOutputData()) {
+
+                    return 'Vous etes un robot !';
+                }
+
+                $_SESSION['login'] = $_POST['login'];
+            } else {
+                return 'Veuillez remplir tous les champs !';
+            }
         }
     }
 
-    public function gameAction($data, $yearDataAccess)
+    public function modificationAction($yearChecking, $data)
+    {
+        $yearChecking->getYearsData($data);
+    }
+
+    public function gameAction($yearDataAccess, $data)
     {
         if (isset($_POST['functionName'])) {
 

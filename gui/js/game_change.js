@@ -12,28 +12,25 @@ function menu() {
         hideAllOption();
         switch (this.value) {
             case "option1":
-                divs[0].setAttribute("style", "display:none;");
-                // Adjust body height to fit displayed div height
-                body.style.height = divs[0].offsetHeight + "px";
-                console.log(divs[0].getAttribute("height"));
+                divs[0].setAttribute("style", "display:block;");
                 break;
             case "option2":
-                divs[1].setAttribute("style", "display:none;");
+                divs[1].setAttribute("style", "display:block;");
                 break;
             case "option3":
-                divs[2].setAttribute("style", "display:none;");
+                divs[2].setAttribute("style", "display:block;");
                 break;
             case "option4":
-                divs[3].setAttribute("style", "display:none;");
+                divs[3].setAttribute("style", "display:block;");
                 break;
             case "option5":
-                divs[4].setAttribute("style", "display:none;");
+                divs[4].setAttribute("style", "display:block;");
                 break;
             case "option6":
-                divs[5].setAttribute("style", "display:none;");
+                divs[5].setAttribute("style", "display:block;");
                 break;
             case "option7":
-                divs[6].setAttribute("style", "display:none;");
+                divs[6].setAttribute("style", "display:block;");
                 break;
             default:
                 break;

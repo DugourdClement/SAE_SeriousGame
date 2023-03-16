@@ -9,7 +9,7 @@ class ViewModification extends View
         parent::__construct($layout);
 
         if( $presenter->getAllFormHTML() == null ){ //change this to display the error message and not use the header
-            header( "refresh:5;url=/sae/index.php/connection" );
+            header( "refresh:2;url=/sae/index.php/connection" );
             echo 'Erreur de login et/ou de mot de passe (redirection automatique dans 5 sec.)';
             exit;
         }

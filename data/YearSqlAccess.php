@@ -1,9 +1,9 @@
 <?php
-require 'domain/YearData.php';
-require 'domain/Choice.php';
-require 'service/DataAccessInterface.php';
+include_once 'domain/YearData.php';
+include_once 'domain/Choice.php';
+include_once 'service/DataAccessInterface.php';
 
-class DataAccess implements DataAccessInterface
+class YearSqlAccess implements DataAccessInterface
 {
     protected $dataAccess = null;
 
@@ -62,45 +62,5 @@ class DataAccess implements DataAccessInterface
 
         // create object YearData with all the data concatenated
         return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);
-    }
-
-    function verifyCaptcha($response)
-    {
-        $secret = '6Ld2ZfskAAAAAN-2wZhy7I8PkmVB0i1l9qq06AO1';
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
-        $data = array(
-            'secret' => $secret,
-            'response' => $response,
-        );
-
-        $options = array(
-            'http' => array(
-                'header'  => 'Content-type: application/x-www-form-urlencoded',
-                'method'  => 'POST',
-                'content' => http_build_query($data),
-            ),
-        );
-
-        $context = stream_context_create($options);
-        $result = file_get_contents($url, false, $context);
-        $response = json_decode($result, true);
-
-        return $response['success'];
-    }
-
-    function isUser($username, $password)
-    {
-        try {
-            $query = "SELECT mdp FROM utilisateur WHERE identifiant = :username";
-            $prepareQuery = $this->dataAccess->prepare($query);
-            $prepareQuery->execute(array(':username' => $username));
-            $user = $prepareQuery->fetch(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            return $e->getMessage();
-        }
-        if (password_verify($password, $user['mdp']))
-            return true;
-        else
-            return false;
     }
 }
