@@ -23,6 +23,14 @@ let prison = false;
 let armsUp = false;
 let hardWork = false;
 
+// Demarrer le jeu juste en appuyant sur entrée pour rendre le site plus accessible
+window.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        buttonPlay.click();
+    }
+});
+
 buttonPlay.addEventListener('click', openWindow);
 
 /**
