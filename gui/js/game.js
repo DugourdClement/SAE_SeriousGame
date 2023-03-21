@@ -30,7 +30,7 @@ buttonPlay.addEventListener('click', openWindow);
  *
  * @returns {Promise} Une promesse qui se résout lorsqu'un bouton est cliqué.
  */
-function createClickPromiseAnswer(){
+function createClickPromiseAnswer() {
     return new Promise((resolve) => {
         function handleClick() {
             path.push(parseInt(this.getAttribute('id')));
@@ -51,7 +51,7 @@ function createClickPromiseAnswer(){
  * Le bouton "Next" devient visible dès l'appel de cette fonction.
  * @return Promise Une promesse qui est résolue lorsqu'on clique sur le bouton "Next".
  */
-function createClickPromiseNext(){
+function createClickPromiseNext() {
     nextButton.style.visibility = 'visible';
     return new Promise((resolve) => {
         nextButton.addEventListener("click", () => {
@@ -67,7 +67,7 @@ function createClickPromiseNext(){
  *
  * @return void
  */
-function reset(){
+function reset() {
     windowJ.style.backgroundImage = "none";
     windowJ.style.visibility = 'hidden';
     text.style.visibility = 'hidden';
@@ -106,7 +106,7 @@ async function openWindow() {
  @param {number} nb - Le nombre de boutons à modifier.
  @returns {void}
  */
-function setButtonVisibility(value, nb){
+function setButtonVisibility(value, nb) {
     setElementEmpty(nb);
     text.style.visibility = value;
     for (let i = 0; i < nb; i++) {
@@ -119,7 +119,7 @@ function setButtonVisibility(value, nb){
  @param {number} nb - Le nombre de boutons à modifier.
  @returns {void}
  */
-function setElementEmpty(nb){
+function setElementEmpty(nb) {
     text.innerHTML = '';
     for (let i = 0; i < nb; i++) {
         allButtons[i].innerHTML = '';
@@ -243,7 +243,7 @@ async function year2035(opt) {
  * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2039(opt){
+async function year2039(opt) {
     await displayTextSup(1, opt[2][0]);
     await displayChoice(1, opt[1]);
     if (path.slice(-1)[0] === 1) isMaried = true;
@@ -262,7 +262,7 @@ async function year2039(opt){
  * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2043(opt){
+async function year2043(opt) {
     if (isMaried) {
         await displayTextSup(1, opt[3][0]);
         if (hasGoodJob) await displayTextSup(1, opt[3][1]);
@@ -297,8 +297,8 @@ async function year2043(opt){
  * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2050(opt){
-    if(hasChildren) {
+async function year2050(opt) {
+    if (hasChildren) {
         await displayTextSup(1, opt[9][1]);
         await displayChoice(2, opt[2]);
         if (path.slice(-1)[0] === 1) hasNewJob = true;
@@ -344,8 +344,8 @@ async function year2050(opt){
  * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2056(opt){
-    if (isChipped){
+async function year2056(opt) {
+    if (isChipped) {
         await displayTextSup(1, opt[3][0]);
         await displayChoice(1, opt[1]);
     } else {
@@ -400,20 +400,14 @@ async function context() {
  * @returns {Promise<boolean>} - Une promesse résolue une fois que les données ont été récupérées.
  */
 async function getData() {
-    $.ajax({
-        url: 'Controllers.php',
-        type: 'post',
-        data: {functionName: 'gameAction'},
-        success: function(response) {
-            console.log(response);
-            yearData = response;
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + error);
-        }
-    }).then(function () {
-        return true;
-    });
+    try {
+        const response = await fetch('data/cache_YearData.txt');
+        const data = await response.text();
+        return JSON.parse(data);
+    } catch (error) {
+        console.error('Error: ' + error);
+        return null;
+    }
 }
 
 /**

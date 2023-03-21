@@ -14,18 +14,38 @@
 <header>
     <nav class="nav">
         <div class="container">
-            <div class="logo"><a href="ViewAccueil.php"><img id="logoManette" src="gui/Picture/site/logosae.png" alt=" retour en haut "></a></div>
+            <div class="logo"><a href="/sae/index.php"><img id="logoManette" src="gui/Picture/site/logosae.png" alt=" retour en haut "></a></div>
             <div id="mainListDiv" class="main_list">
                 <ul class="navlinks">
-                    <li><a href="#ressource">Ressources</a></li>
-                    <li><a href="#cartes">Contacts</a></li>
-                    <li><a href="ChatBot/ViewChatbot.php" target="_blank">ChatBox</a></li>
-                    <li><a href="ViewLogin.php">Connexion</a></li>
+                    <li><a href="/sae/index.php#ressource">Ressources</a></li>
+                    <li><a href="/sae/index.php#cartes">Contacts</a></li>
+                    <li><a href="/sae/index.php/chatbot" target="_blank">ChatBox</a></li>
+                    <li><a href="/sae/index.php/connection">Connexion</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Side Navigation -->
+    <div class="sidenav">
+        <a id="closeBtn" href="#" class="close">×</a>
+        <ul>
+            <li><a onclick="closeNav()" href="/sae/index.php#ressource">Ressources</a></li>
+            <li><a onclick="closeNav()" href="/sae/index.php#cartes">Contacts</a></li>
+            <li><a onclick="closeNav()" href="/sae/index.php/chatbot" target="_blank">Chatbot</a></li>';
+            <li><a href="/sae/index.php/coneection">Connexion</a></li>
+        </ul>
+    </div>
+
+    <a href="#" id="openBtn">
+  <span class="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+    </a>
 </header>
+
 <body>
 %content%
 </body>

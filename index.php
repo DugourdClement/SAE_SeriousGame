@@ -34,8 +34,11 @@ try {
     die();
 }
 
-// initialisation de l'output pour le transfert des données
+// initialisation de l'output dans une structure pour le transfert des données
 $outputData = new OutputData();
+
+// initialisation de l'output sur fichier pour le jeu
+$gameCheck = new GameCheking('cache_YersData.txt');
 
 // initialisation du controller
 $controller = new Controllers($outputData);
@@ -58,10 +61,23 @@ ini_set('session.gc_maxlifetime', 3600);
 session_set_cookie_params(3600);
 session_start();
 
-// définition du layout à utiliser en fonction de la session
-$layoutTemplate = "gui/layout.html";
-if (isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
-    $layoutTemplate = "gui/layoutLogged.html";
+if (isset($_SESSION['isLogged']) && $_SESSION['isLogged'] == 1) {
+    $layoutTemplate = 'gui/layoutLogged.html';
+} else {
+    $layoutTemplate = 'gui/layout.html';
+}
+
+//
+if ('/sae/index.php/modification' == $uri && isset($_POST['login']) && isset($_POST['password'])) {
+
+    $error = $controller->authenticateAction($userCheck, $dataUsers);
+
+    // Si erreur, on redirige vers la page de connexion
+    if ($error != null) {
+
+        $uri = '/sae/index.php/error';
+        $redirect = '/sae/index.php/connection';
+    }
 }
 
 // route la requête en interne
@@ -72,6 +88,8 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
     $vueAccueil = new ViewAccueil($layout);
 
     $vueAccueil->display();
+
+    $controller->gameAction($gameCheck, $dataYears);
 } elseif ('/sae/index.php/connection' == $uri) {
 
     session_destroy();
@@ -84,35 +102,21 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
     session_unset();
     session_destroy();
     header("refresh:0;url=/sae/index.php/connection");
-}
-elseif ('/sae/index.php/modification' == $uri && isset($_POST['login']) && isset($_POST['password'])
-    && isset($_POST['g-recaptcha-response'])) {
+} elseif ('/sae/index.php/modification' == $uri && isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
 
-    $error = $controller->authenticateAction($userCheck, $dataUsers);
+    $controller->modificationAction($yearCheck, $dataYears);
 
-    // Si erreur, on redirige vers la page de connexion
-    if ($error != null) {
+    $layout = new Layout($layoutTemplate);
+    $vueLogin = new ViewModification($layout, $presenter);
 
-        $uri = '/sae/index.php/error';
-        $redirect = '/sae/index.php/connection';
-    } // Sinon, on affiche la page de modification
-    else {
-
-        $controller->modificationAction($yearCheck, $dataYears);
-
-        $layout = new Layout($layoutTemplate);
-        $vueLogin = new ViewModification($layout, $presenter);
-
-        $vueLogin->display();
-    }
+    $vueLogin->display();
 } elseif ('/sae/index.php/chatbot' == $uri) {
 
     $layout = new Layout($layoutTemplate);
     $vueChatBot = new ViewChatbot($layout);
 
     $vueChatBot->display();
-}
-else {
+} else {
     header('Status: 404 Not Found');
     echo '<html lang="fr"><body><h1>My Page NotFound</h1></body></html>';
 }

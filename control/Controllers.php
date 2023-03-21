@@ -8,6 +8,7 @@ class Controllers
     {
         $this->outputData = $outputData;
     }
+
     public function authenticateAction($userChecking, $data)
     {
         if (!isset($_SESSION['login'])) {
@@ -36,15 +37,8 @@ class Controllers
         $yearChecking->getYearsData($data);
     }
 
-    public function gameAction($yearDataAccess, $data)
+    public function gameAction($gameCheking, $data)
     {
-        if (isset($_POST['functionName'])) {
-
-            $functionName = $_POST['functionName'];
-            if ($functionName == 'gameAction') {
-
-                echo json_encode($yearDataAccess->getYearsData($data));
-            }
-        }
+        $gameCheking->getYearsData($data);
     }
 }

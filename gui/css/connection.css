@@ -1,16 +1,3 @@
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Ubuntu', sans-serif;
-}
-
 /* Home */
 
 .homebutton{

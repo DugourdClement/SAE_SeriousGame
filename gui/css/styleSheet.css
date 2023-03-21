@@ -1,470 +1,496 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
+
 html,
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
-  background-color: #000000;
-  height: auto;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    background-color: #000000;
+    height: auto;
 }
 
 header {
     width: 100%;
-    height: 100vh; /* A changer */
+    height: 5rem;
+    color: chocolate;
 }
 
 /* Display nav barre mobile*/
 
 img {
-  max-width: 100%;
+    max-width: 100%;
 }
 
-.sidenav{
-  display: none;
+.sidenav {
+    display: none;
 }
 
-.openBtn{
-  display : none;
+.openBtn {
+    display: none;
 }
 
 /* Nav barre computer*/
 .nav {
-  width: 100%;
-  height: 65px;
-  position: fixed;
-  line-height: 65px;
-  text-align: center;
-  z-index: 1; /* sans ça, boutons de la navbar non cliquables lorsque l'on scroll */
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+    z-index: 1; /* sans ça, boutons de la navbar non cliquables lorsque l'on scroll */
 }
 
 .nav div.logo {
-  float: left;
-  width: 10rem;
-  height: 10rem;
-  padding-left: 3rem;
+    float: left;
+    width: 10rem;
+    height: 10rem;
+    padding-left: 3rem;
 }
 
 .nav div.logo a {
-  text-decoration: none;
-  color: black;
-  font-size: 2.5rem;
+    text-decoration: none;
+    color: black;
+    font-size: 2.5rem;
 }
 
 .nav div.logo a:hover {
-  color: #dda0dd;
+    color: #dda0dd;
 }
 
 .nav div.main_list {
-  height: 65px;
-  float: right;
+    height: 65px;
+    float: right;
 }
 
 .nav div.main_list ul {
-  width: 100%;
-  height: 65px;
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav div.main_list ul li {
-  width: auto;
-  height: 65px;
-  padding-right: 3rem;
+    width: auto;
+    height: 65px;
+    padding-right: 3rem;
 }
 
 .nav div.main_list ul li a {
-  text-decoration: none;
-  color: white;
-  line-height: 65px;
-  font-size: 2.4rem;
+    text-decoration: none;
+    color: white;
+    line-height: 65px;
+    font-size: 2.4rem;
 }
 
 .nav div.main_list ul li a:hover {
-  color: #dda0dd;
+    color: #dda0dd;
 }
 
 /* Home section */
 
-.homebutton{
-  display: flex;
-  justify-content: center;
+.homebutton {
+    display: flex;
+    justify-content: center;
 }
 
 .home {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://cdna.artstation.com/p/assets/images/images/027/207/494/large/sergei-klimenko-final6.jpg?1590892063");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 
 }
 
 .nav {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 /* CSS window */
 #fenetre {
-  display: flex;
-  background-repeat: no-repeat;
-  background-position: center;
-  justify-content: space-around;
-  position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  visibility: hidden;
-  transition: visibility 0.4s;
-  background-color: #000000;
-  border-radius: 10px;
-  background-size: cover;
-  font-size: 19px;
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    justify-content: space-around;
+    position: fixed;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+    visibility: hidden;
+    transition: visibility 0.4s;
+    background-color: #000000;
+    border-radius: 10px;
+    background-size: cover;
+    font-size: 19px;
 }
 
-.buttonRow{
-  position: absolute;
-  bottom: 5%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 75%;
-  margin: 2rem auto 0;
-  gap: 7%;
+.buttonRow {
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 75%;
+    margin: 2rem auto 0;
+    gap: 7%;
 }
 
-.buttonCol{
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
-  margin: 0 auto;
-  gap: 20px;
-  width: 100%;
+.buttonCol {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    margin: 0 auto;
+    gap: 20px;
+    width: 100%;
 }
 
 .button {
-  visibility: inherit;
-  box-sizing: border-box;
-  padding: 10px 10px;
-  outline: none;
-  border: 5em;
-  cursor: pointer;
-  border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  text-shadow: 1px 1px 2px black;
-  font-weight: bold;
-  color: white;
+    visibility: inherit;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    outline: none;
+    border: 5em;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 2px black;
+    font-weight: bold;
+    color: white;
 
 }
 
 .button:hover {
-  color: #E7E000;
+    color: #E7E000;
 }
 
 .button:hover .text {
-  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+    background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
 }
 
-.next{
-  visibility: hidden;
-  position: absolute;
-  cursor: pointer;
-  bottom: 8%;
-  right: 8%;
-  color: white;
-  background-color: black;
-  border-radius: 20px;
-  font-size: 15px;
+.next {
+    visibility: hidden;
+    position: absolute;
+    cursor: pointer;
+    bottom: 8%;
+    right: 8%;
+    color: white;
+    background-color: black;
+    border-radius: 20px;
+    font-size: 15px;
 }
 
-.text{
-  position: absolute;
-  bottom: 25%;
-  max-width: 75%;
-  padding: 10px 10px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 1em;
-  color: white;
-  text-align: center;
-  font-family: 'Open Sans',sans-serif;
+.text {
+    position: absolute;
+    bottom: 25%;
+    max-width: 75%;
+    padding: 10px 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 1em;
+    color: white;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .myH2 {
-  text-align:center;
-  font-size: 4rem;
+    text-align: center;
+    font-size: 4rem;
 }
+
 .myH3 {
-  text-align:center;
-  font-size: 4rem;
+    text-align: center;
+    font-size: 4rem;
 }
 
 .myP {
-  color: #808080;
-  font-size: 17px;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Open Sans',sans-serif;
-  font-weight: 400;
-  line-height: 26px;
-  vertical-align: baseline;
-  text-align:justify;
-  padding-left:18%;
-  padding-right:18%;
+    color: #808080;
+    font-size: 17px;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    line-height: 26px;
+    vertical-align: baseline;
+    text-align: justify;
+    padding-left: 18%;
+    padding-right: 18%;
 }
 
-.play{
-  height: fit-content;
-  background-color: rgba(0, 0, 0, 0.87);
-  text-align: center;
-  position: relative;
-  display: inline-block;
-  padding: 25px 30px;
-  color: #811fbd;
-  text-decoration: none;
-  transition: 0.5s;
-  letter-spacing: 4px;
-  font-size: 43px;
-  overflow: hidden;
-  margin: auto;
+.play {
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.87);
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    color: #811fbd;
+    text-decoration: none;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    font-size: 43px;
+    overflow: hidden;
+    margin: auto;
 }
 
-.play:hover{
-  background: #811fbd;
-  color: #050801;
-  box-shadow: 0 0 5px #811fbd,
-  0 0 25px #811fbd,
-  0 0 50px #811fbd,
-  0 0 15px #811fbd;
+.play:hover {
+    background: #811fbd;
+    color: #050801;
+    box-shadow: 0 0 5px #811fbd,
+    0 0 25px #811fbd,
+    0 0 50px #811fbd,
+    0 0 15px #811fbd;
 }
 
-.play span{
-  position: absolute;
-  display: block;
+.play span {
+    position: absolute;
+    display: block;
 }
 
-.play span:nth-child(1){
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg,transparent,#811fbd);
-  animation: animate1 1s linear infinite;
+.play span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #811fbd);
+    animation: animate1 1s linear infinite;
 }
-@keyframes animate1{
-  0%{
-    left: -100%;
-  }
-  50%,100%{
-    left: 100%;
-  }
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
 }
-.play span:nth-child(2){
-  top: -100%;
-  right: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(90deg,transparent,#811fbd);
-  animation: animate2 1s linear infinite;
-  animation-delay: 0.25s;
-}
-@keyframes animate2{
-  0%{
+
+.play span:nth-child(2) {
     top: -100%;
-  }
-  50%,100%{
-    top: 100%;
-  }
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #811fbd);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
 }
-.play span:nth-child(3){
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg,transparent,#811fbd);
-  animation: animate3 1s linear infinite;
-  animation-delay: 0.50s;
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+    50%, 100% {
+        top: 100%;
+    }
 }
-@keyframes animate3{
-  0%{
-    right: -100%;
-  }
-  50%,100%{
-    right: 100%;
-  }
+
+.play span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #811fbd);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+    50%, 100% {
+        right: 100%;
+    }
 }
 
 
-.play span:nth-child(4){
-  bottom: -100%;
-  left: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(90deg,transparent,#811fbd);
-  animation: animate4 1s linear infinite;
-  animation-delay: 0.75s;
-}
-
-@keyframes animate4{
-  0%{
+.play span:nth-child(4) {
     bottom: -100%;
-  }
-  50%,100%{
-    bottom: 100%;
-  }
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #811fbd);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
 }
 
-.resstext{
-  text-decoration: none;
-  font-family: 'Open Sans',sans-serif;
-  color: white;
-  font-size: 15px;
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+    50%, 100% {
+        bottom: 100%;
+    }
+}
+
+.resstext {
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    font-size: 15px;
 }
 
 /* contacts */
 
 .containerCard {
-  height: 45vh;
-  width: 100vw;
-  gap: 12px;
-  max-height: 600px;
-  max-width: 1000px;
-  min-width: 800px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
-  padding-bottom: 4%;
+    height: 45vh;
+    width: 100vw;
+    gap: 12px;
+    max-height: 600px;
+    max-width: 1000px;
+    min-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding-bottom: 4%;
 }
 
 .card {
-  height: 80%;
-  width: 20%;
-  border-radius: 10px;
-  transition: background 0.8s;
-  box-shadow: 0 70px 63px -60px #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    height: 80%;
+    width: 20%;
+    border-radius: 10px;
+    transition: background 0.8s;
+    box-shadow: 0 70px 63px -60px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 }
+
 .card0 {
-  background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
-  background-size: 300px;
+    background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
+    background-size: 300px;
 }
+
 .card0:hover {
-  background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
-  background-size: 350px;
+    background: url("/sae/gui/Picture/site/noemie.jpg") center center no-repeat;
+    background-size: 350px;
 }
+
 .card0:hover h2 {
-  opacity: 1;
+    opacity: 1;
 }
+
 .card0:hover .fa {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card1 {
-  background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
-  background-size: 300px;
+    background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
+    background-size: 300px;
 }
+
 .card1:hover {
-  background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
-  background-size: 350px;
+    background: url("/sae/gui/Picture/site/clement.jpg") center center no-repeat;
+    background-size: 350px;
 }
+
 .card1:hover h2 {
-  opacity: 1;
+    opacity: 1;
 }
+
 .card1:hover .fa {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card2 {
-  background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
-  background-size: 300px;
+    background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
+    background-size: 300px;
 }
+
 .card2:hover {
-  background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
-  background-size: 350px;
+    background: url("/sae/gui/Picture/site/killian.jpg") center center no-repeat;
+    background-size: 350px;
 }
+
 .card2:hover h2 {
-  opacity: 1;
+    opacity: 1;
 }
+
 .card2:hover .fa {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card3 {
-  background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
-  background-size: 300px;
+    background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
+    background-size: 300px;
 }
+
 .card3:hover {
-  background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
-  background-size: 350px;
+    background: url("/sae/gui/Picture/site/fabien.jpg") center center no-repeat;
+    background-size: 350px;
 }
+
 .card3:hover h2 {
-  opacity: 1;
+    opacity: 1;
 }
+
 .card3:hover .fa {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card4 {
-  background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
-  background-size: 300px;
+    background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
+    background-size: 300px;
 }
+
 .card4:hover {
-  background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
-  background-size: 350px;
+    background: url("/sae/gui/Picture/site/enzo.jpg") center center no-repeat;
+    background-size: 350px;
 }
+
 .card4:hover h2 {
-  opacity: 1;
+    opacity: 1;
 }
+
 .card4:hover .fa {
-  opacity: 1;
+    opacity: 1;
 }
 
 h2 {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #fff;
-  margin: 20px;
-  opacity: 0;
-  transition: opacity 1s;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #fff;
+    margin: 20px;
+    opacity: 0;
+    transition: opacity 1s;
 }
+
 .fa {
-  opacity: 10;
-  transition: opacity 1s;
+    opacity: 10;
+    transition: opacity 1s;
 }
+
 .icons {
-  width: 50px;
-  padding-bottom: 4%;
-  padding-left: 4%;
+    width: 50px;
+    padding-bottom: 4%;
+    padding-left: 4%;
 }
 
 /*Footer*/
 
-footer{
-  background-color: #2d2d2d;
-  position: inherit;
-  width: 100%;
-  color: #bbbaba;
-  font-size: 16px;
+footer {
+    background-color: #2d2d2d;
+    position: inherit;
+    width: 100%;
+    color: #bbbaba;
+    font-size: 16px;
 }
 
 .copyright {
-  padding: 0.3em 1em;
-  color: white;
-  font-size: 0.9em;
-  text-align: center;
+    padding: 0.3em 1em;
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
 }
 
