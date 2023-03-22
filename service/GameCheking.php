@@ -11,14 +11,14 @@ class GameCheking
 
     public function getYearsData($data)
     {
-        $yearDataTxt = array();
+        $yearDataObject = array();
 
         for ($i = 1; $i < 8; $i++) {
-            $yearDataTxt[] = $data->getYearData($i);
+            $yearDataObject[] = $data->getYearData($i);
         }
 
         // enregistrement des annonces dans un fichier sur le serveur (serialisation)
-        $yearDataSerialized = serialize($yearDataTxt);
-        file_put_contents('/data/' . $this->outputFile, $yearDataSerialized);
+        $yearDataSerialized = json_encode($yearDataObject);
+        file_put_contents('/home/serious/www/sae/data/' . $this->outputFile . '.json', $yearDataSerialized);
     }
 }

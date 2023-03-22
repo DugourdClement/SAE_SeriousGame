@@ -4,6 +4,8 @@ class YearChecking
 {
     protected $outputData;
 
+    protected $yearDataTxt;
+
     public function __construct($outputData)
     {
         $this->outputData = $outputData;

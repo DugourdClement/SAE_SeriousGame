@@ -90,7 +90,8 @@ function reset() {
  * Récupère les données nécessaires via getData() avant de lancer la partie.
  */
 async function openWindow() {
-    await getData();
+    yearData = await getData();
+    console.log(yearData);
     windowJ.style.visibility = 'visible';
     text.style.visibility = 'visible';
     text.innerText = "Chargement...";
@@ -401,7 +402,7 @@ async function context() {
  */
 async function getData() {
     try {
-        const response = await fetch('data/cache_YearData.txt');
+        const response = await fetch('/sae/data/cache_YearsData.json');
         const data = await response.text();
         return JSON.parse(data);
     } catch (error) {

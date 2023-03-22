@@ -11,6 +11,7 @@ include_once 'control/Presenter.php';
 include_once 'service/YearChecking.php';
 include_once 'service/OutputData.php';
 include_once 'service/UserChecking.php';
+include_once 'service/GameCheking.php';
 
 include_once 'gui/ViewAccueil.php';
 include_once 'gui/ViewModification.php';
@@ -38,7 +39,7 @@ try {
 $outputData = new OutputData();
 
 // initialisation de l'output sur fichier pour le jeu
-$gameCheck = new GameCheking('cache_YersData.txt');
+$gameCheck = new GameCheking('cache_YearsData');
 
 // initialisation du controller
 $controller = new Controllers($outputData);
