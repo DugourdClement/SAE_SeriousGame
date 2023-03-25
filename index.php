@@ -38,21 +38,21 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // route la requête en interne
 // i.e. lance le bon contrôleur en focntion de la requête effectuée
-if ('/sae/' == $uri || '/sae/index.php' == $uri) {
+if ('/SAE_SeriousGame/' == $uri || '/SAE_SeriousGame/index.php' == $uri) {
 
     $layout = new Layout("gui/layout.html" );
     $vueAccueil = new ViewAccueil( $layout );
 
     $vueAccueil->display();
 }
-elseif ( '/sae/index.php/connection' == $uri ){
+elseif ( '/SAE_SeriousGame/index.php' == $uri ){
 
     $layout = new Layout("gui/layout.html" );
     $vueLogin = new ViewLogin( $layout );
 
     $vueLogin->display();
 }
-elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) ) {
+elseif ( '/SAE_SeriousGame/index.php/modification' == $uri  && isset($_POST['username']) && isset($_POST['password']) ) {
 
     $controller->modificationAction($_POST['username'], $_POST['password'], $data, $modificationForm);
 
@@ -61,7 +61,7 @@ elseif ( '/sae/index.php/modification' == $uri  && isset($_POST['username']) && 
 
     $vueLogin->display();
 }
-elseif ( '/sae/index.php/chatbot' == $uri ) {
+elseif ( '/SAE_SeriousGame/index.php/chatbot' == $uri ) {
 
     $layout = new Layout("gui/layout.html" );
     $vueChatBot= new ViewChatbot( $layout );
