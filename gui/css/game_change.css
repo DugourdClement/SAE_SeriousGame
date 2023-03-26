@@ -22,21 +22,8 @@
 }
 
 #banner {
-    /* visibility: hidden; */
+    visibility: hidden;
     background-color: forestgreen;
-}
-
-label{
-    /* margin-left: 3%; */
-    /* margin-right: 3%; */
-    /* padding-left: 10em; */
-    /* padding-right: 10rem; */
-    /* left: 0; */
-    /* display: flex; */
-    /* position: relative; */
-    /* flex-direction: column; */
-    /* width: 50%; */
-    /* align-items: flex-start; */
 }
 
 .textModif{
@@ -51,7 +38,6 @@ label{
 .yearModif{
     background-color: white;
     width: 90%;
-    margin-bottom: 2rem;
     border-radius: 1rem;
 }
 

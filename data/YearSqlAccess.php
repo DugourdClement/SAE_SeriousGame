@@ -1,9 +1,9 @@
 <?php
 include_once 'domain/YearData.php';
 include_once 'domain/Choice.php';
-include_once 'service/DataAccessInterface.php';
+include_once 'service/YearAccessInterface.php';
 
-class YearSqlAccess implements DataAccessInterface
+class YearSqlAccess implements YearAccessInterface
 {
     protected $dataAccess = null;
 
@@ -62,5 +62,38 @@ class YearSqlAccess implements DataAccessInterface
 
         // create object YearData with all the data concatenated
         return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);
+    }
+
+    public function modifyChoice($idText, $text)
+    {
+        try {
+            $query = "UPDATE texte SET texte=:text WHERE id_texte = :idText";
+            $prepareQuery = $this->dataAccess->prepare($query);
+            $prepareQuery->execute(array(':text' => $text, ':idText' => $idText));
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function modifyOpt($idOpt, $idText, $text)
+    {
+        try {
+            $query = "UPDATE option SET opt=:text WHERE id_texte = :idText and id_opt = :idOpt";
+            $prepareQuery = $this->dataAccess->prepare($query);
+            $prepareQuery->execute(array(':text' => $text, ':idText' => $idText, ':idOpt' => $idOpt));
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function modifyTextSup($idTextSup, $text)
+    {
+        try {
+            $query = "UPDATE texte SET texte=:text WHERE id_texte = :idTextSup";
+            $prepareQuery = $this->dataAccess->prepare($query);
+            $prepareQuery->execute(array(':text' => $text, ':idTextSup' => $idTextSup));
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
     }
 }

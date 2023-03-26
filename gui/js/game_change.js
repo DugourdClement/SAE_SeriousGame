@@ -5,8 +5,7 @@
 function menu() {
     addEventListenerForm();
     let menu = document.getElementById("menu");
-    let divs = document.querySelectorAll(".option");
-    let body = document.body;
+    let divs = document.getElementsByClassName("yearModif");
 
     menu.addEventListener("change", function() {
         hideAllOption();
@@ -48,15 +47,24 @@ function hideAllOption(){
     }
 }
 
-function bannerShow(){
-    let banner = document.getElementById('banner');
-    banner = $(banner);
+function bannerShow(idForm){
+    const form = document.getElementById(idForm);
+
+// Create the banner element
+    const bannerElement = document.createElement('p');
+    bannerElement.id = 'banner';
+    bannerElement.innerText = 'Modification enregistrée';
+    form.appendChild(bannerElement);
+
+// Apply the animation
+    const banner = $(bannerElement);
     banner.css('visibility', 'visible');
     banner.css('opacity', '1');
 
     setTimeout(function() {
         banner.fadeTo(1000, 0, function() {
             banner.css('visibility', 'hidden');
+            banner.remove();
         });
     }, 3000);
 }
@@ -70,6 +78,7 @@ function bannerShow(){
  */
 function addEventListenerForm(){
     function addCustomEventListener(idForm) {
+        console.log("ffdd");
         console.log(idForm);
         document.getElementById('btnSubmit_' + idForm).addEventListener('click', function (event) {
             event.preventDefault();
@@ -92,20 +101,22 @@ function addEventListenerForm(){
             }
 
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'game_change.php');
+            xhr.open('POST', '/sae/index.php/modification');
             xhr.onload = function() {
                 if (xhr.status === 200) {
                     window['text_' + idForm].innerHTML = formData.get('text');
                 }
             };
             xhr.send(formData);
-            bannerShow();
+            bannerShow('form_' + idForm);
         });
     }
 
-    let allButtons = document.getElementsByClassName("form");
-    for (let i = 1; i < allButtons.length + 1; i++) {
+    let allYears = document.getElementsByClassName("yearModif");
+    for (let i = 1; i < allYears.length + 1; i++) {
+        console.log(i);
         document.querySelectorAll(`button[id^='btnSubmit_${i}']`).forEach(button => {
+            console.log(button.id);
             if (new RegExp(`${i}[1-9][1-5]$`).test(button.id)) { //For each answer
                 addCustomEventListener(button.id.slice(-3));
             }

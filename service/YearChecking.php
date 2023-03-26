@@ -21,4 +21,19 @@ class YearChecking
 
         $this->outputData->setOutputData($this->yearDataTxt);
     }
+
+    public function modifyChoice($data, $idText, $text)
+    {
+        $data->modifyChoice($idText, $text);
+    }
+
+    public function modifyOpt($data, $idOpt, $idText, $text)
+    {
+        $data->modifyOpt($idOpt, $idText, $text);
+    }
+
+    public function modifyTextSup($data, $idTextSup, $text)
+    {
+        $data->modifyTextSup($idTextSup, $text);
+    }
 }

@@ -34,7 +34,20 @@ class Controllers
 
     public function modificationAction($yearChecking, $data)
     {
-        $yearChecking->getYearsData($data);
+        if (isset($_POST['text']) && isset($_POST['idText'])) {
+            // if it's an option
+            if (isset($_POST['idOpt']))
+                $data->modifyOpt($_POST['idOpt'], $_POST['idText'], $_POST['text']);
+            // if it's a text sup
+            else if (isset($_POST['idTextSup']))
+                $data->modifyTextSup($_POST['idTextSup'], $_POST['text']);
+            // if it's a choice
+            else
+                $data->modifyChoice($_POST['idText'], $_POST['text']);
+        }
+        else {
+            $yearChecking->getYearsData($data);
+        }
     }
 
     public function gameAction($gameCheking, $data)

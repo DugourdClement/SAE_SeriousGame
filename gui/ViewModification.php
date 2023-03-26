@@ -40,7 +40,7 @@ class ViewModification extends View
 
         $this->content .= '
                     </div>
-                    <script defer src="/sae/gui/js/game_change.js?v=1"></script>
-                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script defer src="/sae/gui/js/game_change.js?v=1"></script>';
     }
 }
