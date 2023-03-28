@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig authType="PASSWORD" host="ssh-serious.alwaysdata.net" id="04b1ea9a-86b3-42e5-9909-d0c5773ae7bb" port="22" nameFormat="DESCRIPTIVE" username="serious" useOpenSSHConfig="true" />
-    </configs>
-  </component>
-</project>
