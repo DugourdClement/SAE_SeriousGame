@@ -154,7 +154,6 @@ header img {
   opacity: 0;
   transform: translateY(-50%);
   transition: all 0.1s 0.1s;
-  transition: opacity 0.1s 0.1s;
   margin-top: 0.5rem;
   margin-left: 22px;
 }

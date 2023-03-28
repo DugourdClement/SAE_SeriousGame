@@ -90,7 +90,7 @@ function reset() {
  */
 async function openWindow() {
     yearData = await getData();
-    console.log(yearData);
+    //console.log(yearData);
 
     windowJ.style.visibility = 'visible';
     text.style.visibility = 'visible';
@@ -178,7 +178,6 @@ async function displayTextSup(textNumber, textSup) {
  */
 async function year2022() {
     await displayTextSup(1, yearData[0].textSup[1]);
-    console.log(yearData[0].choice);
     await displayChoice(1, yearData[0].choice[0]);
 
     if (/^1\d*$/.test(path.toString())) {
@@ -365,7 +364,7 @@ async function year2056() {
 
     async function end(nb) {
         setButtonVisibility('hidden', 4);
-        windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
+        windowJ.style.backgroundImage = "url('/sae/gui/Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
         await createClickPromiseNext();
     }
 
@@ -421,7 +420,6 @@ async function getData() {
  * @returns {Promise<void>} - Une promesse résolue une fois que le jeu est terminé.
  */
 async function game() {
-    console.log(yearData);
     await context();
     await year2022();
     await context();
