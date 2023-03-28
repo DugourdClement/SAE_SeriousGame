@@ -105,8 +105,6 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
     header("refresh:0;url=/sae/index.php/connection");
 } elseif ('/sae/index.php/modification' == $uri && isset($_SESSION['isLogged']) && $_SESSION['isLogged']) {
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') var_dump($_POST);
-
     $controller->modificationAction($yearCheck, $dataYears);
 
     $layout = new Layout($layoutTemplate);

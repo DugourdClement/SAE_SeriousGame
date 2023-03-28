@@ -43,7 +43,7 @@ class Presenter
                 for ($t = 1; $t < $yearData->getNbTextSup() + 1; ++$t) { //Additional content-editable for the textSup
                     $content .= '
                         <form class="formModif" action="/sae/index.php/modification" method="POST" id="form_' . $y . '0' . $t . '">
-                        <p class="textModif" id="text_' . $y . '0' . $t . '" contenteditable>' . $textSup[$t] . '</p>
+                        <p class="textModif" id="text_' . $y . '0' . $t . '" contenteditable>' . $textSup[$t -1] . '</p>
                         <button  class="submitModif" id="btnSubmit_' . $y . '0' . $t . '" type="submit" name="btnSubmit" form="form_' . $y . '0' . $t . '"> Valider</button>
                         </form>';
                 }

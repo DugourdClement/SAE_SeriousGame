@@ -21,11 +21,11 @@ class YearSqlAccess implements YearAccessInterface
     {
         // query for the associated textSup
         try {
-            $query = "SELECT COUNT(DISTINCT id_texte) as nbTextSup, GROUP_CONCAT(texte SEPARATOR ', ') as textSup FROM texte WHERE id_texte REGEXP :regexSup";
+            $query = "SELECT texte FROM texte WHERE id_texte REGEXP :regexSup GROUP BY texte";
             $prepareQuery = $this->dataAccess->prepare($query);
-            $regexSup = "^{$year}\d$";
+            $regexSup = "^{$year}0\d$";
             $prepareQuery->execute(array(':regexSup' => $regexSup));
-            $textSup = $prepareQuery->fetch(PDO::FETCH_ASSOC);
+            $textSup = $prepareQuery->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             return $e->getMessage();
         }
@@ -61,7 +61,7 @@ class YearSqlAccess implements YearAccessInterface
         }
 
         // create object YearData with all the data concatenated
-        return new YearData($year, count($textSup), explode(',', $textSup['textSup']), count($choices), $arrayChoices);
+        return new YearData($year, count($textSup), array_column($textSup, 'texte'), count($choices), $arrayChoices);
     }
 
     public function modifyChoice($idText, $text)
