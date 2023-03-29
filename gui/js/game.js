@@ -5,7 +5,6 @@ const body = document.querySelector("body");
 const text = document.getElementById('text');
 let path = [];
 let years = ['2022', '2032', '2035', '2039', '2043', '2050', '2056', '2068'];
-let opt = [];
 let yearData = {};
 
 const allButtons = [];
@@ -91,14 +90,15 @@ function reset() {
  */
 async function openWindow() {
     yearData = await getData();
-    console.log(yearData);
+    //console.log(yearData);
+
     windowJ.style.visibility = 'visible';
     text.style.visibility = 'visible';
     text.innerText = "Chargement...";
-    if (typeof yearData === 'object' && Object.keys(yearData).length === 0) {
-        body.style.overflow = "hidden";
-        await game();
-    }
+
+    body.style.overflow = "hidden";
+    await game();
+
 }
 
 /**
@@ -128,19 +128,19 @@ function setElementEmpty(nb) {
 }
 
 /**
-
  Cette fonction permet de modifier le texte et la visibilité des boutons en fonction des options passées en paramètre.
+ @param nbOpt
  @param {Array} options - Les options qui seront affichées sur les boutons.
  */
-function setTextButton(options) {
+function setTextButton(nbOpt, options) {
     setButtonVisibility('hidden', 4);
     let buttons = [];
-    for (let i = 0; i < options.length; i++) {
+    for (let i = 0; i < nbOpt; i++) {
         buttons.push(allButtons[i]);
     }
-    setButtonVisibility('visible', buttons.length);
+    setButtonVisibility('visible', nbOpt);
 
-    for (let i = 0; i < buttons.length; i++) {
+    for (let i = 0; i < nbOpt; i++) {
         buttons[i].innerHTML = options[i];
     }
 }
@@ -148,41 +148,40 @@ function setTextButton(options) {
 /**
  * Affiche le choix de l'utilisateur et les options qui lui sont proposées.
  * @param choiceNumber
- * @param opt
+ * @param choiceDetails
  * @returns {Promise<void>}
  */
-async function displayChoice(choiceNumber, opt) {
-    windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
-    setTextButton(opt[1]);
-    text.innerText = opt[0];
+async function displayChoice(choiceNumber, choiceDetails) {
+    windowJ.style.backgroundImage = "url('/sae/gui/Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + choiceNumber + ".jpg')";
+    setTextButton(choiceDetails.nbOpt, choiceDetails.opt);
+    text.innerText = choiceDetails.choice;
     await createClickPromiseAnswer();
 }
 
 /**
  * Affiche le texte supplémentaire et les options qui lui sont proposées.
  * @param textNumber
- * @param opt
+ * @param textSup
  * @returns {Promise<void>}
  */
-async function displayTextSup(textNumber, opt) {
+async function displayTextSup(textNumber, textSup) {
     setButtonVisibility('hidden', 4);
     text.style.visibility = 'visible';
-    windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + textNumber + ".jpg')";
-    text.innerText = opt;
+    windowJ.style.backgroundImage = "url('/sae/gui/Picture/visuels-jeu/" + years[0] + "/choix_" + years[0] + "_" + textNumber + ".jpg')";
+    text.innerText = textSup;
     await createClickPromiseNext();
 }
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2022.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2022(opt) {
-    await displayTextSup(1, opt[3][0]);
-    await displayChoice(1, opt[1]);
+async function year2022() {
+    await displayTextSup(1, yearData[0].textSup[1]);
+    await displayChoice(1, yearData[0].choice[0]);
 
     if (/^1\d*$/.test(path.toString())) {
-        await displayChoice(1, opt[2]);
+        await displayChoice(1, yearData[0].choice[1]);
         /*  function for open a popup when an option is clicked but do not work
         function openPopup(rs) {
             return new Promise((resolve) => {
@@ -200,7 +199,7 @@ async function year2022(opt) {
          */
 
     } else {
-        await displayTextSup("1_1", opt[3][1]);
+        await displayTextSup("1_1", yearData[0].textSup[0]);
     }
 
     years.shift();
@@ -208,85 +207,85 @@ async function year2022(opt) {
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2032.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2032(opt) {
-    await displayTextSup(1, opt[3][0]);
-    await displayChoice(1, opt[1]); //netoyer son profil
+async function year2032() {
+    await displayTextSup(1, yearData[1].textSup[1]);
+    await displayChoice(1, yearData[1].choice[0]); //netoyer son profil
     if (path.slice(-1)[0] === 1) hasGoodJob = true;
-    await displayTextSup(2, opt[3][1]);
-    await displayChoice(2, opt[2]); //colect données rs + intenet
+    await displayTextSup(2, yearData[1].textSup[0]);
+    await displayChoice(2, yearData[1].choice[1]); //colect données rs + intenet
 
     years.shift();
 }
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2035.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2035(opt) {
-    if (hasGoodJob) await displayTextSup(1, opt[3][0]); //taf bien
-    else await displayTextSup(2, opt[3][1]); //taf nul
+async function year2035() {
+    if (hasGoodJob) await displayTextSup(1, yearData[2].textSup[1]); //taf bien
+    else await displayTextSup(2, yearData[2].textSup[0]); //taf nul
 
-    await displayTextSup(3, opt[3][2]); //google
+    await displayTextSup(3, yearData[2].textSup[3]); //google
+
     text.style.bottom = '29%';
-    await displayChoice(3, opt[2]);
+    await displayChoice(3, yearData[2].choice[1]);
     text.style.bottom = '25%';
-    await displayChoice(4, opt[1]); //reco facial
+
+    await displayTextSup(4, yearData[2].textSup[2]); //reco facial
+    await displayChoice(4, yearData[2].choice[0]); //reco facial
 
     years.shift();
 }
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2036.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2039(opt) {
-    await displayTextSup(1, opt[2][0]);
-    await displayChoice(1, opt[1]);
+async function year2039() {
+    await displayTextSup(1, yearData[3].textSup[2]);
+    await displayChoice(1, yearData[3].choice[0]);
     if (path.slice(-1)[0] === 1) isMaried = true;
 
-    await displayTextSup(1, opt[2][1]);
-    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[2][2]);
-    else await displayTextSup(2, opt[2][3]);
+    await displayTextSup(1, yearData[3].textSup[3]);
+    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, yearData[3].textSup[0]);
+    else await displayTextSup(2, yearData[3].textSup[4]);
 
-    if (/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, opt[2][4]);
+    if (/^\d+,\d+,2.*$/.test(path.toString())) await displayTextSup(4, yearData[3].textSup[1]);
 
     years.shift();
 }
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2043.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2043(opt) {
+async function year2043() {
     if (isMaried) {
-        await displayTextSup(1, opt[3][0]);
-        if (hasGoodJob) await displayTextSup(1, opt[3][1]);
-        else await displayTextSup(1, opt[3][2]);
+        await displayTextSup(1, yearData[4].textSup[2]);
+        if (hasGoodJob) await displayTextSup(1, yearData[4].textSup[5]);
+        else await displayTextSup(1, yearData[4].textSup[4]);
     }
 
-    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, opt[3][3]);
+    if (/^(\d+,){3}\d+,1.*$/.test(path.toString())) await displayTextSup(2, yearData[4].textSup[3]); // publicité dans la rue
 
     let faceRecognitionData = /^\d+,\d+,2.*$/.test(path.toString()) && /^(\d+,){3}\d+,1.*$/.test(path.toString());
     if (isMaried && hasGoodJob && faceRecognitionData) hasChildren = true;
 
-    if (faceRecognitionData) await displayTextSup(3, opt[3][4]);
+    if (faceRecognitionData) await displayTextSup(3, yearData[4].textSup[6]);
     if (isMaried) {
-        if (faceRecognitionData) await displayTextSup(4, opt[3][5]);
-        else await displayTextSup(4, opt[3][6]);
+        if (faceRecognitionData) await displayTextSup(4, yearData[4].textSup[7]);
+        else await displayTextSup(4, yearData[4].textSup[8]);
+
         if (hasChildren) {
-            await displayTextSup(5, opt[3][7]);
-        } else await displayTextSup(6, opt[3][8]);
+            await displayTextSup(5, yearData[4].textSup[1]);
+        } else await displayTextSup(6, yearData[4].textSup[0]);
     }
 
     if (!isMaried) {
-        if (hasGoodJob) await displayChoice(8, opt[1]);
-        else await displayChoice(7, opt[2]);
+        if (hasGoodJob) await displayChoice(8, yearData[4].choice[1]);
+        else await displayChoice(7, yearData[4].choice[0]);
         if (path.slice(-1)[0] === 1) GouvWork = true;
     }
 
@@ -295,74 +294,79 @@ async function year2043(opt) {
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2050.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2050(opt) {
+async function year2050() {
     if (hasChildren) {
-        await displayTextSup(1, opt[9][1]);
-        await displayChoice(2, opt[2]);
+        await displayTextSup(1, yearData[5].textSup[5]);
+        await displayChoice(2, yearData[5].choice[4]);
         if (path.slice(-1)[0] === 1) hasNewJob = true;
     } else if (isMaried) {
-        await displayTextSup(3, opt[9][0]);
-        await displayChoice(2, opt[1]);
+        await displayTextSup(3, yearData[5].textSup[4]);
+        await displayChoice(2, yearData[5].choice[3]);
         if (path.slice(-1)[0] === 1) hasNewJob = true;
     }
+
     if (GouvWork && !hasGoodJob) {
-        await displayChoice(2, opt[7]);
+        await displayChoice(2, yearData[5].choice[6]); // opération bras
+
         if (path.slice(-1)[0] === 1) armsUp = true;
     } else if (!GouvWork && !isMaried) {
-        await displayTextSup(6, opt[9][6]);
-        await displayChoice(7, opt[8]);
+        await displayTextSup(6, yearData[5].textSup[6]);
+        await displayChoice(7, yearData[5].choice[1]); // tribunal
+
         if (path.slice(-1)[0] === 2) hardWork = true;
         else prison = true;
     }
 
     if (hasNewJob) {
-        await displayTextSup(4, opt[9][2]);
-        await displayChoice(4, opt[3]);
+        await displayTextSup(4, yearData[5].textSup[1]);
+        await displayChoice(4, yearData[5].choice[0]);
+
         if (path.slice(-1)[0] === 1) isChipped = true;
     } else if (!hasGoodJob && !hardWork) {
-        await displayTextSup(5, opt[9][3]);
-        await displayChoice(5, opt[4]);
+        await displayTextSup(5, yearData[5].textSup[0]);
+        await displayChoice(5, yearData[5].choice[5]); // voisin
+
         if (path.slice(-1)[0] === 1) {
-            await displayTextSup(6, opt[9][4]);
-            await displayChoice(7, opt[5]);
+            await displayTextSup(6, yearData[5].textSup[3]);
+            await displayChoice(7, yearData[5].choice[2]); // prison 4ans
+
             if (path.slice(-1)[0] === 1) prison = true;
         } else {
-            await displayTextSup(6, opt[9][5]);
-            await displayChoice(7, opt[6]);
+            await displayTextSup(6, yearData[5].textSup[2]);
+            await displayChoice(7, yearData[5].choice[2]); //prison 2ans
+
             if (path.slice(-1)[0] === 1) prison = true;
         }
     }
-    if (GouvWork && hasGoodJob) await displayTextSup(3, opt[9][7]);
+    if (GouvWork && hasGoodJob) await displayTextSup(3, yearData[5].textSup[7]);
 
     years.shift();
 }
 
 /**
  * Affiche le texte de fin et les options qui lui sont proposées pour l'année 2056.
- * @param opt - Les options qui seront affichées sur les boutons.
  * @returns {Promise<void>} - Une promesse qui est résolue lorsque l'utilisateur clique sur le bouton "Next".
  */
-async function year2056(opt) {
+async function year2056() {
     if (isChipped) {
-        await displayTextSup(1, opt[3][0]);
-        await displayChoice(1, opt[1]);
+        await displayTextSup(1, yearData[6].textSup[1]);
+        await displayChoice(1, yearData[5].choice[0]);
     } else {
-        await displayTextSup(1, opt[3][1]);
-        await displayChoice(1, opt[2]);
+        await displayTextSup(1, yearData[6].textSup[0]);
+        await displayChoice(1,  yearData[5].choice[1]);
     }
-    if (hardWork) await displayTextSup(2, opt[3][2]);
-    if (armsUp) await displayTextSup(3, opt[3][3]);
+    if (hardWork) await displayTextSup(2, yearData[6].textSup[3]);
+    if (armsUp) await displayTextSup(3, yearData[6].textSup[4]);
+
+    await displayTextSup(4, yearData[6].textSup[2]);
 
     async function end(nb) {
         setButtonVisibility('hidden', 4);
-        windowJ.style.backgroundImage = "url('./Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
+        windowJ.style.backgroundImage = "url('/sae/gui/Picture/visuels-jeu/" + years[0] + "/end_" + nb + ".jpg')";
         await createClickPromiseNext();
     }
-
-    await displayTextSup(4, opt[3][4]);
 
     if (isMaried) {
         if (isChipped) await end(1);
@@ -382,16 +386,16 @@ async function context() {
     setButtonVisibility('hidden', 4);
     let clickPromise = createClickPromiseNext();
     nextButton.style.visibility = "hidden";
-    windowJ.style.backgroundImage = "url('./Picture/années/" + years[0] + ".png')";
+    windowJ.style.backgroundImage = "url('/sae/gui/Picture/années/" + years[0] + ".png')";
 
     setTimeout(async function () {
-        windowJ.style.backgroundImage = "url('./Picture/journal/journal" + years[0] + ".png')";
+        windowJ.style.backgroundImage = "url('/sae/gui/Picture/journal/journal" + years[0] + ".png')";
         nextButton.style.visibility = "visible";
     }, 2000);
     await clickPromise;
 
     if (years[0] !== '2043' && years[0] !== '2056') {
-        windowJ.style.backgroundImage = "url('./Picture/journal/journalSup" + years[0] + ".jpg')";
+        windowJ.style.backgroundImage = "url('/sae/gui/Picture/journal/journalSup" + years[0] + ".jpg')";
     }
     await createClickPromiseNext();
 }
@@ -416,20 +420,19 @@ async function getData() {
  * @returns {Promise<void>} - Une promesse résolue une fois que le jeu est terminé.
  */
 async function game() {
-    console.log(yearData);
     await context();
-    await year2022(opt[1]);
+    await year2022();
     await context();
-    await year2032(opt[2]);
+    await year2032();
     await context();
-    await year2035(opt[3]);
+    await year2035();
     await context();
-    await year2039(opt[4]);
+    await year2039();
     await context();
-    await year2043(opt[5]);
+    await year2043();
     await context();
-    await year2050(opt[6]);
+    await year2050();
     await context();
-    await year2056(opt[7]);
+    await year2056();
     reset();
 }
