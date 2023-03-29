@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <title> %title% </title>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/sae/gui/Picture/site/icone.png">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="/sae/gui/css/connection.css?v=1">
-  <link rel="stylesheet" href="/sae/gui/css/styleSheet.css?v=1">
-  <link rel="stylesheet" href="/sae/gui/css/game_change.css?v=1"><!--<link rel="stylesheet" href="/sae/gui/css/chatbot.css?v=1">-->
+    <title> %title% </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/sae/gui/Picture/site/icone.png">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="/sae/gui/css/connection.css?v=1">
+    <link rel="stylesheet" href="/sae/gui/css/styleSheet.css?v=1">
+    <link rel="stylesheet" href="/sae/gui/css/gameChange.css?v=1">
+    <!--<link rel="stylesheet" href="/sae/gui/css/chatbot.css?v=1">-->
+
+    <script defer src="/sae/gui/js/web.js"></script>
 </head>
 <div class="big-wrapper">
-  <header>
-    <div class="container">
-      <div class="logo">
-        <a href="index.php"><img src="/sae/gui/Picture/site/logosae.png" alt="Logo" /></a>
-      </div>
-
-      <div class="links">
-        <ul>
-          <li><a href="/sae/index.php#ressource">Ressources</a></li>
-          <li><a href="/sae/index.php#cartes">Contacts</a></li>
-          <li><a href="/sae/index.php/chatbot" target="_blank">ChatBox</a></li>
-          <li><a href="/sae/index.php/connection">Connexion</a></li>
-          <li><a href="/sae/index.php/deconnexion">Deconnexion</a></li>
-          <li class="dropdown">
-            <a href="#">Accessibilité</a>
-            <div class="dropdown-content">
-              <a class="filter-option" data-filter=protanopia href="#">Daltonisme protanopique</a>
-              <a class="filter-option" data-filter="deuteranopia" href="#">Daltonisme deutéranopique</a>
-              <a class="filter-option" data-filter="tritanopia" href="#">Daltonisme tritanopique</a>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="/sae/index.php"><img src="/sae/gui/Picture/site/logosae.png" alt="Logo"/></a>
             </div>
-          </li>
-        </ul>
-      </div>
 
-      <div class="overlay"></div>
+            <div class="links">
+                <ul>
+                    <li><a href="/sae/index.php#ressource">Ressources</a></li>
+                    <li><a href="/sae/index.php#cartes">Contacts</a></li>
+                    <li><a href="/sae/index.php/chatbot" target="_blank">ChatBox</a></li>
+                    <li><a href="/sae/index.php/modification">Modification</a></li>
+                    <li><a href="/sae/index.php/deconnexion">Deconnexion</a></li>
+                    <li class="dropdown">
+                        <a href="#">Accessibilité</a>
+                        <div class="dropdown-content">
+                            <a class="filter-option" data-filter=protanopia href="#">Daltonisme protanopique</a>
+                            <a class="filter-option" data-filter="deuteranopia" href="#">Daltonisme deutéranopique</a>
+                            <a class="filter-option" data-filter="tritanopia" href="#">Daltonisme tritanopique</a>
+                            <a class="filter-option" data-filter="base" href="#">Base</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
 
-      <div class="hamburger-menu">
-        <div class="bar">
+            <div class="overlay"></div>
+
+            <div class="hamburger-menu">
+                <div class="bar">
                     <span class="burger">
                      <span></span><span></span><span></span>
                  </span></div>
-      </div>
-    </div>
-  </header>
+            </div>
+        </div>
+    </header>
 </div>
 
 <body>
 %content%
 </body>
+
 <footer>
-  <div class="row copyright">
-    <p>Copyright &copy; 2023 CDCL developpers</p>
-  </div>
+    <div class="row copyright">
+        <p>Copyright &copy; 2023 CDCL developpers</p>
+    </div>
 </footer>
 </html>
