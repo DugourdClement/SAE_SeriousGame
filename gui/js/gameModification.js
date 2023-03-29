@@ -78,8 +78,7 @@ function bannerShow(idForm){
  */
 function addEventListenerForm(){
     function addCustomEventListener(idForm) {
-        console.log("ffdd");
-        console.log(idForm);
+        //console.log(idForm);
         document.getElementById('btnSubmit_' + idForm).addEventListener('click', function (event) {
             event.preventDefault();
 
@@ -114,7 +113,6 @@ function addEventListenerForm(){
 
     let allYears = document.getElementsByClassName("yearModif");
     for (let i = 1; i < allYears.length + 1; i++) {
-        console.log(i);
         document.querySelectorAll(`button[id^='btnSubmit_${i}']`).forEach(button => {
             console.log(button.id);
             if (new RegExp(`${i}[1-9][1-5]$`).test(button.id)) { //For each answer

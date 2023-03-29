@@ -20,8 +20,8 @@ class ViewChatbot extends View
             <header class="text-center">
                 <h1 class="xl reset-margin large-margin">CHATBOT</h1>
                 <p>Avez-vous besoin d \'aide ? </p>
-                <p>Promis, je suis un humain et je suis là pour vous proposez des oeuvres si vous souhaitez vous renseigner sur des
-                    sujets que nous avons abordé dans notre serious game. Veuillez sélectionner une réponse à chaque question
+                <p>Je suis à votre disposition pour vous proposez des références pour approfondir les
+                    sujets abordés prédement dans notre serious game. Veuillez sélectionner une réponse à chaque question
                     posée.</p>
             </header>
             

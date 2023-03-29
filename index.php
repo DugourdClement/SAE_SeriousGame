@@ -20,9 +20,6 @@ include_once 'gui/ViewChatbot.php';
 include_once 'gui/Layout.php';
 include_once 'gui/ViewError.php';
 
-
-// faut faire la navbar
-
 $bd = null;
 try {
     // construction du modèle
@@ -117,16 +114,14 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
     $vueChatBot = new ViewChatbot($layout);
 
     $vueChatBot->display();
-} else {
-    header('Status: 404 Not Found');
-    echo '<html lang="fr"><body><h1>My Page NotFound</h1></body></html>';
-}
-
-if ('/sae/index.php/error' == $uri) {
+} else if ('/sae/index.php/error' == $uri) {
     // Affichage d'un message d'erreur
 
     $layout = new Layout($layoutTemplate);
     $vueError = new ViewError($layout, $error, $redirect);
 
     $vueError->display();
+} else {
+    header('Status: 404 Not Found');
+    echo '<html lang="fr"><body><h1>My Page NotFound</h1></body></html>';
 }
