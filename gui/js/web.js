@@ -1,21 +1,24 @@
 // hamburger for mobile
-let sidenav = document.getElementById("mySidenav");
-let openBtn = document.getElementById("openBtn");
-let closeBtn = document.getElementById("closeBtn");
+var big_wrapper;
+var hamburger_menu;
 
-openBtn.onclick = openNav;
-closeBtn.onclick = closeNav;
-
-function openNav() {
-    sidenav.classList.add("active");
+function declare() {
+    big_wrapper = document.querySelector(".big-wrapper");
+    hamburger_menu = document.querySelector(".hamburger-menu");
 }
 
-function closeNav() {
-    sidenav.classList.remove("active");
+declare();
+
+function events() {
+    hamburger_menu.addEventListener("click", () => {
+        big_wrapper.classList.toggle("active");
+    });
 }
+
+
+events();
 
 //resources
-
 function r2032() {
     window.open("https://www.lemonde.fr/pixels/article/2020/12/10/la-cnil-inflige-des-amendes-a-google-et-amazon-pour-non-respect-de-la-legislation-sur-les-cookies_6062860_4408996.html");
     window.open("https://www.lemonde.fr/pixels/article/2022/01/06/la-cnil-inflige-de-lourdes-amendes-a-google-et-facebook-pour-leurs-cookies_6108384_4408996.html");
