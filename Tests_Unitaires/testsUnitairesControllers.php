@@ -3,6 +3,34 @@ use PHPUnit\Framework\TestCase;
 
 class testsUnitairesControllers extends TestCase
 {
+        public function testAuthenticateAction()
+        {
+            $mockOutputData = $this->getMockBuilder(OutputData::class)
+                ->getMock();
+
+            $mockUserChecking = $this->getMockBuilder(UserChecking::class)
+                ->disableOriginalConstructor()
+                ->getMock();
+
+            $mockUserChecking->expects($this->once())
+                ->method('authenticate')
+                ->with('john', 'password', $mockOutputData);
+
+            $mockUserChecking->expects($this->once())
+                ->method('verifyCaptcha')
+                ->with('captcha-response', $mockOutputData);
+
+            $controller = new Controllers($mockOutputData);
+
+            $_POST['login'] = 'john';
+            $_POST['password'] = 'password';
+            $_POST['g-recaptcha-response'] = 'captcha-response';
+
+            $result = $controller->authenticateAction($mockUserChecking, null);
+
+            $this->assertEquals('Mauvais identifiant ou mot de passe !', $result);
+        }
+
     public function testModificationAction()
     {
         // Créer un objet de la classe Controllers
