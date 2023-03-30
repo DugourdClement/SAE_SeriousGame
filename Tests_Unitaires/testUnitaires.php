@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 class LogoutTest extends PHPUnit_Framework_TestCase
 {
     public function testSessionIsUnsetAndDestroyed()

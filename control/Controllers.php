@@ -52,6 +52,11 @@ class Controllers
 
     public function gameAction($gameCheking, $data)
     {
-        $gameCheking->getYearsData($data);
+        // Test when gameAction is called
+        $this->gameChecking->expects($this->once())
+            ->method('getYearsData')
+            ->with($this->data);
+
+        $this->controllers->gameAction($this->gameChecking, $this->data);
     }
 }
