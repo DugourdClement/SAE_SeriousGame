@@ -1,10 +1,32 @@
 {
   "name": "SAE_SeriousGame",
   "version": "1.0.0",
+  "type": "module",
   "dependencies": {
-    "mysql": "^2.18.1"
+    "@npmcli/config": "^6.1.5",
+    "mysql": "^2.18.1",
+    "node": "^19.8.1"
   },
   "devDependencies": {
-    "@testing-library/dom": "^9.2.0"
-  }
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@testing-library/dom": "^9.2.0",
+    "babel-jest": "^29.5.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2"
+  },
+  "jest": {
+    "name": "my-project",
+    "verbose": true
+  },
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": ["transform-es2015-modules-commonjs"]
 }

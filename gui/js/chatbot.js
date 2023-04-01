@@ -3,6 +3,19 @@
  */
 const bot = function () {
 
+    export const Bot = {
+        sleep,
+        scrollContainer,
+        insertNewChatItem,
+        printResponse,
+        printChoice,
+        disableAllChoices,
+        handleChoice,
+        handleRestart,
+        startConversation,
+        init
+    };
+
     const peekobot = document.getElementById('chatbot');
     const container = document.getElementById('chatbot-container');
     const inner = document.getElementById('chatbot-inner');
