@@ -1,4 +1,5 @@
 <?php
+include_once "View.php";
 
 class ViewError extends View
 {
@@ -7,6 +8,14 @@ class ViewError extends View
         parent::__construct($layout);
 
         header("refresh:2;url=$redirect");
-        echo $error;
+
+        $this->title = 'Erreur';
+
+        $this->content = '
+                        <div class="home" id="home">
+                            <div class="error-message">
+                                <h3>' . $error . '</h3>
+                            </div>
+                        </div>';
     }
 }

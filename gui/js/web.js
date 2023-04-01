@@ -1,6 +1,6 @@
 // hamburger for mobile
-var big_wrapper;
-var hamburger_menu;
+let big_wrapper;
+let hamburger_menu;
 
 function declare() {
     big_wrapper = document.querySelector(".big-wrapper");
@@ -38,4 +38,35 @@ function r2039() {
 function r20392() {
     window.open("https://medium.com/ai-for-tomorrow/neuralink-il-est-urgent-de-parler-de-science-et-d%C3%A9thique-63e56f4fb41d");
     window.open("https://www.futura-sciences.com/tech/actualites/intelligence-artificielle-projet-neuralink-elon-musk-inquiete-beaucoup-scientifiques-95495/");
+}
+
+
+// get the active filter from localStorage or set it to null
+let activeFilter = localStorage.getItem('activeFilter') || null;
+
+// apply the active filter if it exists
+if (activeFilter) {
+    applyFilter(activeFilter);
+}
+
+// add event listeners to filter options
+document.querySelectorAll('.filter-option').forEach(function (option) {
+    option.addEventListener('click', function () {
+        const filterId = option.getAttribute('data-filter');
+        activeFilter = `url('/sae/gui/filters.svg#${filterId}')`;
+        applyFilter(activeFilter);
+        localStorage.setItem('activeFilter', activeFilter);
+    });
+});
+
+// apply the given filter to the necessary elements
+function applyFilter(filter) {
+    if (filter == null) {
+        activeFilter = null;
+    }
+
+    const elements = document.querySelectorAll('html');
+    elements.forEach(function (element) {
+        element.style.filter = filter;
+    });
 }

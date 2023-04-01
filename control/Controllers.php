@@ -13,8 +13,6 @@ class Controllers
     {
         if (!isset($sessionData['login'])) {
 
-            if (isset($postData['login']) && isset($postData['password'])) {
-                $userChecking->authenticate($postData['login'], $postData['password'], $data);
                 if (!$this->outputData->getOutputData()) {
 
                     return 'Mauvais identifiant ou mot de passe !';

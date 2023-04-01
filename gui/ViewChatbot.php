@@ -17,20 +17,24 @@ class ViewChatbot extends View
             <script src="/sae/gui/js/conversation.js"></script>
             <script type="text/babel" data-presets="es2015,es2016,es2017" src="/sae/gui/js/chatbot.js"></script>
             
-            <header class="text-center">
-                <h1 class="xl reset-margin large-margin">CHATBOT</h1>
-                <p>Avez-vous besoin d \'aide ? </p>
-                <p>Promis, je suis un humain et je suis là pour vous proposez des oeuvres si vous souhaitez vous renseigner sur des
-                    sujets que nous avons abordé dans notre serious game. Veuillez sélectionner une réponse à chaque question
-                    posée.</p>
-            </header>
-            
-            <main id="main">
-                <div id="chatbot-container">
-                    <div id="chatbot-inner">
-                        <div id="chatbot"></div>
+            <div class="home" id="home">
+                <div class="chat-bot">
+                    <div class="text-center">
+                        <h5 class="xl reset-margin large-margin">CHATBOT</h5>
+                        <p>Avez-vous besoin d \'aide ? </p>
+                        <p>Je suis à votre disposition pour vous proposez des références pour approfondir les
+                            sujets abordés prédement dans notre serious game. Veuillez sélectionner une réponse à chaque question
+                            posée.</p>
                     </div>
+                    
+                    
+                        <div id="chatbot-container">
+                            <div id="chatbot-inner">
+                                <div id="chatbot"></div>
+                            </div>
+                        </div>
+                    
                 </div>
-            </main>';
+            </div>';
         }
 }

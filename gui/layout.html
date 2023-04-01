@@ -3,20 +3,23 @@
 <head>
     <title> %title% </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/sae//gui/Picture/site/icone.png">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/sae/gui/css/connection.css?v=1">
     <link rel="stylesheet" href="/sae/gui/css/styleSheet.css?v=1">
-    <link rel="stylesheet" href="/sae/gui/css/game_change.css?v=1">
-    <!--<link rel="stylesheet" href="/sae/gui/css/chatbot.css?v=1">-->
+    <link rel="stylesheet" href="/sae/gui/css/gameChange.css?v=1">
+    <link rel="stylesheet" href="/sae/gui/css/chatbot.css?v=1">
 
-    <div class="big-wrapper">
+    <script defer src="/sae/gui/js/web.js"></script>
+</head>
+
+<div class="big-wrapper">
     <header>
         <div class="container">
             <div class="logo">
-                <a href="index.php"><img src="/sae/gui/Picture/site/logosae.png" alt="Logo" /></a>
+                <a href="/sae/index.php"><img src="/sae/gui/Picture/site/logosae.png" alt="Logo"/></a>
             </div>
 
             <div class="links">
@@ -31,6 +34,7 @@
                             <a class="filter-option" data-filter=protanopia href="#">Daltonisme protanopique</a>
                             <a class="filter-option" data-filter="deuteranopia" href="#">Daltonisme deutéranopique</a>
                             <a class="filter-option" data-filter="tritanopia" href="#">Daltonisme tritanopique</a>
+                            <a class="filter-option" data-filter="base" href="#">Base</a>
                         </div>
                     </li>
                 </ul>
@@ -46,11 +50,12 @@
             </div>
         </div>
     </header>
-    </div>
+</div>
 
 <body>
 %content%
 </body>
+
 <footer>
     <div class="row copyright">
         <p>Copyright &copy; 2023 CDCL developpers</p>
