@@ -1,6 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
+
 class LogoutTest extends PHPUnit_Framework_TestCase
 {
     public function testSessionIsUnsetAndDestroyed()
@@ -30,5 +31,10 @@ class LogoutTest extends PHPUnit_Framework_TestCase
         // assert
         $this->assertEquals('Location: http://localhost/ViewLogin.php', $header);
     }
+
+    
+
+
+
 }
 
