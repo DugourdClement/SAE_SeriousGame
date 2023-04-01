@@ -2,7 +2,9 @@
 
 use PHPUnit\Framework\TestCase;
 
-require_once 'UserChecking.php';
+require_once 'service/UserChecking.php';
+require_once 'service/OutputData.php';
+require_once 'data/UserSqlAccess.php';
 
 class UserCheckingTest extends TestCase
 {
@@ -13,7 +15,7 @@ class UserCheckingTest extends TestCase
     protected function setUp(): void
     {
         $this->outputData = $this->createMock(OutputData::class);
-        $this->data = $this->createMock(Data::class);
+        $this->data = $this->createMock(UserSqlAccess::class);
         $this->userChecking = new UserChecking($this->outputData);
     }
 
