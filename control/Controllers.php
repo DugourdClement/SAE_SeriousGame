@@ -2,49 +2,46 @@
 
 class Controllers
 {
-    protected $outputData;
+    private $outputData;
 
     public function __construct($outputData)
     {
         $this->outputData = $outputData;
     }
 
-    public function authenticateAction($userChecking, $data)
+    public function authenticateAction($userChecking, $data, $postData, &$sessionData)
     {
-        if (!isset($_SESSION['login'])) {
+        if (!isset($sessionData['login'])) {
 
-            if (isset($_POST['login']) && isset($_POST['password'])) {
-                $userChecking->authenticate($_POST['login'], $_POST['password'], $data);
-
+            if (isset($postData['login']) && isset($postData['password'])) {
+                $userChecking->authenticate($postData['login'], $postData['password'], $data);
                 if (!$this->outputData->getOutputData()) {
 
                     return 'Mauvais identifiant ou mot de passe !';
                 }
-                $userChecking->verifyCaptcha($_POST['g-recaptcha-response'], $data);
+                $userChecking->verifyCaptcha($postData['g-recaptcha-response'], $data);
                 if (!$this->outputData->getOutputData()) {
 
                     return 'Vous etes un robot !';
                 }
 
-                $_SESSION['isLogged'] = true;
+                $sessionData['isLogged'] = true;
             } else {
                 return 'Veuillez remplir tous les champs !';
             }
         }
     }
-
-    public function modificationAction($yearChecking, $data)
+    public function modificationAction($yearChecking, $data, $postData)
     {
-        if (isset($_POST['text']) && isset($_POST['idText'])) {
-            // if it's an option
-            if (isset($_POST['idOpt']))
-                $data->modifyOpt($_POST['idOpt'], $_POST['idText'], $_POST['text']);
+        if (isset($postData['text']) && (isset($postData['idText']) || isset($postData['idTextSup']))) {            // if it's an option
+            if (isset($postData['idOpt']))
+                $data->modifyOpt($postData['idOpt'], $postData['idText'], $postData['text']);
             // if it's a text sup
-            else if (isset($_POST['idTextSup']))
-                $data->modifyTextSup($_POST['idTextSup'], $_POST['text']);
+            elseif (isset($postData['idTextSup']))
+                $data->modifyTextSup($postData['idTextSup'], $postData['text']);
             // if it's a choice
             else
-                $data->modifyChoice($_POST['idText'], $_POST['text']);
+                $data->modifyChoice($postData['idText'], $postData['text']);
         }
         else {
             $yearChecking->getYearsData($data);

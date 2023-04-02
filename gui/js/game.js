@@ -98,7 +98,6 @@ async function openWindow() {
 
     body.style.overflow = "hidden";
     await game();
-
 }
 
 /**
