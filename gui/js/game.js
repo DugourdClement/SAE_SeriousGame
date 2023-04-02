@@ -182,22 +182,6 @@ async function year2022() {
 
     if (/^1\d*$/.test(path.toString())) {
         await displayChoice(1, yearData[0].choice[1]);
-        /*  function for open a popup when an option is clicked but do not work
-        function openPopup(rs) {
-            return new Promise((resolve) => {
-                let opened = window.open("CGU/cgu" + rs + ".html", "Popup", "width=800,height=700");
-                opened.onunload = () => {
-                    resolve();
-                };
-            });
-        }
-
-            if (choice.slice(-1)[0] === 1) await openPopup("twitter");
-            else if (choice.slice(-1)[0] === 2) await openPopup("insta");
-            else if (choice.slice(-1)[0] === 3) await openPopup("fb");
-            else if (choice.slice(-1)[0] === 4) await openPopup("snap");
-         */
-
     } else {
         await displayTextSup("1_1", yearData[0].textSup[0]);
     }

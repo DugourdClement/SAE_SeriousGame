@@ -20,12 +20,17 @@ include_once 'gui/ViewChatbot.php';
 include_once 'gui/Layout.php';
 include_once 'gui/ViewError.php';
 
-$bd = null;
+$bdAdmin = null;
+$bdLecture = null;
 try {
     // construction du modèle
-    $bd = SPDO::getInstance();
-    $dataYears = new YearSqlAccess($bd);
-    $dataUsers = new UserSqlAccess($bd);
+    $bdAdmin = SPDO::getInstance("serveur_admin");
+    $bdLecture = SPDO::getInstance("serveur_lecture");
+
+    $dataYears = new YearSqlAccess($bdAdmin);
+
+    $dataYearsLecture = new YearSqlAccess($bdLecture);
+    $dataUsers = new UserSqlAccess($bdLecture);
 
 } catch (PDOException $e) {
     print "Erreur de connexion !: " . $e->getMessage() . "<br/>";
@@ -87,7 +92,7 @@ if ('/sae/' == $uri || '/sae/index.php' == $uri) {
 
     $vueAccueil->display();
 
-    $controller->gameAction($gameCheck, $dataYears);
+    $controller->gameAction($gameCheck, $dataYearsLecture);
 } elseif ('/sae/index.php/connection' == $uri) {
 
     session_destroy();

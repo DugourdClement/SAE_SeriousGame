@@ -4,24 +4,28 @@ final class SPDO
 {
     private ?PDO $PDOInstance = null;
     private static ?SPDO $instance = null;
+    private string $serverName;
 
-    private function __construct()
+    private function __construct(string $serverName)
     {
         define("CHEMIN_VERS_FICHIER_INI", 'config.ini');
         define("BASE_DE_DONNEES", 'serious_bd');
-        $A_config = parse_ini_file(CHEMIN_VERS_FICHIER_INI, true);
-        if (is_array($A_config)) {
-            $A_config = $A_config['serveur_admin'];
-            $S_dsn = $A_config['type'] . ':dbname=' . BASE_DE_DONNEES . ';host=' . $A_config['adresse_IP'] . ';port=3306';
-            $this->PDOInstance = new PDO($S_dsn, $A_config['utilisateur'], $A_config['motdepasse']);
+        $config = parse_ini_file(CHEMIN_VERS_FICHIER_INI, true);
+        if (isset($config[$serverName])) {
+            $serverConfig = $config[$serverName];
+            $dsn = $serverConfig['type'] . ':dbname=' . BASE_DE_DONNEES . ';host=' . $serverConfig['adresse_IP'] . ';port=' . $serverConfig['port'];
+            $this->PDOInstance = new PDO($dsn, $serverConfig['utilisateur'], $serverConfig['motdepasse']);
+            $this->serverName = $serverName;
+        } else {
+            throw new Exception("Server '$serverName' not found in config file");
         }
     }
 
-    public static function getInstance()
+    public static function getInstance(string $serverName = 'serveur_admin'): SPDO
     {
-        if(is_null(self::$instance))
+        if(is_null(self::$instance) || self::$instance->serverName !== $serverName)
         {
-            self::$instance = new SPDO();
+            self::$instance = new SPDO($serverName);
         }
         return self::$instance;
     }
@@ -34,9 +38,5 @@ final class SPDO
     public function prepare($query)
     {
         return $this->PDOInstance->prepare($query);
-    }
-
-    public function get_result(){
-        return $this->PDOInstance->get;
     }
 }

@@ -40,7 +40,7 @@ class ViewAccueil extends View
             </div>
             
             <div>
-                <p id="ressource" style="font-size: 500%; color:white;" class="myP">Ressources</p>
+                <p id="ressource" style="font-size: 32px; color:white;" class="myP">Ressources</p>
                 <p class="myP">L’éthique numérique est un sujet de plus en plus important dans le monde d’aujourd’hui, car de plus
                     en plus de nos vies quotidiennes sont médiatisées par la technologie. Qu’il s’agisse des médias sociaux, des achats en ligne ou
                     de la télémédecine, notre dépendance à l’égard de la technologie pour communiquer et interagir avec le monde qui
