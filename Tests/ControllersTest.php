@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 require_once 'control/Controllers.php';
 require_once 'service/UserChecking.php';
 require_once 'service/YearChecking.php';
-require_once 'service/GameCheking.php';
+require_once 'service/GameChecking.php';
 require_once 'service/OutputData.php';
 require_once 'data/UserSqlAccess.php';
 require_once 'data/YearSqlAccess.php';
@@ -178,7 +178,7 @@ class ControllersTest extends TestCase
     }
     public function testGameAction()
     {
-        $gameChecking = $this->createMock(GameCheking::class);
+        $gameChecking = $this->createMock(GameChecking::class);
         $data = $this->createMock(UserAccessInterface::class);
 
         $gameChecking->expects($this->once())

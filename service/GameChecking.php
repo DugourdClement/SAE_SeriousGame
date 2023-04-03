@@ -1,6 +1,6 @@
 <?php
 
-class GameCheking
+class GameChecking
 {
     protected $outputFile;
 
