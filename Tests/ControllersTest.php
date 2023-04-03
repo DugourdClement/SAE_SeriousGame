@@ -30,14 +30,12 @@ class ControllersTest extends TestCase
         $data = $this->createMock(UserAccessInterface::class);
         $sessionData = [];
 
-        // Test case: no login session data
         $postData = [
             'login' => 'testuser',
             'password' => 'testpassword',
             'g-recaptcha-response' => 'testcaptcharesponse'
         ];
 
-        // Case 1: Incorrect username or password
         $userChecking->expects($this->once())
             ->method('authenticate')
             ->with($postData['login'], $postData['password'], $data);
@@ -56,14 +54,12 @@ class ControllersTest extends TestCase
         $data = $this->createMock(UserAccessInterface::class);
         $sessionData = [];
 
-        // Test case: no login session data
         $postData = [
             'login' => 'testuser',
             'password' => 'testpassword',
             'g-recaptcha-response' => 'testcaptcharesponse'
         ];
 
-        // Case 2: Correct username and password, but captcha verification fails
         $userChecking->expects($this->once())
             ->method('authenticate')
             ->with($postData['login'], $postData['password'], $data);
@@ -86,14 +82,12 @@ class ControllersTest extends TestCase
         $data = $this->createMock(UserAccessInterface::class);
         $sessionData = [];
 
-        // Test case: no login session data
         $postData = [
             'login' => 'testuser',
             'password' => 'testpassword',
             'g-recaptcha-response' => 'testcaptcharesponse'
         ];
 
-        // Case 3: Successful authentication and captcha verification
         $userChecking->expects($this->once())
             ->method('authenticate')
             ->with($postData['login'], $postData['password'], $data);
